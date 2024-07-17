@@ -1,0 +1,245 @@
+version: "3"
+
+includes:
+  golang:
+    taskfile: ./build/_deps/taskfiles/build/golangTasks.yml
+    optional: true
+  docker:
+    taskfile: ./build/_deps/taskfiles/build/dockerTasks.yml
+    optional: true
+
+silent: true
+
+vars:
+  NAME: x-node
+  ORG: n2x-io
+  DOMAIN: n2x.dev
+  PROJECT: n2x
+  GITHUB_PKG: "github.com/{{.ORG}}/{{.NAME}}"
+  PREFIX:
+    sh: pwd
+  PROJECT_DIR: "{{.PREFIX}}/.."
+  DIST_DIR: "{{.PREFIX}}/_dist"
+  PKG_REPO: "n2x-io"
+  PKG_REPO_DEV: "n2x-dev"
+  S3_BUCKET: "netcco-r2_cloudflare:n2x-binaries"
+
+env:
+  PKG: "{{.DOMAIN}}/{{.PROJECT}}"
+  VERSION_DATE:
+    sh: date -u +%Y%m%d%H%M%S
+  # GO_VERSION:
+  #   sh: go version | cut -f 3 -d ' '
+  # GO111MODULE: on
+  # CGO_ENABLED: 0
+  # GOPRIVATE: n2x.dev/x-api-go,n2x.dev/x-lib
+  GITHUB_TOKEN:
+    sh: |
+      if [[ -f $HOME/.cloud/github/github_token.n2xbot ]]; then
+        cat $HOME/.cloud/github/github_token.n2xbot;
+      else
+        echo "${GITHUB_TOKEN}";
+      fi
+  # DOCKER_USER:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/docker/docker.n2x ]]; then
+  #       awk '/user/ {print $2}' $HOME/.cloud/docker/docker.n2x;
+  #     else
+  #       echo "${DOCKER_USER}";
+  #     fi
+  # DOCKER_PASSWORD:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/docker/docker.n2x ]]; then
+  #       awk '/pw/ {print $2}' $HOME/.cloud/docker/docker.n2x;
+  #     else
+  #       echo "${DOCKER_PASSWORD}";
+  #     fi
+  COSIGN_PWD:
+    sh: |
+      if [[ -f $HOME/.x6a/n2x/cosign/pw.txt ]]; then
+        cat $HOME/.x6a/n2x/cosign/pw.txt;
+      else
+        echo "${COSIGN_PWD}";
+      fi
+  DISCORD_WEBHOOK_ID:
+    sh: |
+      if [[ -f $HOME/.cloud/discord/n2xbot-announcements.webhook ]]; then
+        awk '/webhook_id/ {print $2}' $HOME/.cloud/discord/n2xbot-announcements.webhook;
+      else
+        echo "${DISCORD_WEBHOOK_ID}";
+      fi
+  DISCORD_WEBHOOK_TOKEN:
+    sh: |
+      if [[ -f $HOME/.cloud/discord/n2xbot-announcements.webhook ]]; then
+        awk '/webhook_token/ {print $2}' $HOME/.cloud/discord/n2xbot-announcements.webhook;
+      else
+        echo "${DISCORD_WEBHOOK_TOKEN}";
+      fi
+  # TWITTER_CONSUMER_KEY:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/twitter/n2xHQ ]]; then
+  #       awk '/api_key/ {print $2}' $HOME/.cloud/twitter/n2xHQ;
+  #     else
+  #       echo "${TWITTER_CONSUMER_KEY}";
+  #     fi
+  # TWITTER_CONSUMER_SECRET:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/twitter/n2xHQ ]]; then
+  #       awk '/api_secret/ {print $2}' $HOME/.cloud/twitter/n2xHQ;
+  #     else
+  #       echo "${TWITTER_CONSUMER_SECRET}";
+  #     fi
+  # TWITTER_ACCESS_TOKEN:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/twitter/n2xHQ ]]; then
+  #       awk '/access_token/ {print $2}' $HOME/.cloud/twitter/n2xHQ;
+  #     else
+  #       echo "${TWITTER_ACCESS_TOKEN}";
+  #     fi
+  # TWITTER_ACCESS_TOKEN_SECRET:
+  #   sh: |
+  #     if [[ -f $HOME/.cloud/twitter/n2xHQ ]]; then
+  #       awk '/access_secret/ {print $2}' $HOME/.cloud/twitter/n2xHQ;
+  #     else
+  #       echo "${TWITTER_ACCESS_TOKEN_SECRET}";
+  #     fi
+
+tasks:
+  deps:
+    desc: Install build dependencies.
+    cmds:
+      - rm -rf ./build/_deps
+      - git clone --depth 1 git@github.com:x6a/scripts.git ./build/_deps/scripts
+      - git clone --depth 1 git@github.com:x6a/taskfiles.git ./build/_deps/taskfiles
+
+  test-mods:
+    desc: Test vendor modules.
+    cmds:
+      - task: golang:go-verify-vendor
+      - task: golang:go-generate
+      - task: golang:go-fmt
+      # - task: golang:go-vet
+      # - task: golang:golangci-lint
+
+  _goreleaser:
+    deps: [test-mods]
+    cmds:
+      - goreleaser {{.CMD}} -f build/ci/goreleaser/release.yml --clean {{.OPTS}}
+
+  test-node:
+    desc: Test build the node binary.
+    cmds:
+      - task: _goreleaser
+        vars:
+          CMD: build
+          OPTS: --snapshot
+
+  build-all:
+    desc: Build all binaries.
+    cmds:
+      - task: _build-node
+
+  build-node:
+    desc: Build the node binary.
+    cmds:
+      - task: _goreleaser
+        vars:
+          CMD: release
+          OPTS: --snapshot
+
+  docker-push-node-dev:
+    desc: docker push -- n2x-node (dev build)
+    cmds:
+      # - task: docker:docker-login
+      - task: docker:ghcr-login
+      # - docker push n2xdev/n2x-node:snapshot
+      # - docker push n2xdev/n2x-node:dev
+      - docker push ghcr.io/n2x-io/n2x-node:snapshot
+      - docker push ghcr.io/n2x-io/n2x-node:dev
+      # - task: docker:image-scan
+      #   vars: { IMAGE: "n2x-node", REPO: "n2xdev", TAG: "dev" }
+      - task: docker:image-scan
+        vars: { IMAGE: "n2x-node", REPO: "ghcr.io/n2x-io", TAG: "dev" }
+
+  publish-binaries-dev:
+    desc: Publish binaries (dev build)
+    dir: "{{.PREFIX}}"
+    vars:
+      VERSION:
+        sh: svu current
+    cmds:
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_amd64.deb '{{.PKG_REPO_DEV}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_i386.deb '{{.PKG_REPO_DEV}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_arm64.deb '{{.PKG_REPO_DEV}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_armhf.deb '{{.PKG_REPO_DEV}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.x86_64.rpm '{{.PKG_REPO_DEV}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.i386.rpm '{{.PKG_REPO_DEV}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.aarch64.rpm '{{.PKG_REPO_DEV}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.armv6hl.rpm '{{.PKG_REPO_DEV}}'
+      - ./build/_deps/scripts/_local/build/release.sh '{{.VERSION}}' '{{.DIST_DIR}}' '{{.S3_BUCKET}}' 'dev'
+
+  publish-binaries-stable:
+    desc: Publish binaries (stable build)
+    dir: "{{.PREFIX}}"
+    vars:
+      VERSION:
+        sh: svu current
+    cmds:
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_amd64.deb '{{.PKG_REPO}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_i386.deb '{{.PKG_REPO}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_arm64.deb '{{.PKG_REPO}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node_*_armhf.deb '{{.PKG_REPO}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.x86_64.rpm '{{.PKG_REPO}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.i386.rpm '{{.PKG_REPO}}'
+      - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.aarch64.rpm '{{.PKG_REPO}}'
+      # - ./build/_deps/scripts/_local/build/pkg-upload.sh {{.DIST_DIR}}/n2x-node-*.armv6hl.rpm '{{.PKG_REPO}}'
+      - ./build/_deps/scripts/_local/build/release.sh '{{.VERSION}}' '{{.DIST_DIR}}' '{{.S3_BUCKET}}' 'stable'
+
+  publish-all-dev:
+    desc: Publish docker images and binaries (dev build)
+    cmds:
+      - task: docker-push-node-dev
+      - task: publish-binaries-dev
+
+  publish-all-stable:
+    desc: Publish binaries (stable build)
+    cmds:
+      - task: publish-binaries-stable
+
+  tag:
+    desc: Create new git tag.
+    vars:
+      NEXT_VERSION:
+        sh: svu next
+    cmds:
+      - echo "Executing git tag with {{.NEXT_VERSION}}..."
+      - git tag -sa {{.NEXT_VERSION}} -m "{{.NEXT_VERSION}}"
+      - echo "Running git push origin {{.NEXT_VERSION}} to push new tag to GitHub..."
+      - git push origin {{.NEXT_VERSION}}
+
+  release:
+    desc: Build and release all the packages.
+    cmds:
+      - task: tag
+      # - task: docker:docker-login
+      - task: docker:ghcr-login
+      - task: _goreleaser
+        vars:
+          CMD: release
+          OPTS: ""
+      # - task: docker:image-scan
+      #   vars: { IMAGE: "n2x-node", REPO: "n2xdev", TAG: "stable" }
+      - task: docker:image-scan
+        vars: { IMAGE: "n2x-node", REPO: "ghcr.io/n2x-io", TAG: "stable" }
+      - task: publish-all-stable
+      # - ./scripts/_local/build/gh-tag-delete.sh '{{.VERSION}}'
+
+  clean:
+    desc: Clean everything.
+    deps: [golang:go-clean, docker:docker-images-clean]
+    cmds:
+      - echo 'Cleaning local user config...'
+      - rm -f $HOME/.docker/config.json
+      - rm -f $HOME/.gnupg/S.gpg-agent*
+      - echo 'Cleaning dist working directory...'
+      - rm -rf {{.DIST_DIR}}

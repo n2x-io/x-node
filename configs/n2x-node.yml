@@ -1,0 +1,35 @@
+# n2x-node configuration
+
+token:
+
+# loglevel: INFO # TRACE | DEBUG | INFO | WARN
+port: 57775
+# dnsPort: 53535
+
+# n2x remote management permissions
+management:
+  # use 'openssl rand -base64 48' to generate both psk and securityToken
+  auth:
+    psk:
+    securityToken:
+  # specific features can be disabled (optional)
+  disableOps: false
+  disableExec: false
+  disableTransfer: false
+  disablePortForwarding: false
+
+# network routes behind this node (optional)
+routes:
+  export:
+    # - 1.2.3.4/32
+    # - 192.168.0.0/24
+    # - fd37:d11:f54::/64
+  import:
+    # - any
+
+maintenance:
+  autoUpdate: true
+  # default schedule: 00:00 (at midnight)
+  schedule:
+    hour: 2
+    minute: 0
