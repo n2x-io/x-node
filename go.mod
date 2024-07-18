@@ -32,8 +32,8 @@ require (
 	golang.org/x/text v0.16.0
 	golang.zx2c4.com/wireguard v0.0.0-20211116201604-ffb742d43d92
 	google.golang.org/grpc v1.65.0
-	k8s.io/api v0.30.2
-	k8s.io/apimachinery v0.30.2
+	k8s.io/api v0.30.3
+	k8s.io/apimachinery v0.30.3
 	k8s.io/client-go v0.30.2
 	modernc.org/sqlite v1.30.2
 	n2x.dev/x-api-go v0.0.0-00010101000000-000000000000
