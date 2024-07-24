@@ -50,10 +50,14 @@ func runAsService(action serviceAction) {
 		Arguments:        []string{"service-start"},
 		WorkingDirectory: "/opt/n2x/var/tmp",
 		Option: service.KeyValue{
-			"KeepAlive":         true,
-			"RunAtLoad":         true,
-			"StandardErrorPath": "/opt/n2x/var/log/io.n2x.n2x-node.err.log",
-			"StandardOutPath":   "/opt/n2x/var/log/io.n2x.n2x-node.out.log",
+			// Use custom launchd config
+			"LaunchdConfig": launchdConfig,
+			// Prevent the system from stopping the service automatically
+			"KeepAlive": true,
+			// Run the service after its job has been loaded
+			"RunAtLoad": true,
+			// Create a full user session
+			"SessionCreate": false,
 		},
 	}
 
@@ -126,3 +130,32 @@ func ServiceUninstall() {
 
 	os.Exit(0)
 }
+
+const launchdConfig = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>io.n2x.n2x-node</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/n2x/libexec/n2x-node</string>
+		<string>service-start</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>SessionCreate</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>/opt/n2x/var/log/io.n2x.n2x-node.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/opt/n2x/var/log/io.n2x.n2x-node.out.log</string>
+	<key>WorkingDirectory</key>
+	<string>/opt/n2x/var/tmp</string>
+</dict>
+</plist>
+`

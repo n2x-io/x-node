@@ -143,51 +143,51 @@ archives:
       - ./SUPPORT.md
       - ./LICENSE
 
-brews:
-  - name: n2x-node
-    repository:
-      owner: n2x-io
-      name: homebrew-tap
-      branch: master
-    directory: Formula
-    goarm: "6"
-    goamd64: v1
-    commit_author:
-      name: n2xbot
-      email: xbot@n2x.dev
-    # commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
-    homepage: https://n2x.io
-    description: n2x-node agent
-    license: "Apache License 2.0"
-    # Reference: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html#//apple_ref/doc/uid/10000172i-SW7-SW3
-    # plist: |
-    #   <?xml version="1.0" encoding="UTF-8"?>
-    #   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    #   <plist version="1.0">
-    #       <dict>
-    #           <key>Label</key>
-    #           <string>com.n2x.n2x-node</string>
-    #           <key>ProgramArguments</key>
-    #           <array>
-    #               <string>/opt/n2x/libexec/n2x-node</string>
-    #               <string>start</string>
-    #               <string>--config</string>
-    #               <string>/opt/n2x/etc/n2x-node.yml</string>
-    #           </array>
-    #           <key>RunAtLoad</key>
-    #           <true/>
-    #           <key>KeepAlive</key>
-    #           <true/>
-    #           <key>Disabled</key>
-    #           <false/>
-    #       </dict>
-    #   </plist>
-    test: |-
-      system "#{libexec}/n2x-node version"
-    install: |-
-      libexec.install "n2x-node"
-    # post_install: |-
-    #   etc.install "n2x-node.yml"
+# brews:
+#   - name: n2x-node
+#     repository:
+#       owner: n2x-io
+#       name: homebrew-tap
+#       branch: master
+#     directory: Formula
+#     goarm: "6"
+#     goamd64: v1
+#     commit_author:
+#       name: n2xbot
+#       email: xbot@n2x.dev
+#     # commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+#     homepage: https://n2x.io
+#     description: n2x-node agent
+#     license: "Apache License 2.0"
+#     # Reference: https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html#//apple_ref/doc/uid/10000172i-SW7-SW3
+#     # plist: |
+#     #   <?xml version="1.0" encoding="UTF-8"?>
+#     #   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+#     #   <plist version="1.0">
+#     #       <dict>
+#     #           <key>Label</key>
+#     #           <string>io.n2x.n2x-node</string>
+#     #           <key>ProgramArguments</key>
+#     #           <array>
+#     #               <string>/opt/n2x/libexec/n2x-node</string>
+#     #               <string>start</string>
+#     #               <string>--config</string>
+#     #               <string>/opt/n2x/etc/n2x-node.yml</string>
+#     #           </array>
+#     #           <key>RunAtLoad</key>
+#     #           <true/>
+#     #           <key>KeepAlive</key>
+#     #           <true/>
+#     #           <key>Disabled</key>
+#     #           <false/>
+#     #       </dict>
+#     #   </plist>
+#     test: |-
+#       system "#{libexec}/n2x-node version"
+#     install: |-
+#       libexec.install "n2x-node"
+#     # post_install: |-
+#     #   etc.install "n2x-node.yml"
 
 nfpms:
   - id: n2x-node
