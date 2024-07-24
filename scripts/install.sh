@@ -558,7 +558,7 @@ darwin_setup() {
   echo "Starting n2x-node setup on Darwin..."
 
   /opt/n2x/libexec/n2x-node service-install
-  launchctl print system/com.n2x.n2x-node
+  launchctl print system/io.n2x.n2x-node
 }
 
 # freebsd_setup() {
