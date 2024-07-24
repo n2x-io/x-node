@@ -15,15 +15,14 @@ import (
 	"github.com/samber/lo"
 	"golang.org/x/xerrors"
 
-	dio "github.com/aquasecurity/go-dep-parser/pkg/io"
-	"github.com/aquasecurity/go-dep-parser/pkg/python/packaging"
-	godeptypes "github.com/aquasecurity/go-dep-parser/pkg/types"
+	"github.com/aquasecurity/trivy/pkg/dependency/parser/python/packaging"
 	"github.com/aquasecurity/trivy/pkg/fanal/analyzer"
 	"github.com/aquasecurity/trivy/pkg/fanal/analyzer/language"
 	"github.com/aquasecurity/trivy/pkg/fanal/types"
 	"github.com/aquasecurity/trivy/pkg/licensing"
 	"github.com/aquasecurity/trivy/pkg/log"
 	"github.com/aquasecurity/trivy/pkg/utils/fsutils"
+	xio "github.com/aquasecurity/trivy/pkg/x/io"
 )
 
 func init() {
@@ -34,6 +33,7 @@ const version = 1
 
 func newPackagingAnalyzer(opt analyzer.AnalyzerOptions) (analyzer.PostAnalyzer, error) {
 	return &packagingAnalyzer{
+		logger:                           log.WithPrefix("python"),
 		pkgParser:                        packaging.NewParser(),
 		licenseClassifierConfidenceLevel: opt.LicenseScannerOption.ClassifierConfidenceLevel,
 	}, nil
@@ -54,7 +54,8 @@ var (
 )
 
 type packagingAnalyzer struct {
-	pkgParser                        godeptypes.Parser
+	logger                           *log.Logger
+	pkgParser                        language.Parser
 	licenseClassifierConfidenceLevel float64
 }
 
@@ -68,7 +69,7 @@ func (a packagingAnalyzer) PostAnalyze(_ context.Context, input analyzer.PostAna
 	}
 
 	err := fsutils.WalkDir(input.FS, ".", required, func(path string, d fs.DirEntry, r io.Reader) error {
-		rsa, ok := r.(dio.ReadSeekerAt)
+		rsa, ok := r.(xio.ReadSeekerAt)
 		if !ok {
 			return xerrors.New("invalid reader")
 		}
@@ -99,7 +100,7 @@ func (a packagingAnalyzer) PostAnalyze(_ context.Context, input analyzer.PostAna
 		}
 
 		if err := a.fillAdditionalData(input.FS, app); err != nil {
-			log.Logger.Warnf("Unable to collect additional info: %s", err)
+			a.logger.Warn("Unable to collect additional info", log.Err(err))
 		}
 
 		apps = append(apps, *app)
@@ -115,9 +116,9 @@ func (a packagingAnalyzer) PostAnalyze(_ context.Context, input analyzer.PostAna
 }
 
 func (a packagingAnalyzer) fillAdditionalData(fsys fs.FS, app *types.Application) error {
-	for i, lib := range app.Libraries {
+	for i, pkg := range app.Packages {
 		var licenses []string
-		for _, lic := range lib.Licenses {
+		for _, lic := range pkg.Licenses {
 			// Parser adds `file://` prefix to filepath from `License-File` field
 			// We need to read this file to find licenses
 			// Otherwise, this is the name of the license
@@ -140,7 +141,7 @@ func (a packagingAnalyzer) fillAdditionalData(fsys fs.FS, app *types.Application
 			})
 			licenses = append(licenses, foundLicenses...)
 		}
-		app.Libraries[i].Licenses = licenses
+		app.Packages[i].Licenses = licenses
 	}
 
 	return nil
@@ -167,11 +168,11 @@ func classifyLicense(dir, licPath string, classifierConfidenceLevel float64, fsy
 	return l.Findings, nil
 }
 
-func (a packagingAnalyzer) parse(filePath string, r dio.ReadSeekerAt, checksum bool) (*types.Application, error) {
+func (a packagingAnalyzer) parse(filePath string, r xio.ReadSeekerAt, checksum bool) (*types.Application, error) {
 	return language.ParsePackage(types.PythonPkg, filePath, r, a.pkgParser, checksum)
 }
 
-func (a packagingAnalyzer) analyzeEggZip(r io.ReaderAt, size int64) (dio.ReadSeekerAt, error) {
+func (a packagingAnalyzer) analyzeEggZip(r io.ReaderAt, size int64) (xio.ReadSeekerAt, error) {
 	zr, err := zip.NewReader(r, size)
 	if err != nil {
 		return nil, xerrors.Errorf("zip reader error: %w", err)
@@ -187,7 +188,7 @@ func (a packagingAnalyzer) analyzeEggZip(r io.ReaderAt, size int64) (dio.ReadSee
 }
 
 // open reads the file content in the zip archive to make it seekable.
-func (a packagingAnalyzer) open(file *zip.File) (dio.ReadSeekerAt, error) {
+func (a packagingAnalyzer) open(file *zip.File) (xio.ReadSeekerAt, error) {
 	f, err := file.Open()
 	if err != nil {
 		return nil, err

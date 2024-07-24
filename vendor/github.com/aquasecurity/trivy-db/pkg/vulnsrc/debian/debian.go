@@ -225,27 +225,15 @@ func (vs VulnSrc) parseCVE(dir string) error {
 				continue
 			}
 
-			fixedVersion := ann.Version
-			kind := ann.Kind
-			if latestVersion, ok := vs.pkgVersions[bucket{codeName: ann.Release, pkgName: ann.Package}]; ok {
-				// If the fixed version has not yet been released, then set the state to "unfixed".
-				if comp, err := compareVersions(latestVersion, fixedVersion); err == nil && comp < 0 {
-					fixedVersion = ""
-					if kind == "fixed" {
-						kind = "unfixed"
-					}
-				}
-			}
-
 			advisory := Advisory{
-				FixedVersion: fixedVersion, // It might be empty because of no-dsa.
+				FixedVersion: ann.Version, // It might be empty because of no-dsa.
 				Severity:     severities[ann.Package],
 			}
 
-			if fixedVersion == "" {
+			if ann.Version == "" {
 				// Populate State only when FixedVersion is empty.
 				// e.g. no-dsa
-				advisory.State = kind
+				advisory.State = ann.Kind
 			}
 
 			// This advisory might be overwritten by DLA/DSA.

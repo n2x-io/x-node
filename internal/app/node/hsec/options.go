@@ -1,16 +1,20 @@
 package hsec
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
-	defsecTypes "github.com/aquasecurity/defsec/pkg/types"
+	"github.com/aquasecurity/trivy-db/pkg/db"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
+	javaDB "github.com/aquasecurity/trivy-java-db/pkg/db"
 	"github.com/aquasecurity/trivy/pkg/compliance/spec"
 	ftypes "github.com/aquasecurity/trivy/pkg/fanal/types"
 	"github.com/aquasecurity/trivy/pkg/flag"
+	iacTypes "github.com/aquasecurity/trivy/pkg/iac/types"
 	"github.com/aquasecurity/trivy/pkg/licensing"
 	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/google/go-containerregistry/pkg/name"
 )
 
 const (
@@ -50,6 +54,12 @@ func globalCacheDir() string {
 */
 
 func newOptions(cfg *optsConfig) flag.Options {
+	defaultDBRepo := fmt.Sprintf("%s:%d", defaultDBRepository, db.SchemaVersion)
+	dbRepository, _ := name.NewTag(defaultDBRepo)
+
+	defaultJavaDBRepo := fmt.Sprintf("%s:%d", defaultJavaDBRepository, javaDB.SchemaVersion)
+	javaDBRepository, _ := name.NewTag(defaultJavaDBRepo)
+
 	return flag.Options{
 		GlobalOptions: flag.GlobalOptions{
 			ConfigFile:            "",
@@ -74,15 +84,16 @@ func newOptions(cfg *optsConfig) flag.Options {
 			CacheBackend: "fs",
 			CacheTTL:     0,
 			RedisTLS:     false,
-			RedisOptions: flag.RedisOptions{
-				RedisCACert: "",
-				RedisCert:   "",
-				RedisKey:    "",
-			},
+			RedisCACert:  "",
+			RedisCert:    "",
+			RedisKey:     "",
 		},
-		CloudOptions: flag.CloudOptions{
-			MaxCacheAge: 0,
-			UpdateCache: false,
+		CleanOptions: flag.CleanOptions{
+			CleanAll:             true,
+			CleanVulnerabilityDB: true,
+			CleanJavaDB:          true,
+			CleanChecksBundle:    true,
+			CleanScanCache:       true,
 		},
 		DBOptions: flag.DBOptions{
 			Reset:              false,
@@ -91,9 +102,8 @@ func newOptions(cfg *optsConfig) flag.Options {
 			DownloadJavaDBOnly: false,
 			SkipJavaDBUpdate:   false,
 			NoProgress:         true,
-			DBRepository:       defaultDBRepository,
-			JavaDBRepository:   defaultJavaDBRepository,
-			Light:              false,
+			DBRepository:       dbRepository,
+			JavaDBRepository:   javaDBRepository,
 		},
 		ImageOptions: flag.ImageOptions{
 			Input:               "",
@@ -107,17 +117,20 @@ func newOptions(cfg *optsConfig) flag.Options {
 			ImageSources: nil,
 		},
 		K8sOptions: flag.K8sOptions{
-			ClusterContext:         "",
-			Namespace:              "",
 			KubeConfig:             "",
-			Components:             nil,
 			K8sVersion:             "",
 			Tolerations:            nil,
 			NodeCollectorImageRef:  "",
-			AllNamespaces:          false,
 			NodeCollectorNamespace: "",
 			ExcludeOwned:           false,
 			ExcludeNodes:           map[string]string(nil),
+			ExcludeKinds:           nil,
+			IncludeKinds:           nil,
+			ExcludeNamespaces:      nil,
+			IncludeNamespaces:      nil,
+			QPS:                    0,
+			SkipImages:             false,
+			Burst:                  0,
 		},
 		LicenseOptions: flag.LicenseOptions{
 			LicenseFull:            false,
@@ -135,8 +148,8 @@ func newOptions(cfg *optsConfig) flag.Options {
 		},
 		MisconfOptions: flag.MisconfOptions{
 			IncludeNonFailures:      false,
-			ResetPolicyBundle:       false,
-			PolicyBundleRepository:  "",
+			ResetChecksBundle:       false,
+			ChecksBundleRepository:  "",
 			HelmValues:              nil,
 			HelmValueFiles:          nil,
 			HelmFileValues:          nil,
@@ -155,11 +168,12 @@ func newOptions(cfg *optsConfig) flag.Options {
 			RegistryToken: "",
 		},
 		RegoOptions: flag.RegoOptions{
-			SkipPolicyUpdate: false,
-			Trace:            false,
-			PolicyPaths:      nil,
-			DataPaths:        nil,
-			PolicyNamespaces: nil,
+			IncludeDeprecatedChecks: false,
+			SkipCheckUpdate:         false,
+			Trace:                   false,
+			CheckPaths:              nil,
+			DataPaths:               nil,
+			CheckNamespaces:         nil,
 		},
 		RemoteOptions: flag.RemoteOptions{
 			Token:         "",
@@ -193,7 +207,7 @@ func newOptions(cfg *optsConfig) flag.Options {
 				dbTypes.SeverityUnknown,
 			},
 			Compliance: spec.ComplianceSpec{
-				Spec: defsecTypes.Spec{
+				Spec: iacTypes.Spec{
 					ID:               "",
 					Title:            "",
 					Description:      "",

@@ -11,7 +11,7 @@ cloud.google.com/go/compute/metadata
 ## explicit; go 1.19
 cloud.google.com/go/iam
 cloud.google.com/go/iam/apiv1/iampb
-# cloud.google.com/go/storage v1.38.0
+# cloud.google.com/go/storage v1.39.1
 ## explicit; go 1.19
 cloud.google.com/go/storage
 cloud.google.com/go/storage/internal
@@ -31,9 +31,12 @@ github.com/AdamKorcz/go-118-fuzz-build/testing
 github.com/Azure/azure-sdk-for-go/profiles/preview/preview/containerregistry/runtime/containerregistry
 github.com/Azure/azure-sdk-for-go/services/preview/containerregistry/runtime/2019-08-15-preview/containerregistry
 github.com/Azure/azure-sdk-for-go/version
-# github.com/Azure/azure-sdk-for-go/sdk/azcore v1.9.0
+# github.com/Azure/azure-sdk-for-go/sdk/azcore v1.11.1
 ## explicit; go 1.18
 github.com/Azure/azure-sdk-for-go/sdk/azcore
+github.com/Azure/azure-sdk-for-go/sdk/azcore/arm/internal/resource
+github.com/Azure/azure-sdk-for-go/sdk/azcore/arm/policy
+github.com/Azure/azure-sdk-for-go/sdk/azcore/arm/runtime
 github.com/Azure/azure-sdk-for-go/sdk/azcore/cloud
 github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/exported
 github.com/Azure/azure-sdk-for-go/sdk/azcore/internal/log
@@ -49,10 +52,11 @@ github.com/Azure/azure-sdk-for-go/sdk/azcore/policy
 github.com/Azure/azure-sdk-for-go/sdk/azcore/runtime
 github.com/Azure/azure-sdk-for-go/sdk/azcore/streaming
 github.com/Azure/azure-sdk-for-go/sdk/azcore/tracing
-# github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.4.0
+# github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.6.0
 ## explicit; go 1.18
 github.com/Azure/azure-sdk-for-go/sdk/azidentity
-# github.com/Azure/azure-sdk-for-go/sdk/internal v1.5.0
+github.com/Azure/azure-sdk-for-go/sdk/azidentity/internal
+# github.com/Azure/azure-sdk-for-go/sdk/internal v1.8.0
 ## explicit; go 1.18
 github.com/Azure/azure-sdk-for-go/sdk/internal/diag
 github.com/Azure/azure-sdk-for-go/sdk/internal/errorinfo
@@ -61,7 +65,7 @@ github.com/Azure/azure-sdk-for-go/sdk/internal/log
 github.com/Azure/azure-sdk-for-go/sdk/internal/poller
 github.com/Azure/azure-sdk-for-go/sdk/internal/temporal
 github.com/Azure/azure-sdk-for-go/sdk/internal/uuid
-# github.com/Azure/go-ansiterm v0.0.0-20210617225240-d185dfc1b5a1
+# github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161
 ## explicit; go 1.16
 github.com/Azure/go-ansiterm
 github.com/Azure/go-ansiterm/winterm
@@ -84,7 +88,7 @@ github.com/Azure/go-autorest/logger
 # github.com/Azure/go-autorest/tracing v0.6.0
 ## explicit; go 1.12
 github.com/Azure/go-autorest/tracing
-# github.com/AzureAD/microsoft-authentication-library-for-go v1.1.1
+# github.com/AzureAD/microsoft-authentication-library-for-go v1.2.2
 ## explicit; go 1.18
 github.com/AzureAD/microsoft-authentication-library-for-go/apps/cache
 github.com/AzureAD/microsoft-authentication-library-for-go/apps/confidential
@@ -107,12 +111,12 @@ github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/options
 github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/shared
 github.com/AzureAD/microsoft-authentication-library-for-go/apps/internal/version
 github.com/AzureAD/microsoft-authentication-library-for-go/apps/public
-# github.com/BurntSushi/toml v1.3.2
-## explicit; go 1.16
+# github.com/BurntSushi/toml v1.4.0
+## explicit; go 1.18
 github.com/BurntSushi/toml
 github.com/BurntSushi/toml/internal
-# github.com/CycloneDX/cyclonedx-go v0.8.0
-## explicit; go 1.18
+# github.com/CycloneDX/cyclonedx-go v0.9.0
+## explicit; go 1.20
 github.com/CycloneDX/cyclonedx-go
 # github.com/GoogleCloudPlatform/docker-credential-gcr v2.0.5+incompatible
 ## explicit
@@ -133,9 +137,6 @@ github.com/MakeNowJust/heredoc
 # github.com/Masterminds/goutils v1.1.1
 ## explicit
 github.com/Masterminds/goutils
-# github.com/Masterminds/semver v1.5.0
-## explicit
-github.com/Masterminds/semver
 # github.com/Masterminds/semver/v3 v3.2.1
 ## explicit; go 1.18
 github.com/Masterminds/semver/v3
@@ -145,8 +146,8 @@ github.com/Masterminds/sprig/v3
 # github.com/Masterminds/squirrel v1.5.4
 ## explicit; go 1.14
 github.com/Masterminds/squirrel
-# github.com/Microsoft/go-winio v0.6.1
-## explicit; go 1.17
+# github.com/Microsoft/go-winio v0.6.2
+## explicit; go 1.21
 github.com/Microsoft/go-winio
 github.com/Microsoft/go-winio/backuptar
 github.com/Microsoft/go-winio/internal/fs
@@ -155,8 +156,8 @@ github.com/Microsoft/go-winio/internal/stringbuffer
 github.com/Microsoft/go-winio/pkg/bindfilter
 github.com/Microsoft/go-winio/pkg/guid
 github.com/Microsoft/go-winio/vhd
-# github.com/Microsoft/hcsshim v0.11.4
-## explicit; go 1.18
+# github.com/Microsoft/hcsshim v0.12.0
+## explicit; go 1.21
 github.com/Microsoft/hcsshim
 github.com/Microsoft/hcsshim/computestorage
 github.com/Microsoft/hcsshim/internal/cow
@@ -186,8 +187,8 @@ github.com/Microsoft/hcsshim/pkg/ociwclayer
 # github.com/OneOfOne/xxhash v1.2.8
 ## explicit; go 1.11
 github.com/OneOfOne/xxhash
-# github.com/ProtonMail/go-crypto v0.0.0-20230923063757-afb1ddc0824c
-## explicit; go 1.13
+# github.com/ProtonMail/go-crypto v1.1.0-alpha.2
+## explicit; go 1.17
 github.com/ProtonMail/go-crypto/bitcurves
 github.com/ProtonMail/go-crypto/brainpool
 github.com/ProtonMail/go-crypto/eax
@@ -198,6 +199,8 @@ github.com/ProtonMail/go-crypto/openpgp/aes/keywrap
 github.com/ProtonMail/go-crypto/openpgp/armor
 github.com/ProtonMail/go-crypto/openpgp/ecdh
 github.com/ProtonMail/go-crypto/openpgp/ecdsa
+github.com/ProtonMail/go-crypto/openpgp/ed25519
+github.com/ProtonMail/go-crypto/openpgp/ed448
 github.com/ProtonMail/go-crypto/openpgp/eddsa
 github.com/ProtonMail/go-crypto/openpgp/elgamal
 github.com/ProtonMail/go-crypto/openpgp/errors
@@ -206,6 +209,8 @@ github.com/ProtonMail/go-crypto/openpgp/internal/ecc
 github.com/ProtonMail/go-crypto/openpgp/internal/encoding
 github.com/ProtonMail/go-crypto/openpgp/packet
 github.com/ProtonMail/go-crypto/openpgp/s2k
+github.com/ProtonMail/go-crypto/openpgp/x25519
+github.com/ProtonMail/go-crypto/openpgp/x448
 # github.com/VividCortex/ewma v1.2.0
 ## explicit; go 1.12
 github.com/VividCortex/ewma
@@ -256,143 +261,9 @@ github.com/anchore/go-struct-converter
 # github.com/apparentlymart/go-cidr v1.1.0
 ## explicit
 github.com/apparentlymart/go-cidr/cidr
-# github.com/apparentlymart/go-textseg/v13 v13.0.0
-## explicit; go 1.16
-github.com/apparentlymart/go-textseg/v13/textseg
 # github.com/apparentlymart/go-textseg/v15 v15.0.0
 ## explicit; go 1.16
 github.com/apparentlymart/go-textseg/v15/textseg
-# github.com/aquasecurity/defsec v0.94.1
-## explicit; go 1.20
-github.com/aquasecurity/defsec/internal/rules
-github.com/aquasecurity/defsec/pkg/debug
-github.com/aquasecurity/defsec/pkg/framework
-github.com/aquasecurity/defsec/pkg/providers
-github.com/aquasecurity/defsec/pkg/providers/aws
-github.com/aquasecurity/defsec/pkg/providers/aws/accessanalyzer
-github.com/aquasecurity/defsec/pkg/providers/aws/apigateway
-github.com/aquasecurity/defsec/pkg/providers/aws/apigateway/v1
-github.com/aquasecurity/defsec/pkg/providers/aws/apigateway/v2
-github.com/aquasecurity/defsec/pkg/providers/aws/athena
-github.com/aquasecurity/defsec/pkg/providers/aws/cloudfront
-github.com/aquasecurity/defsec/pkg/providers/aws/cloudtrail
-github.com/aquasecurity/defsec/pkg/providers/aws/cloudwatch
-github.com/aquasecurity/defsec/pkg/providers/aws/codebuild
-github.com/aquasecurity/defsec/pkg/providers/aws/config
-github.com/aquasecurity/defsec/pkg/providers/aws/documentdb
-github.com/aquasecurity/defsec/pkg/providers/aws/dynamodb
-github.com/aquasecurity/defsec/pkg/providers/aws/ec2
-github.com/aquasecurity/defsec/pkg/providers/aws/ecr
-github.com/aquasecurity/defsec/pkg/providers/aws/ecs
-github.com/aquasecurity/defsec/pkg/providers/aws/efs
-github.com/aquasecurity/defsec/pkg/providers/aws/eks
-github.com/aquasecurity/defsec/pkg/providers/aws/elasticache
-github.com/aquasecurity/defsec/pkg/providers/aws/elasticsearch
-github.com/aquasecurity/defsec/pkg/providers/aws/elb
-github.com/aquasecurity/defsec/pkg/providers/aws/emr
-github.com/aquasecurity/defsec/pkg/providers/aws/iam
-github.com/aquasecurity/defsec/pkg/providers/aws/kinesis
-github.com/aquasecurity/defsec/pkg/providers/aws/kms
-github.com/aquasecurity/defsec/pkg/providers/aws/lambda
-github.com/aquasecurity/defsec/pkg/providers/aws/mq
-github.com/aquasecurity/defsec/pkg/providers/aws/msk
-github.com/aquasecurity/defsec/pkg/providers/aws/neptune
-github.com/aquasecurity/defsec/pkg/providers/aws/rds
-github.com/aquasecurity/defsec/pkg/providers/aws/redshift
-github.com/aquasecurity/defsec/pkg/providers/aws/s3
-github.com/aquasecurity/defsec/pkg/providers/aws/sam
-github.com/aquasecurity/defsec/pkg/providers/aws/sns
-github.com/aquasecurity/defsec/pkg/providers/aws/sqs
-github.com/aquasecurity/defsec/pkg/providers/aws/ssm
-github.com/aquasecurity/defsec/pkg/providers/aws/workspaces
-github.com/aquasecurity/defsec/pkg/providers/azure
-github.com/aquasecurity/defsec/pkg/providers/azure/appservice
-github.com/aquasecurity/defsec/pkg/providers/azure/authorization
-github.com/aquasecurity/defsec/pkg/providers/azure/compute
-github.com/aquasecurity/defsec/pkg/providers/azure/container
-github.com/aquasecurity/defsec/pkg/providers/azure/database
-github.com/aquasecurity/defsec/pkg/providers/azure/datafactory
-github.com/aquasecurity/defsec/pkg/providers/azure/datalake
-github.com/aquasecurity/defsec/pkg/providers/azure/keyvault
-github.com/aquasecurity/defsec/pkg/providers/azure/monitor
-github.com/aquasecurity/defsec/pkg/providers/azure/network
-github.com/aquasecurity/defsec/pkg/providers/azure/securitycenter
-github.com/aquasecurity/defsec/pkg/providers/azure/storage
-github.com/aquasecurity/defsec/pkg/providers/azure/synapse
-github.com/aquasecurity/defsec/pkg/providers/cloudstack
-github.com/aquasecurity/defsec/pkg/providers/cloudstack/compute
-github.com/aquasecurity/defsec/pkg/providers/digitalocean
-github.com/aquasecurity/defsec/pkg/providers/digitalocean/compute
-github.com/aquasecurity/defsec/pkg/providers/digitalocean/spaces
-github.com/aquasecurity/defsec/pkg/providers/dockerfile
-github.com/aquasecurity/defsec/pkg/providers/github
-github.com/aquasecurity/defsec/pkg/providers/google
-github.com/aquasecurity/defsec/pkg/providers/google/bigquery
-github.com/aquasecurity/defsec/pkg/providers/google/compute
-github.com/aquasecurity/defsec/pkg/providers/google/dns
-github.com/aquasecurity/defsec/pkg/providers/google/gke
-github.com/aquasecurity/defsec/pkg/providers/google/iam
-github.com/aquasecurity/defsec/pkg/providers/google/kms
-github.com/aquasecurity/defsec/pkg/providers/google/sql
-github.com/aquasecurity/defsec/pkg/providers/google/storage
-github.com/aquasecurity/defsec/pkg/providers/kubernetes
-github.com/aquasecurity/defsec/pkg/providers/nifcloud
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/computing
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/dns
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/nas
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/network
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/rdb
-github.com/aquasecurity/defsec/pkg/providers/nifcloud/sslcertificate
-github.com/aquasecurity/defsec/pkg/providers/openstack
-github.com/aquasecurity/defsec/pkg/providers/oracle
-github.com/aquasecurity/defsec/pkg/rego
-github.com/aquasecurity/defsec/pkg/rego/convert
-github.com/aquasecurity/defsec/pkg/rego/schemas
-github.com/aquasecurity/defsec/pkg/rules
-github.com/aquasecurity/defsec/pkg/scan
-github.com/aquasecurity/defsec/pkg/scanners/options
-github.com/aquasecurity/defsec/pkg/severity
-github.com/aquasecurity/defsec/pkg/state
-github.com/aquasecurity/defsec/pkg/terraform
-github.com/aquasecurity/defsec/pkg/terraform/context
-github.com/aquasecurity/defsec/pkg/types
-github.com/aquasecurity/defsec/pkg/types/rules
-# github.com/aquasecurity/go-dep-parser v0.0.0-20240202105001-4f19ab402b0b
-## explicit; go 1.21
-github.com/aquasecurity/go-dep-parser/pkg/c/conan
-github.com/aquasecurity/go-dep-parser/pkg/conda/meta
-github.com/aquasecurity/go-dep-parser/pkg/dart/pub
-github.com/aquasecurity/go-dep-parser/pkg/dotnet/core_deps
-github.com/aquasecurity/go-dep-parser/pkg/golang/binary
-github.com/aquasecurity/go-dep-parser/pkg/golang/mod
-github.com/aquasecurity/go-dep-parser/pkg/golang/sum
-github.com/aquasecurity/go-dep-parser/pkg/gradle/lockfile
-github.com/aquasecurity/go-dep-parser/pkg/hex/mix
-github.com/aquasecurity/go-dep-parser/pkg/io
-github.com/aquasecurity/go-dep-parser/pkg/java/jar
-github.com/aquasecurity/go-dep-parser/pkg/java/pom
-github.com/aquasecurity/go-dep-parser/pkg/log
-github.com/aquasecurity/go-dep-parser/pkg/nodejs/npm
-github.com/aquasecurity/go-dep-parser/pkg/nodejs/packagejson
-github.com/aquasecurity/go-dep-parser/pkg/nodejs/pnpm
-github.com/aquasecurity/go-dep-parser/pkg/nodejs/yarn
-github.com/aquasecurity/go-dep-parser/pkg/nuget/config
-github.com/aquasecurity/go-dep-parser/pkg/nuget/lock
-github.com/aquasecurity/go-dep-parser/pkg/nuget/packagesprops
-github.com/aquasecurity/go-dep-parser/pkg/php/composer
-github.com/aquasecurity/go-dep-parser/pkg/python/packaging
-github.com/aquasecurity/go-dep-parser/pkg/python/pip
-github.com/aquasecurity/go-dep-parser/pkg/python/pipenv
-github.com/aquasecurity/go-dep-parser/pkg/python/poetry
-github.com/aquasecurity/go-dep-parser/pkg/python/pyproject
-github.com/aquasecurity/go-dep-parser/pkg/ruby/bundler
-github.com/aquasecurity/go-dep-parser/pkg/ruby/gemspec
-github.com/aquasecurity/go-dep-parser/pkg/rust/binary
-github.com/aquasecurity/go-dep-parser/pkg/rust/cargo
-github.com/aquasecurity/go-dep-parser/pkg/swift/cocoapods
-github.com/aquasecurity/go-dep-parser/pkg/swift/swift
-github.com/aquasecurity/go-dep-parser/pkg/types
-github.com/aquasecurity/go-dep-parser/pkg/utils
 # github.com/aquasecurity/go-gem-version v0.0.0-20201115065557-8eed6fe000ce
 ## explicit; go 1.15
 github.com/aquasecurity/go-gem-version
@@ -402,8 +273,8 @@ github.com/aquasecurity/go-npm-version/pkg
 # github.com/aquasecurity/go-pep440-version v0.0.0-20210121094942-22b2f8951d46
 ## explicit; go 1.15
 github.com/aquasecurity/go-pep440-version
-# github.com/aquasecurity/go-version v0.0.0-20210121072130-637058cfe492
-## explicit; go 1.15
+# github.com/aquasecurity/go-version v0.0.0-20240603093900-cf8a8d29271d
+## explicit; go 1.22.0
 github.com/aquasecurity/go-version/pkg/part
 github.com/aquasecurity/go-version/pkg/prerelease
 github.com/aquasecurity/go-version/pkg/semver
@@ -414,8 +285,8 @@ github.com/aquasecurity/table
 # github.com/aquasecurity/tml v0.6.1
 ## explicit; go 1.12
 github.com/aquasecurity/tml
-# github.com/aquasecurity/trivy v0.49.1
-## explicit; go 1.21
+# github.com/aquasecurity/trivy v0.53.0
+## explicit; go 1.22.0
 github.com/aquasecurity/trivy/pkg/attestation
 github.com/aquasecurity/trivy/pkg/attestation/sbom
 github.com/aquasecurity/trivy/pkg/cache
@@ -426,6 +297,41 @@ github.com/aquasecurity/trivy/pkg/commands/operation
 github.com/aquasecurity/trivy/pkg/compliance/report
 github.com/aquasecurity/trivy/pkg/compliance/spec
 github.com/aquasecurity/trivy/pkg/db
+github.com/aquasecurity/trivy/pkg/dependency
+github.com/aquasecurity/trivy/pkg/dependency/parser/c/conan
+github.com/aquasecurity/trivy/pkg/dependency/parser/conda/environment
+github.com/aquasecurity/trivy/pkg/dependency/parser/conda/meta
+github.com/aquasecurity/trivy/pkg/dependency/parser/dart/pub
+github.com/aquasecurity/trivy/pkg/dependency/parser/dotnet/core_deps
+github.com/aquasecurity/trivy/pkg/dependency/parser/golang/binary
+github.com/aquasecurity/trivy/pkg/dependency/parser/golang/mod
+github.com/aquasecurity/trivy/pkg/dependency/parser/golang/sum
+github.com/aquasecurity/trivy/pkg/dependency/parser/gradle/lockfile
+github.com/aquasecurity/trivy/pkg/dependency/parser/hex/mix
+github.com/aquasecurity/trivy/pkg/dependency/parser/java/jar
+github.com/aquasecurity/trivy/pkg/dependency/parser/java/pom
+github.com/aquasecurity/trivy/pkg/dependency/parser/julia/manifest
+github.com/aquasecurity/trivy/pkg/dependency/parser/nodejs/npm
+github.com/aquasecurity/trivy/pkg/dependency/parser/nodejs/packagejson
+github.com/aquasecurity/trivy/pkg/dependency/parser/nodejs/pnpm
+github.com/aquasecurity/trivy/pkg/dependency/parser/nodejs/yarn
+github.com/aquasecurity/trivy/pkg/dependency/parser/nuget/config
+github.com/aquasecurity/trivy/pkg/dependency/parser/nuget/lock
+github.com/aquasecurity/trivy/pkg/dependency/parser/nuget/packagesprops
+github.com/aquasecurity/trivy/pkg/dependency/parser/php/composer
+github.com/aquasecurity/trivy/pkg/dependency/parser/python/packaging
+github.com/aquasecurity/trivy/pkg/dependency/parser/python/pip
+github.com/aquasecurity/trivy/pkg/dependency/parser/python/pipenv
+github.com/aquasecurity/trivy/pkg/dependency/parser/python/poetry
+github.com/aquasecurity/trivy/pkg/dependency/parser/python/pyproject
+github.com/aquasecurity/trivy/pkg/dependency/parser/ruby/bundler
+github.com/aquasecurity/trivy/pkg/dependency/parser/ruby/gemspec
+github.com/aquasecurity/trivy/pkg/dependency/parser/rust/binary
+github.com/aquasecurity/trivy/pkg/dependency/parser/rust/cargo
+github.com/aquasecurity/trivy/pkg/dependency/parser/sbt/lockfile
+github.com/aquasecurity/trivy/pkg/dependency/parser/swift/cocoapods
+github.com/aquasecurity/trivy/pkg/dependency/parser/swift/swift
+github.com/aquasecurity/trivy/pkg/dependency/parser/utils
 github.com/aquasecurity/trivy/pkg/detector/library
 github.com/aquasecurity/trivy/pkg/detector/library/compare
 github.com/aquasecurity/trivy/pkg/detector/library/compare/bitnami
@@ -461,13 +367,15 @@ github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/dockerfile
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/helm
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/k8s
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/terraform
-github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/terraformplan
+github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/terraformplan/json
+github.com/aquasecurity/trivy/pkg/fanal/analyzer/config/terraformplan/snapshot
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/executable
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/imgconf/apk
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/imgconf/dockerfile
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/imgconf/secret
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/c/conan
+github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/conda/environment
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/conda/meta
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/dart/pub
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/dotnet/deps
@@ -479,6 +387,8 @@ github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/golang/mod
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/java/gradle
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/java/jar
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/java/pom
+github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/java/sbt
+github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/julia/pkg
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/nodejs/license
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/nodejs/npm
 github.com/aquasecurity/trivy/pkg/fanal/analyzer/language/nodejs/pkg
@@ -517,7 +427,6 @@ github.com/aquasecurity/trivy/pkg/fanal/artifact/local
 github.com/aquasecurity/trivy/pkg/fanal/artifact/repo
 github.com/aquasecurity/trivy/pkg/fanal/artifact/sbom
 github.com/aquasecurity/trivy/pkg/fanal/artifact/vm
-github.com/aquasecurity/trivy/pkg/fanal/cache
 github.com/aquasecurity/trivy/pkg/fanal/handler
 github.com/aquasecurity/trivy/pkg/fanal/handler/all
 github.com/aquasecurity/trivy/pkg/fanal/handler/sysfile
@@ -528,7 +437,6 @@ github.com/aquasecurity/trivy/pkg/fanal/image/registry
 github.com/aquasecurity/trivy/pkg/fanal/image/registry/azure
 github.com/aquasecurity/trivy/pkg/fanal/image/registry/ecr
 github.com/aquasecurity/trivy/pkg/fanal/image/registry/google
-github.com/aquasecurity/trivy/pkg/fanal/log
 github.com/aquasecurity/trivy/pkg/fanal/secret
 github.com/aquasecurity/trivy/pkg/fanal/types
 github.com/aquasecurity/trivy/pkg/fanal/utils
@@ -537,6 +445,249 @@ github.com/aquasecurity/trivy/pkg/fanal/vm/disk
 github.com/aquasecurity/trivy/pkg/fanal/vm/filesystem
 github.com/aquasecurity/trivy/pkg/fanal/walker
 github.com/aquasecurity/trivy/pkg/flag
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/appservice
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/authorization
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/compute
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/container
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/database
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/datafactory
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/datalake
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/keyvault
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/monitor
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/network
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/securitycenter
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/storage
+github.com/aquasecurity/trivy/pkg/iac/adapters/arm/synapse
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/apigateway
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/athena
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/cloudfront
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/cloudtrail
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/cloudwatch
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/codebuild
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/config
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/documentdb
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/dynamodb
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/ec2
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/ecr
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/ecs
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/efs
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/eks
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/elasticache
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/elasticsearch
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/elb
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/iam
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/kinesis
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/lambda
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/mq
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/msk
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/neptune
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/rds
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/redshift
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/s3
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/sam
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/sns
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/sqs
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/ssm
+github.com/aquasecurity/trivy/pkg/iac/adapters/cloudformation/aws/workspaces
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/apigateway
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/athena
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/cloudfront
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/cloudtrail
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/cloudwatch
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/codebuild
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/config
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/documentdb
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/dynamodb
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/ec2
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/ecr
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/ecs
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/efs
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/eks
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/elasticache
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/elasticsearch
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/elb
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/emr
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/iam
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/kinesis
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/kms
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/lambda
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/mq
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/msk
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/neptune
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/provider
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/rds
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/redshift
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/s3
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/sns
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/sqs
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/ssm
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/aws/workspaces
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/appservice
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/authorization
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/compute
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/container
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/database
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/datafactory
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/datalake
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/keyvault
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/monitor
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/network
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/securitycenter
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/storage
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/azure/synapse
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/cloudstack
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/cloudstack/compute
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/digitalocean
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/digitalocean/compute
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/digitalocean/spaces
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/github
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/github/branch_protections
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/github/repositories
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/github/secrets
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/bigquery
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/compute
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/dns
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/gke
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/iam
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/kms
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/sql
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/google/storage
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/kubernetes
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/computing
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/dns
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/nas
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/network
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/rdb
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/nifcloud/sslcertificate
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/openstack
+github.com/aquasecurity/trivy/pkg/iac/adapters/terraform/oracle
+github.com/aquasecurity/trivy/pkg/iac/debug
+github.com/aquasecurity/trivy/pkg/iac/detection
+github.com/aquasecurity/trivy/pkg/iac/framework
+github.com/aquasecurity/trivy/pkg/iac/ignore
+github.com/aquasecurity/trivy/pkg/iac/providers
+github.com/aquasecurity/trivy/pkg/iac/providers/aws
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/accessanalyzer
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/apigateway
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/apigateway/v1
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/apigateway/v2
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/athena
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/cloudfront
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/cloudtrail
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/cloudwatch
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/codebuild
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/config
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/documentdb
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/dynamodb
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/ec2
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/ecr
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/ecs
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/efs
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/eks
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/elasticache
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/elasticsearch
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/elb
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/emr
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/iam
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/kinesis
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/kms
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/lambda
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/mq
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/msk
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/neptune
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/rds
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/redshift
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/s3
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/sam
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/sns
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/sqs
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/ssm
+github.com/aquasecurity/trivy/pkg/iac/providers/aws/workspaces
+github.com/aquasecurity/trivy/pkg/iac/providers/azure
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/appservice
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/authorization
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/compute
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/container
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/database
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/datafactory
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/datalake
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/keyvault
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/monitor
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/network
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/securitycenter
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/storage
+github.com/aquasecurity/trivy/pkg/iac/providers/azure/synapse
+github.com/aquasecurity/trivy/pkg/iac/providers/cloudstack
+github.com/aquasecurity/trivy/pkg/iac/providers/cloudstack/compute
+github.com/aquasecurity/trivy/pkg/iac/providers/digitalocean
+github.com/aquasecurity/trivy/pkg/iac/providers/digitalocean/compute
+github.com/aquasecurity/trivy/pkg/iac/providers/digitalocean/spaces
+github.com/aquasecurity/trivy/pkg/iac/providers/dockerfile
+github.com/aquasecurity/trivy/pkg/iac/providers/github
+github.com/aquasecurity/trivy/pkg/iac/providers/google
+github.com/aquasecurity/trivy/pkg/iac/providers/google/bigquery
+github.com/aquasecurity/trivy/pkg/iac/providers/google/compute
+github.com/aquasecurity/trivy/pkg/iac/providers/google/dns
+github.com/aquasecurity/trivy/pkg/iac/providers/google/gke
+github.com/aquasecurity/trivy/pkg/iac/providers/google/iam
+github.com/aquasecurity/trivy/pkg/iac/providers/google/kms
+github.com/aquasecurity/trivy/pkg/iac/providers/google/sql
+github.com/aquasecurity/trivy/pkg/iac/providers/google/storage
+github.com/aquasecurity/trivy/pkg/iac/providers/kubernetes
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/computing
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/dns
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/nas
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/network
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/rdb
+github.com/aquasecurity/trivy/pkg/iac/providers/nifcloud/sslcertificate
+github.com/aquasecurity/trivy/pkg/iac/providers/openstack
+github.com/aquasecurity/trivy/pkg/iac/providers/oracle
+github.com/aquasecurity/trivy/pkg/iac/rego
+github.com/aquasecurity/trivy/pkg/iac/rego/convert
+github.com/aquasecurity/trivy/pkg/iac/rego/schemas
+github.com/aquasecurity/trivy/pkg/iac/rules
+github.com/aquasecurity/trivy/pkg/iac/scan
+github.com/aquasecurity/trivy/pkg/iac/scanners
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/arm
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/arm/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/arm/parser/armjson
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/expressions
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/functions
+github.com/aquasecurity/trivy/pkg/iac/scanners/azure/resolver
+github.com/aquasecurity/trivy/pkg/iac/scanners/cloudformation
+github.com/aquasecurity/trivy/pkg/iac/scanners/cloudformation/cftypes
+github.com/aquasecurity/trivy/pkg/iac/scanners/cloudformation/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/dockerfile
+github.com/aquasecurity/trivy/pkg/iac/scanners/dockerfile/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/helm
+github.com/aquasecurity/trivy/pkg/iac/scanners/helm/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/kubernetes
+github.com/aquasecurity/trivy/pkg/iac/scanners/kubernetes/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/options
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraform
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraform/executor
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraform/parser
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraform/parser/funcs
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraform/parser/resolvers
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraformplan/snapshot
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraformplan/tfjson
+github.com/aquasecurity/trivy/pkg/iac/scanners/terraformplan/tfjson/parser
+github.com/aquasecurity/trivy/pkg/iac/severity
+github.com/aquasecurity/trivy/pkg/iac/state
+github.com/aquasecurity/trivy/pkg/iac/terraform
+github.com/aquasecurity/trivy/pkg/iac/terraform/context
+github.com/aquasecurity/trivy/pkg/iac/types
+github.com/aquasecurity/trivy/pkg/iac/types/rules
 github.com/aquasecurity/trivy/pkg/javadb
 github.com/aquasecurity/trivy/pkg/licensing
 github.com/aquasecurity/trivy/pkg/licensing/expression
@@ -563,8 +714,9 @@ github.com/aquasecurity/trivy/pkg/result
 github.com/aquasecurity/trivy/pkg/rpc
 github.com/aquasecurity/trivy/pkg/rpc/client
 github.com/aquasecurity/trivy/pkg/sbom
+github.com/aquasecurity/trivy/pkg/sbom/core
 github.com/aquasecurity/trivy/pkg/sbom/cyclonedx
-github.com/aquasecurity/trivy/pkg/sbom/cyclonedx/core
+github.com/aquasecurity/trivy/pkg/sbom/io
 github.com/aquasecurity/trivy/pkg/sbom/spdx
 github.com/aquasecurity/trivy/pkg/scanner
 github.com/aquasecurity/trivy/pkg/scanner/langpkg
@@ -576,17 +728,98 @@ github.com/aquasecurity/trivy/pkg/semaphore
 github.com/aquasecurity/trivy/pkg/types
 github.com/aquasecurity/trivy/pkg/utils/fsutils
 github.com/aquasecurity/trivy/pkg/uuid
-github.com/aquasecurity/trivy/pkg/version
+github.com/aquasecurity/trivy/pkg/version/app
+github.com/aquasecurity/trivy/pkg/version/doc
 github.com/aquasecurity/trivy/pkg/vex
 github.com/aquasecurity/trivy/pkg/vulnerability
 github.com/aquasecurity/trivy/pkg/x/io
 github.com/aquasecurity/trivy/pkg/x/path
+github.com/aquasecurity/trivy/pkg/x/slices
 github.com/aquasecurity/trivy/pkg/x/strings
 github.com/aquasecurity/trivy/pkg/x/sync
 github.com/aquasecurity/trivy/rpc/cache
 github.com/aquasecurity/trivy/rpc/common
 github.com/aquasecurity/trivy/rpc/scanner
-# github.com/aquasecurity/trivy-db v0.0.0-20240304133434-db9bf07792af
+# github.com/aquasecurity/trivy-checks v0.13.0
+## explicit; go 1.22.0
+github.com/aquasecurity/trivy-checks
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/accessanalyzer
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/apigateway
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/athena
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/cloudfront
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/cloudtrail
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/cloudwatch
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/codebuild
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/config
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/documentdb
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/dynamodb
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/ec2
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/ecr
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/ecs
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/efs
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/eks
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/elasticache
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/elasticsearch
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/elb
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/emr
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/iam
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/kinesis
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/kms
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/lambda
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/mq
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/msk
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/neptune
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/rds
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/redshift
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/s3
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/sam
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/sns
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/sqs
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/ssm
+github.com/aquasecurity/trivy-checks/checks/cloud/aws/workspaces
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/appservice
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/authorization
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/compute
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/container
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/database
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/datafactory
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/datalake
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/keyvault
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/monitor
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/network
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/securitycenter
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/storage
+github.com/aquasecurity/trivy-checks/checks/cloud/azure/synapse
+github.com/aquasecurity/trivy-checks/checks/cloud/cloudstack/compute
+github.com/aquasecurity/trivy-checks/checks/cloud/digitalocean/compute
+github.com/aquasecurity/trivy-checks/checks/cloud/digitalocean/spaces
+github.com/aquasecurity/trivy-checks/checks/cloud/github/actions
+github.com/aquasecurity/trivy-checks/checks/cloud/github/branch_protections
+github.com/aquasecurity/trivy-checks/checks/cloud/github/repositories
+github.com/aquasecurity/trivy-checks/checks/cloud/google/bigquery
+github.com/aquasecurity/trivy-checks/checks/cloud/google/compute
+github.com/aquasecurity/trivy-checks/checks/cloud/google/dns
+github.com/aquasecurity/trivy-checks/checks/cloud/google/gke
+github.com/aquasecurity/trivy-checks/checks/cloud/google/iam
+github.com/aquasecurity/trivy-checks/checks/cloud/google/kms
+github.com/aquasecurity/trivy-checks/checks/cloud/google/sql
+github.com/aquasecurity/trivy-checks/checks/cloud/google/storage
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/computing
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/dns
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/nas
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/network
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/rdb
+github.com/aquasecurity/trivy-checks/checks/cloud/nifcloud/sslcertificate
+github.com/aquasecurity/trivy-checks/checks/cloud/openstack/compute
+github.com/aquasecurity/trivy-checks/checks/cloud/openstack/networking
+github.com/aquasecurity/trivy-checks/checks/cloud/oracle/compute
+github.com/aquasecurity/trivy-checks/checks/kubernetes/network
+github.com/aquasecurity/trivy-checks/internal/cidr
+github.com/aquasecurity/trivy-checks/pkg/rego
+github.com/aquasecurity/trivy-checks/pkg/rules
+github.com/aquasecurity/trivy-checks/pkg/spec
+github.com/aquasecurity/trivy-checks/pkg/specs
+# github.com/aquasecurity/trivy-db v0.0.0-20231005141211-4fc651f7ac8d
 ## explicit; go 1.19
 github.com/aquasecurity/trivy-db/pkg/db
 github.com/aquasecurity/trivy-db/pkg/log
@@ -610,244 +843,14 @@ github.com/aquasecurity/trivy-db/pkg/vulnsrc/suse-cvrf
 github.com/aquasecurity/trivy-db/pkg/vulnsrc/ubuntu
 github.com/aquasecurity/trivy-db/pkg/vulnsrc/vulnerability
 github.com/aquasecurity/trivy-db/pkg/vulnsrc/wolfi
-# github.com/aquasecurity/trivy-iac v0.8.0
-## explicit; go 1.20
-github.com/aquasecurity/trivy-iac/internal/adapters/arm
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/appservice
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/authorization
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/compute
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/container
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/database
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/datafactory
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/datalake
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/keyvault
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/monitor
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/network
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/securitycenter
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/storage
-github.com/aquasecurity/trivy-iac/internal/adapters/arm/synapse
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/apigateway
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/athena
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/cloudfront
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/cloudtrail
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/cloudwatch
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/codebuild
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/config
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/documentdb
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/dynamodb
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/ec2
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/ecr
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/ecs
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/efs
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/eks
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/elasticache
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/elasticsearch
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/elb
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/iam
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/kinesis
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/lambda
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/mq
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/msk
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/neptune
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/rds
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/redshift
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/s3
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/sam
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/sns
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/sqs
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/ssm
-github.com/aquasecurity/trivy-iac/internal/adapters/cloudformation/aws/workspaces
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/apigateway
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/athena
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/cloudfront
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/cloudtrail
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/cloudwatch
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/codebuild
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/config
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/documentdb
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/dynamodb
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/ec2
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/ecr
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/ecs
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/efs
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/eks
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/elasticache
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/elasticsearch
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/elb
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/emr
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/iam
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/kinesis
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/kms
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/lambda
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/mq
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/msk
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/neptune
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/provider
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/rds
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/redshift
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/s3
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/sns
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/sqs
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/ssm
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/aws/workspaces
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/appservice
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/authorization
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/compute
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/container
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/database
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/datafactory
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/datalake
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/keyvault
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/monitor
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/network
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/securitycenter
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/storage
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/azure/synapse
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/cloudstack
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/cloudstack/compute
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/digitalocean
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/digitalocean/compute
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/digitalocean/spaces
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/github
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/github/branch_protections
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/github/repositories
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/github/secrets
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/bigquery
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/compute
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/dns
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/gke
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/iam
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/kms
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/sql
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/google/storage
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/kubernetes
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/computing
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/dns
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/nas
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/network
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/rdb
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/nifcloud/sslcertificate
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/openstack
-github.com/aquasecurity/trivy-iac/internal/adapters/terraform/oracle
-github.com/aquasecurity/trivy-iac/pkg/detection
-github.com/aquasecurity/trivy-iac/pkg/extrafs
-github.com/aquasecurity/trivy-iac/pkg/scanners
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/arm
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/arm/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/arm/parser/armjson
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/expressions
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/functions
-github.com/aquasecurity/trivy-iac/pkg/scanners/azure/resolver
-github.com/aquasecurity/trivy-iac/pkg/scanners/cloudformation
-github.com/aquasecurity/trivy-iac/pkg/scanners/cloudformation/cftypes
-github.com/aquasecurity/trivy-iac/pkg/scanners/cloudformation/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/dockerfile
-github.com/aquasecurity/trivy-iac/pkg/scanners/dockerfile/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/helm
-github.com/aquasecurity/trivy-iac/pkg/scanners/helm/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/kubernetes
-github.com/aquasecurity/trivy-iac/pkg/scanners/kubernetes/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraform
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraform/executor
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraform/parser
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraform/parser/funcs
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraform/parser/resolvers
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraformplan
-github.com/aquasecurity/trivy-iac/pkg/scanners/terraformplan/parser
-# github.com/aquasecurity/trivy-java-db v0.0.0-20240109071736-184bd7481d48
+# github.com/aquasecurity/trivy-java-db v0.0.0-20240522120720-349526b921f8
 ## explicit; go 1.18
 github.com/aquasecurity/trivy-java-db/pkg/db
 github.com/aquasecurity/trivy-java-db/pkg/types
-# github.com/aquasecurity/trivy-policies v0.8.0
-## explicit; go 1.20
-github.com/aquasecurity/trivy-policies
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/accessanalyzer
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/apigateway
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/athena
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/cloudfront
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/cloudtrail
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/cloudwatch
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/codebuild
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/config
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/documentdb
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/dynamodb
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/ec2
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/ecr
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/ecs
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/efs
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/eks
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/elasticache
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/elasticsearch
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/elb
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/emr
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/iam
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/kinesis
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/kms
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/lambda
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/mq
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/msk
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/neptune
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/rds
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/redshift
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/s3
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/sam
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/sns
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/sqs
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/ssm
-github.com/aquasecurity/trivy-policies/checks/cloud/aws/workspaces
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/appservice
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/authorization
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/compute
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/container
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/database
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/datafactory
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/datalake
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/keyvault
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/monitor
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/network
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/securitycenter
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/storage
-github.com/aquasecurity/trivy-policies/checks/cloud/azure/synapse
-github.com/aquasecurity/trivy-policies/checks/cloud/cloudstack/compute
-github.com/aquasecurity/trivy-policies/checks/cloud/digitalocean/compute
-github.com/aquasecurity/trivy-policies/checks/cloud/digitalocean/spaces
-github.com/aquasecurity/trivy-policies/checks/cloud/github/actions
-github.com/aquasecurity/trivy-policies/checks/cloud/github/branch_protections
-github.com/aquasecurity/trivy-policies/checks/cloud/github/repositories
-github.com/aquasecurity/trivy-policies/checks/cloud/google/bigquery
-github.com/aquasecurity/trivy-policies/checks/cloud/google/compute
-github.com/aquasecurity/trivy-policies/checks/cloud/google/dns
-github.com/aquasecurity/trivy-policies/checks/cloud/google/gke
-github.com/aquasecurity/trivy-policies/checks/cloud/google/iam
-github.com/aquasecurity/trivy-policies/checks/cloud/google/kms
-github.com/aquasecurity/trivy-policies/checks/cloud/google/sql
-github.com/aquasecurity/trivy-policies/checks/cloud/google/storage
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/computing
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/dns
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/nas
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/network
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/rdb
-github.com/aquasecurity/trivy-policies/checks/cloud/nifcloud/sslcertificate
-github.com/aquasecurity/trivy-policies/checks/cloud/openstack/compute
-github.com/aquasecurity/trivy-policies/checks/cloud/openstack/networking
-github.com/aquasecurity/trivy-policies/checks/cloud/oracle/compute
-github.com/aquasecurity/trivy-policies/checks/kubernetes/network
-github.com/aquasecurity/trivy-policies/internal/cidr
-github.com/aquasecurity/trivy-policies/pkg/rules
-github.com/aquasecurity/trivy-policies/pkg/spec
-github.com/aquasecurity/trivy-policies/specs
 # github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 ## explicit; go 1.13
 github.com/asaskevich/govalidator
-# github.com/aws/aws-sdk-go v1.49.21
+# github.com/aws/aws-sdk-go v1.54.6
 ## explicit; go 1.19
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
@@ -900,10 +903,9 @@ github.com/aws/aws-sdk-go/service/sso/ssoiface
 github.com/aws/aws-sdk-go/service/ssooidc
 github.com/aws/aws-sdk-go/service/sts
 github.com/aws/aws-sdk-go/service/sts/stsiface
-# github.com/aws/aws-sdk-go-v2 v1.24.1
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2 v1.27.2
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/aws
-github.com/aws/aws-sdk-go-v2/aws/arn
 github.com/aws/aws-sdk-go-v2/aws/defaults
 github.com/aws/aws-sdk-go-v2/aws/middleware
 github.com/aws/aws-sdk-go-v2/aws/middleware/private/metrics
@@ -918,10 +920,10 @@ github.com/aws/aws-sdk-go-v2/aws/signer/v4
 github.com/aws/aws-sdk-go-v2/aws/transport/http
 github.com/aws/aws-sdk-go-v2/internal/auth
 github.com/aws/aws-sdk-go-v2/internal/auth/smithy
-github.com/aws/aws-sdk-go-v2/internal/awsutil
 github.com/aws/aws-sdk-go-v2/internal/context
 github.com/aws/aws-sdk-go-v2/internal/endpoints
 github.com/aws/aws-sdk-go-v2/internal/endpoints/awsrulesfn
+github.com/aws/aws-sdk-go-v2/internal/middleware
 github.com/aws/aws-sdk-go-v2/internal/rand
 github.com/aws/aws-sdk-go-v2/internal/sdk
 github.com/aws/aws-sdk-go-v2/internal/sdkio
@@ -929,15 +931,11 @@ github.com/aws/aws-sdk-go-v2/internal/shareddefaults
 github.com/aws/aws-sdk-go-v2/internal/strings
 github.com/aws/aws-sdk-go-v2/internal/sync/singleflight
 github.com/aws/aws-sdk-go-v2/internal/timeconv
-# github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.4
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream
-github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream/eventstreamapi
-# github.com/aws/aws-sdk-go-v2/config v1.26.3
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/config v1.27.18
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/config
-# github.com/aws/aws-sdk-go-v2/credentials v1.16.14
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/credentials v1.17.18
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/credentials
 github.com/aws/aws-sdk-go-v2/credentials/ec2rolecreds
 github.com/aws/aws-sdk-go-v2/credentials/endpointcreds
@@ -945,85 +943,63 @@ github.com/aws/aws-sdk-go-v2/credentials/endpointcreds/internal/client
 github.com/aws/aws-sdk-go-v2/credentials/processcreds
 github.com/aws/aws-sdk-go-v2/credentials/ssocreds
 github.com/aws/aws-sdk-go-v2/credentials/stscreds
-# github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.14.11
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.5
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/feature/ec2/imds
 github.com/aws/aws-sdk-go-v2/feature/ec2/imds/internal/config
-# github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.15.11
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/feature/s3/manager
-# github.com/aws/aws-sdk-go-v2/internal/configsources v1.2.10
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.9
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/internal/configsources
-# github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.10
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.9
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/internal/endpoints/v2
-# github.com/aws/aws-sdk-go-v2/internal/ini v1.7.2
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/internal/ini v1.8.0
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/internal/ini
-# github.com/aws/aws-sdk-go-v2/internal/v4a v1.2.10
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/internal/v4a
-github.com/aws/aws-sdk-go-v2/internal/v4a/internal/crypto
-github.com/aws/aws-sdk-go-v2/internal/v4a/internal/v4
 # github.com/aws/aws-sdk-go-v2/service/ebs v1.21.7
 ## explicit; go 1.19
 github.com/aws/aws-sdk-go-v2/service/ebs
 github.com/aws/aws-sdk-go-v2/service/ebs/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/ebs/types
-# github.com/aws/aws-sdk-go-v2/service/ec2 v1.142.0
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/ec2 v1.163.1
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/ec2
 github.com/aws/aws-sdk-go-v2/service/ec2/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/ec2/types
-# github.com/aws/aws-sdk-go-v2/service/ecr v1.24.6
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/ecr v1.28.5
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/ecr
 github.com/aws/aws-sdk-go-v2/service/ecr/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/ecr/types
-# github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.10.4
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.11.2
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding
-# github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.2.10
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/service/internal/checksum
-# github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.10.10
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.11.11
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url
-# github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.16.10
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/service/internal/s3shared
-github.com/aws/aws-sdk-go-v2/service/internal/s3shared/arn
-github.com/aws/aws-sdk-go-v2/service/internal/s3shared/config
-# github.com/aws/aws-sdk-go-v2/service/s3 v1.48.1
-## explicit; go 1.19
-github.com/aws/aws-sdk-go-v2/service/s3
-github.com/aws/aws-sdk-go-v2/service/s3/internal/arn
-github.com/aws/aws-sdk-go-v2/service/s3/internal/customizations
-github.com/aws/aws-sdk-go-v2/service/s3/internal/endpoints
+# github.com/aws/aws-sdk-go-v2/service/s3 v1.55.1
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/s3/types
-# github.com/aws/aws-sdk-go-v2/service/sso v1.18.6
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/sso v1.20.11
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/sso
 github.com/aws/aws-sdk-go-v2/service/sso/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/sso/types
-# github.com/aws/aws-sdk-go-v2/service/ssooidc v1.21.6
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/ssooidc v1.24.5
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/ssooidc
 github.com/aws/aws-sdk-go-v2/service/ssooidc/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/ssooidc/types
-# github.com/aws/aws-sdk-go-v2/service/sts v1.26.7
-## explicit; go 1.19
+# github.com/aws/aws-sdk-go-v2/service/sts v1.28.12
+## explicit; go 1.20
 github.com/aws/aws-sdk-go-v2/service/sts
 github.com/aws/aws-sdk-go-v2/service/sts/internal/endpoints
 github.com/aws/aws-sdk-go-v2/service/sts/types
-# github.com/aws/smithy-go v1.19.0
-## explicit; go 1.19
+# github.com/aws/smithy-go v1.20.2
+## explicit; go 1.20
 github.com/aws/smithy-go
 github.com/aws/smithy-go/auth
 github.com/aws/smithy-go/auth/bearer
-github.com/aws/smithy-go/container/private/cache
-github.com/aws/smithy-go/container/private/cache/lru
 github.com/aws/smithy-go/context
 github.com/aws/smithy-go/document
 github.com/aws/smithy-go/encoding
@@ -1031,7 +1007,6 @@ github.com/aws/smithy-go/encoding/httpbinding
 github.com/aws/smithy-go/encoding/json
 github.com/aws/smithy-go/encoding/xml
 github.com/aws/smithy-go/endpoints
-github.com/aws/smithy-go/endpoints/private/rulesfn
 github.com/aws/smithy-go/internal/sync/singleflight
 github.com/aws/smithy-go/io
 github.com/aws/smithy-go/logging
@@ -1039,7 +1014,6 @@ github.com/aws/smithy-go/middleware
 github.com/aws/smithy-go/private/requestcompression
 github.com/aws/smithy-go/ptr
 github.com/aws/smithy-go/rand
-github.com/aws/smithy-go/sync
 github.com/aws/smithy-go/time
 github.com/aws/smithy-go/transport/http
 github.com/aws/smithy-go/transport/http/internal/io
@@ -1062,9 +1036,9 @@ github.com/bmatcuk/doublestar/v4
 # github.com/briandowns/spinner v1.23.0
 ## explicit; go 1.17
 github.com/briandowns/spinner
-# github.com/cenkalti/backoff v2.2.1+incompatible
-## explicit
-github.com/cenkalti/backoff
+# github.com/cenkalti/backoff/v4 v4.3.0
+## explicit; go 1.18
+github.com/cenkalti/backoff/v4
 # github.com/cespare/xxhash/v2 v2.3.0
 ## explicit; go 1.11
 github.com/cespare/xxhash/v2
@@ -1074,7 +1048,7 @@ github.com/chai2010/gettext-go
 github.com/chai2010/gettext-go/mo
 github.com/chai2010/gettext-go/plural
 github.com/chai2010/gettext-go/po
-# github.com/cheggaaa/pb/v3 v3.1.4
+# github.com/cheggaaa/pb/v3 v3.1.5
 ## explicit; go 1.17
 github.com/cheggaaa/pb/v3
 github.com/cheggaaa/pb/v3/termutil
@@ -1096,8 +1070,11 @@ github.com/cloudflare/circl/sign/ed448
 ## explicit; go 1.17
 github.com/containerd/cgroups
 github.com/containerd/cgroups/stats/v1
-# github.com/containerd/containerd v1.7.12
-## explicit; go 1.19
+# github.com/containerd/cgroups/v3 v3.0.2
+## explicit; go 1.18
+github.com/containerd/cgroups/v3/cgroup1/stats
+# github.com/containerd/containerd v1.7.17
+## explicit; go 1.21
 github.com/containerd/containerd
 github.com/containerd/containerd/api/runtime/sandbox/v1
 github.com/containerd/containerd/api/services/containers/v1
@@ -1125,6 +1102,7 @@ github.com/containerd/containerd/containers
 github.com/containerd/containerd/content
 github.com/containerd/containerd/content/local
 github.com/containerd/containerd/content/proxy
+github.com/containerd/containerd/contrib/seccomp/kernelversion
 github.com/containerd/containerd/defaults
 github.com/containerd/containerd/diff
 github.com/containerd/containerd/diff/proxy
@@ -1180,22 +1158,25 @@ github.com/containerd/containerd/snapshots
 github.com/containerd/containerd/snapshots/proxy
 github.com/containerd/containerd/tracing
 github.com/containerd/containerd/version
-# github.com/containerd/continuity v0.4.2
+# github.com/containerd/continuity v0.4.3
 ## explicit; go 1.19
 github.com/containerd/continuity/fs
 github.com/containerd/continuity/sysx
+# github.com/containerd/errdefs v0.1.0
+## explicit; go 1.20
+github.com/containerd/errdefs
 # github.com/containerd/fifo v1.1.0
 ## explicit; go 1.18
 github.com/containerd/fifo
 # github.com/containerd/log v0.1.0
 ## explicit; go 1.20
 github.com/containerd/log
-# github.com/containerd/stargz-snapshotter/estargz v0.14.3
+# github.com/containerd/stargz-snapshotter/estargz v0.15.1
 ## explicit; go 1.19
 github.com/containerd/stargz-snapshotter/estargz
 github.com/containerd/stargz-snapshotter/estargz/errorutil
-# github.com/containerd/ttrpc v1.2.2
-## explicit; go 1.13
+# github.com/containerd/ttrpc v1.2.4
+## explicit; go 1.19
 github.com/containerd/ttrpc
 # github.com/containerd/typeurl/v2 v2.1.1
 ## explicit; go 1.13
@@ -1219,7 +1200,7 @@ github.com/davecgh/go-spew/spew
 # github.com/davidlazar/go-crypto v0.0.0-20200604182044-b73af7476f6c
 ## explicit; go 1.14
 github.com/davidlazar/go-crypto/salsa20
-# github.com/decred/dcrd/dcrec/secp256k1/v4 v4.2.0
+# github.com/decred/dcrd/dcrec/secp256k1/v4 v4.3.0
 ## explicit; go 1.17
 github.com/decred/dcrd/dcrec/secp256k1/v4
 github.com/decred/dcrd/dcrec/secp256k1/v4/ecdsa
@@ -1241,7 +1222,7 @@ github.com/dgraph-io/ristretto/z/simd
 # github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f
 ## explicit
 github.com/dgryski/go-rendezvous
-# github.com/distribution/reference v0.5.0
+# github.com/distribution/reference v0.6.0
 ## explicit; go 1.20
 github.com/distribution/reference
 # github.com/dlclark/regexp2 v1.4.0
@@ -1266,7 +1247,7 @@ github.com/docker/distribution/registry/client/auth/challenge
 github.com/docker/distribution/registry/client/transport
 github.com/docker/distribution/registry/storage/cache
 github.com/docker/distribution/registry/storage/cache/memory
-# github.com/docker/docker v25.0.5+incompatible
+# github.com/docker/docker v26.1.3+incompatible
 ## explicit
 github.com/docker/docker/api
 github.com/docker/docker/api/types
@@ -1288,13 +1269,12 @@ github.com/docker/docker/api/types/versions
 github.com/docker/docker/api/types/volume
 github.com/docker/docker/client
 github.com/docker/docker/errdefs
-github.com/docker/docker/image/spec/specs-go/v1
 github.com/docker/docker/internal/multierror
 github.com/docker/docker/pkg/homedir
 github.com/docker/docker/pkg/ioutils
 github.com/docker/docker/registry
-# github.com/docker/docker-credential-helpers v0.7.0
-## explicit; go 1.18
+# github.com/docker/docker-credential-helpers v0.8.0
+## explicit; go 1.19
 github.com/docker/docker-credential-helpers/client
 github.com/docker/docker-credential-helpers/credentials
 # github.com/docker/go-connections v0.5.0
@@ -1340,7 +1320,7 @@ github.com/evanphx/json-patch
 # github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d
 ## explicit
 github.com/exponent-io/jsonpath
-# github.com/fatih/color v1.15.0
+# github.com/fatih/color v1.17.0
 ## explicit; go 1.17
 github.com/fatih/color
 # github.com/felixge/httpsnoop v1.0.4
@@ -1372,7 +1352,7 @@ github.com/go-git/go-billy/v5/helper/polyfill
 github.com/go-git/go-billy/v5/memfs
 github.com/go-git/go-billy/v5/osfs
 github.com/go-git/go-billy/v5/util
-# github.com/go-git/go-git/v5 v5.11.0
+# github.com/go-git/go-git/v5 v5.12.0
 ## explicit; go 1.19
 github.com/go-git/go-git/v5
 github.com/go-git/go-git/v5/config
@@ -1426,19 +1406,19 @@ github.com/go-gorp/gorp/v3
 # github.com/go-ini/ini v1.67.0
 ## explicit
 github.com/go-ini/ini
-# github.com/go-logr/logr v1.4.1
+# github.com/go-logr/logr v1.4.2
 ## explicit; go 1.18
 github.com/go-logr/logr
 github.com/go-logr/logr/funcr
 # github.com/go-logr/stdr v1.2.2
 ## explicit; go 1.16
 github.com/go-logr/stdr
-# github.com/go-ole/go-ole v1.2.6
+# github.com/go-ole/go-ole v1.3.0
 ## explicit; go 1.12
 github.com/go-ole/go-ole
 github.com/go-ole/go-ole/oleutil
-# github.com/go-openapi/analysis v0.21.5
-## explicit; go 1.19
+# github.com/go-openapi/analysis v0.23.0
+## explicit; go 1.20
 github.com/go-openapi/analysis
 github.com/go-openapi/analysis/internal/debug
 github.com/go-openapi/analysis/internal/flatten/normalize
@@ -1446,21 +1426,21 @@ github.com/go-openapi/analysis/internal/flatten/operations
 github.com/go-openapi/analysis/internal/flatten/replace
 github.com/go-openapi/analysis/internal/flatten/schutils
 github.com/go-openapi/analysis/internal/flatten/sortref
-# github.com/go-openapi/errors v0.21.0
-## explicit; go 1.19
+# github.com/go-openapi/errors v0.22.0
+## explicit; go 1.20
 github.com/go-openapi/errors
-# github.com/go-openapi/jsonpointer v0.20.1
-## explicit; go 1.19
+# github.com/go-openapi/jsonpointer v0.21.0
+## explicit; go 1.20
 github.com/go-openapi/jsonpointer
-# github.com/go-openapi/jsonreference v0.20.3
-## explicit; go 1.19
+# github.com/go-openapi/jsonreference v0.21.0
+## explicit; go 1.20
 github.com/go-openapi/jsonreference
 github.com/go-openapi/jsonreference/internal
-# github.com/go-openapi/loads v0.21.3
-## explicit; go 1.19
+# github.com/go-openapi/loads v0.22.0
+## explicit; go 1.20
 github.com/go-openapi/loads
-# github.com/go-openapi/runtime v0.27.1
-## explicit; go 1.19
+# github.com/go-openapi/runtime v0.28.0
+## explicit; go 1.20
 github.com/go-openapi/runtime
 github.com/go-openapi/runtime/client
 github.com/go-openapi/runtime/logger
@@ -1470,17 +1450,17 @@ github.com/go-openapi/runtime/middleware/header
 github.com/go-openapi/runtime/middleware/untyped
 github.com/go-openapi/runtime/security
 github.com/go-openapi/runtime/yamlpc
-# github.com/go-openapi/spec v0.20.12
-## explicit; go 1.19
+# github.com/go-openapi/spec v0.21.0
+## explicit; go 1.20
 github.com/go-openapi/spec
-# github.com/go-openapi/strfmt v0.22.0
-## explicit; go 1.19
+# github.com/go-openapi/strfmt v0.23.0
+## explicit; go 1.20
 github.com/go-openapi/strfmt
-# github.com/go-openapi/swag v0.22.5
-## explicit; go 1.19
+# github.com/go-openapi/swag v0.23.0
+## explicit; go 1.20
 github.com/go-openapi/swag
-# github.com/go-openapi/validate v0.22.4
-## explicit; go 1.19
+# github.com/go-openapi/validate v0.24.0
+## explicit; go 1.20
 github.com/go-openapi/validate
 # github.com/go-redis/redis/v8 v8.11.5
 ## explicit; go 1.17
@@ -1517,7 +1497,7 @@ github.com/gogo/protobuf/sortkeys
 # github.com/golang-jwt/jwt/v4 v4.5.0
 ## explicit; go 1.16
 github.com/golang-jwt/jwt/v4
-# github.com/golang-jwt/jwt/v5 v5.0.0
+# github.com/golang-jwt/jwt/v5 v5.2.1
 ## explicit; go 1.18
 github.com/golang-jwt/jwt/v5
 # github.com/golang/glog v1.2.1
@@ -1558,7 +1538,7 @@ github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
 github.com/google/go-cmp/cmp/internal/function
 github.com/google/go-cmp/cmp/internal/value
-# github.com/google/go-containerregistry v0.19.0
+# github.com/google/go-containerregistry v0.20.1
 ## explicit; go 1.18
 github.com/google/go-containerregistry/internal/and
 github.com/google/go-containerregistry/internal/compression
@@ -1629,7 +1609,7 @@ github.com/google/shlex
 # github.com/google/uuid v1.6.0
 ## explicit
 github.com/google/uuid
-# github.com/google/wire v0.5.0
+# github.com/google/wire v0.6.0
 ## explicit; go 1.12
 github.com/google/wire
 # github.com/googleapis/enterprise-certificate-proxy v0.3.2
@@ -1646,8 +1626,8 @@ github.com/googleapis/gax-go/v2/internal
 # github.com/gorilla/mux v1.8.1
 ## explicit; go 1.20
 github.com/gorilla/mux
-# github.com/gorilla/websocket v1.5.1
-## explicit; go 1.20
+# github.com/gorilla/websocket v1.5.3
+## explicit; go 1.12
 github.com/gorilla/websocket
 # github.com/gosuri/uitable v0.0.4
 ## explicit
@@ -1657,8 +1637,8 @@ github.com/gosuri/uitable/util/wordwrap
 # github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
 ## explicit
 github.com/gregjones/httpcache
-# github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.0
-## explicit; go 1.17
+# github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
+## explicit; go 1.20
 github.com/grpc-ecosystem/grpc-gateway/v2/internal/httprule
 github.com/grpc-ecosystem/grpc-gateway/v2/runtime
 github.com/grpc-ecosystem/grpc-gateway/v2/utilities
@@ -1668,7 +1648,7 @@ github.com/hashicorp/errwrap
 # github.com/hashicorp/go-cleanhttp v0.5.2
 ## explicit; go 1.13
 github.com/hashicorp/go-cleanhttp
-# github.com/hashicorp/go-getter v1.7.3
+# github.com/hashicorp/go-getter v1.7.5
 ## explicit; go 1.13
 github.com/hashicorp/go-getter
 github.com/hashicorp/go-getter/helper/url
@@ -1681,7 +1661,7 @@ github.com/hashicorp/go-safetemp
 # github.com/hashicorp/go-uuid v1.0.3
 ## explicit
 github.com/hashicorp/go-uuid
-# github.com/hashicorp/go-version v1.6.0
+# github.com/hashicorp/go-version v1.7.0
 ## explicit
 github.com/hashicorp/go-version
 # github.com/hashicorp/golang-lru/v2 v2.0.7
@@ -1701,7 +1681,7 @@ github.com/hashicorp/hcl/hcl/token
 github.com/hashicorp/hcl/json/parser
 github.com/hashicorp/hcl/json/scanner
 github.com/hashicorp/hcl/json/token
-# github.com/hashicorp/hcl/v2 v2.19.1
+# github.com/hashicorp/hcl/v2 v2.20.1
 ## explicit; go 1.18
 github.com/hashicorp/hcl/v2
 github.com/hashicorp/hcl/v2/ext/customdecode
@@ -1777,8 +1757,8 @@ github.com/kardianos/service
 # github.com/kevinburke/ssh_config v1.2.0
 ## explicit
 github.com/kevinburke/ssh_config
-# github.com/klauspost/compress v1.17.6
-## explicit; go 1.19
+# github.com/klauspost/compress v1.17.8
+## explicit; go 1.20
 github.com/klauspost/compress
 github.com/klauspost/compress/fse
 github.com/klauspost/compress/huff0
@@ -1798,7 +1778,7 @@ github.com/knqyf263/go-deb-version
 # github.com/knqyf263/go-rpm-version v0.0.0-20220614171824-631e686d1075
 ## explicit
 github.com/knqyf263/go-rpm-version
-# github.com/knqyf263/go-rpmdb v0.0.0-20231008124120-ac49267ab4e1
+# github.com/knqyf263/go-rpmdb v0.1.1
 ## explicit; go 1.18
 github.com/knqyf263/go-rpmdb/pkg
 github.com/knqyf263/go-rpmdb/pkg/bdb
@@ -1843,7 +1823,7 @@ github.com/libp2p/go-buffer-pool
 # github.com/libp2p/go-flow-metrics v0.1.0
 ## explicit; go 1.17
 github.com/libp2p/go-flow-metrics
-# github.com/libp2p/go-libp2p v0.33.1
+# github.com/libp2p/go-libp2p v0.35.4
 ## explicit; go 1.21
 github.com/libp2p/go-libp2p
 github.com/libp2p/go-libp2p/config
@@ -1873,7 +1853,6 @@ github.com/libp2p/go-libp2p/p2p/host/autonat
 github.com/libp2p/go-libp2p/p2p/host/autonat/pb
 github.com/libp2p/go-libp2p/p2p/host/autorelay
 github.com/libp2p/go-libp2p/p2p/host/basic
-github.com/libp2p/go-libp2p/p2p/host/blank
 github.com/libp2p/go-libp2p/p2p/host/eventbus
 github.com/libp2p/go-libp2p/p2p/host/peerstore
 github.com/libp2p/go-libp2p/p2p/host/peerstore/pstoremem
@@ -1905,6 +1884,9 @@ github.com/libp2p/go-libp2p/p2p/security/tls
 github.com/libp2p/go-libp2p/p2p/transport/quic
 github.com/libp2p/go-libp2p/p2p/transport/quicreuse
 github.com/libp2p/go-libp2p/p2p/transport/tcp
+github.com/libp2p/go-libp2p/p2p/transport/webrtc
+github.com/libp2p/go-libp2p/p2p/transport/webrtc/pb
+github.com/libp2p/go-libp2p/p2p/transport/webrtc/udpmux
 github.com/libp2p/go-libp2p/p2p/transport/websocket
 github.com/libp2p/go-libp2p/p2p/transport/webtransport
 # github.com/libp2p/go-libp2p-asn-util v0.4.1
@@ -1932,7 +1914,7 @@ github.com/liggitt/tabwriter
 # github.com/lorenzosaino/go-sysctl v0.3.1
 ## explicit; go 1.18
 github.com/lorenzosaino/go-sysctl
-# github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0
+# github.com/lufia/plan9stats v0.0.0-20240226150601-1dcf7310316a
 ## explicit; go 1.16
 github.com/lufia/plan9stats
 # github.com/lunixbochs/struc v0.0.0-20200707160740-784aaebc1d40
@@ -1943,7 +1925,6 @@ github.com/lunixbochs/struc
 github.com/magiconair/properties
 # github.com/mailru/easyjson v0.7.7
 ## explicit; go 1.12
-github.com/mailru/easyjson
 github.com/mailru/easyjson/buffer
 github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
@@ -1980,7 +1961,7 @@ github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.20
 ## explicit; go 1.15
 github.com/mattn/go-isatty
-# github.com/mattn/go-runewidth v0.0.14
+# github.com/mattn/go-runewidth v0.0.15
 ## explicit; go 1.9
 github.com/mattn/go-runewidth
 # github.com/mattn/go-shellwords v1.0.12
@@ -2028,14 +2009,17 @@ github.com/mitchellh/mapstructure
 # github.com/mitchellh/reflectwalk v1.0.2
 ## explicit
 github.com/mitchellh/reflectwalk
-# github.com/moby/buildkit v0.12.5
-## explicit; go 1.20
+# github.com/moby/buildkit v0.13.2
+## explicit; go 1.21
 github.com/moby/buildkit/frontend/dockerfile/command
 github.com/moby/buildkit/frontend/dockerfile/instructions
 github.com/moby/buildkit/frontend/dockerfile/parser
 github.com/moby/buildkit/frontend/dockerfile/shell
 github.com/moby/buildkit/util/stack
 github.com/moby/buildkit/util/suggest
+# github.com/moby/docker-image-spec v1.3.1
+## explicit; go 1.18
+github.com/moby/docker-image-spec/specs-go/v1
 # github.com/moby/locker v1.0.1
 ## explicit; go 1.13
 github.com/moby/locker
@@ -2043,7 +2027,7 @@ github.com/moby/locker
 ## explicit; go 1.13
 github.com/moby/spdystream
 github.com/moby/spdystream/spdy
-# github.com/moby/sys/mountinfo v0.6.2
+# github.com/moby/sys/mountinfo v0.7.1
 ## explicit; go 1.16
 github.com/moby/sys/mountinfo
 # github.com/moby/sys/sequential v0.5.0
@@ -2077,8 +2061,8 @@ github.com/multiformats/go-base32
 # github.com/multiformats/go-base36 v0.2.0
 ## explicit; go 1.18
 github.com/multiformats/go-base36
-# github.com/multiformats/go-multiaddr v0.12.2
-## explicit; go 1.20
+# github.com/multiformats/go-multiaddr v0.13.0
+## explicit; go 1.21
 github.com/multiformats/go-multiaddr
 github.com/multiformats/go-multiaddr/net
 # github.com/multiformats/go-multiaddr-dns v0.3.1
@@ -2122,9 +2106,6 @@ github.com/ncruces/go-strftime
 # github.com/oklog/ulid v1.3.1
 ## explicit
 github.com/oklog/ulid
-# github.com/olekukonko/tablewriter v0.0.5
-## explicit; go 1.12
-github.com/olekukonko/tablewriter
 # github.com/onsi/ginkgo/v2 v2.15.0
 ## explicit; go 1.20
 github.com/onsi/ginkgo/v2/config
@@ -2143,8 +2124,8 @@ github.com/onsi/ginkgo/v2/internal/interrupt_handler
 github.com/onsi/ginkgo/v2/internal/parallel_support
 github.com/onsi/ginkgo/v2/reporters
 github.com/onsi/ginkgo/v2/types
-# github.com/open-policy-agent/opa v0.61.0
-## explicit; go 1.19
+# github.com/open-policy-agent/opa v0.65.0
+## explicit; go 1.21
 github.com/open-policy-agent/opa/ast
 github.com/open-policy-agent/opa/ast/internal/scanner
 github.com/open-policy-agent/opa/ast/internal/tokens
@@ -2165,7 +2146,6 @@ github.com/open-policy-agent/opa/internal/debug
 github.com/open-policy-agent/opa/internal/deepcopy
 github.com/open-policy-agent/opa/internal/edittree
 github.com/open-policy-agent/opa/internal/edittree/bitvector
-github.com/open-policy-agent/opa/internal/errors
 github.com/open-policy-agent/opa/internal/file/archive
 github.com/open-policy-agent/opa/internal/file/url
 github.com/open-policy-agent/opa/internal/future
@@ -2236,7 +2216,7 @@ github.com/open-policy-agent/opa/version
 # github.com/opencontainers/go-digest v1.0.0
 ## explicit; go 1.13
 github.com/opencontainers/go-digest
-# github.com/opencontainers/image-spec v1.1.0-rc6
+# github.com/opencontainers/image-spec v1.1.0
 ## explicit; go 1.18
 github.com/opencontainers/image-spec/identity
 github.com/opencontainers/image-spec/specs-go
@@ -2258,10 +2238,10 @@ github.com/opentracing/opentracing-go/log
 ## explicit; go 1.19
 github.com/openvex/go-vex/pkg/csaf
 github.com/openvex/go-vex/pkg/vex
-# github.com/owenrumney/go-sarif/v2 v2.3.0
+# github.com/owenrumney/go-sarif/v2 v2.3.1
 ## explicit; go 1.16
 github.com/owenrumney/go-sarif/v2/sarif
-# github.com/owenrumney/squealer v1.2.1
+# github.com/owenrumney/squealer v1.2.2
 ## explicit; go 1.20
 github.com/owenrumney/squealer/internal/pkg/match
 github.com/owenrumney/squealer/internal/pkg/metrics
@@ -2269,8 +2249,8 @@ github.com/owenrumney/squealer/internal/pkg/scan
 github.com/owenrumney/squealer/pkg/config
 github.com/owenrumney/squealer/pkg/result
 github.com/owenrumney/squealer/pkg/squealer
-# github.com/package-url/packageurl-go v0.1.2
-## explicit; go 1.17
+# github.com/package-url/packageurl-go v0.1.3
+## explicit; go 1.18
 github.com/package-url/packageurl-go
 # github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58
 ## explicit; go 1.16
@@ -2285,12 +2265,107 @@ github.com/pelletier/go-toml/v2/unstable
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 ## explicit
 github.com/peterbourgon/diskv
+# github.com/pion/datachannel v1.5.6
+## explicit; go 1.13
+github.com/pion/datachannel
+# github.com/pion/dtls/v2 v2.2.11
+## explicit; go 1.13
+github.com/pion/dtls/v2
+github.com/pion/dtls/v2/internal/ciphersuite
+github.com/pion/dtls/v2/internal/ciphersuite/types
+github.com/pion/dtls/v2/internal/closer
+github.com/pion/dtls/v2/internal/util
+github.com/pion/dtls/v2/pkg/crypto/ccm
+github.com/pion/dtls/v2/pkg/crypto/ciphersuite
+github.com/pion/dtls/v2/pkg/crypto/clientcertificate
+github.com/pion/dtls/v2/pkg/crypto/elliptic
+github.com/pion/dtls/v2/pkg/crypto/fingerprint
+github.com/pion/dtls/v2/pkg/crypto/hash
+github.com/pion/dtls/v2/pkg/crypto/prf
+github.com/pion/dtls/v2/pkg/crypto/signature
+github.com/pion/dtls/v2/pkg/crypto/signaturehash
+github.com/pion/dtls/v2/pkg/protocol
+github.com/pion/dtls/v2/pkg/protocol/alert
+github.com/pion/dtls/v2/pkg/protocol/extension
+github.com/pion/dtls/v2/pkg/protocol/handshake
+github.com/pion/dtls/v2/pkg/protocol/recordlayer
+# github.com/pion/ice/v2 v2.3.25
+## explicit; go 1.13
+github.com/pion/ice/v2
+github.com/pion/ice/v2/internal/atomic
+github.com/pion/ice/v2/internal/fakenet
+github.com/pion/ice/v2/internal/stun
+# github.com/pion/interceptor v0.1.29
+## explicit; go 1.19
+github.com/pion/interceptor
+github.com/pion/interceptor/internal/ntp
+github.com/pion/interceptor/internal/sequencenumber
+github.com/pion/interceptor/pkg/nack
+github.com/pion/interceptor/pkg/report
+github.com/pion/interceptor/pkg/twcc
+# github.com/pion/logging v0.2.2
+## explicit; go 1.12
+github.com/pion/logging
+# github.com/pion/mdns v0.0.12
+## explicit; go 1.19
+github.com/pion/mdns
+# github.com/pion/randutil v0.1.0
+## explicit; go 1.14
+github.com/pion/randutil
+# github.com/pion/rtcp v1.2.14
+## explicit; go 1.13
+github.com/pion/rtcp
+# github.com/pion/rtp v1.8.6
+## explicit; go 1.19
+github.com/pion/rtp
+github.com/pion/rtp/codecs
+github.com/pion/rtp/codecs/av1/obu
+# github.com/pion/sctp v1.8.16
+## explicit; go 1.19
+github.com/pion/sctp
+# github.com/pion/sdp/v3 v3.0.9
+## explicit; go 1.13
+github.com/pion/sdp/v3
+# github.com/pion/srtp/v2 v2.0.18
+## explicit; go 1.14
+github.com/pion/srtp/v2
+# github.com/pion/stun v0.6.1
+## explicit; go 1.12
+github.com/pion/stun
+github.com/pion/stun/internal/hmac
+# github.com/pion/transport/v2 v2.2.5
+## explicit; go 1.12
+github.com/pion/transport/v2
+github.com/pion/transport/v2/connctx
+github.com/pion/transport/v2/deadline
+github.com/pion/transport/v2/packetio
+github.com/pion/transport/v2/replaydetector
+github.com/pion/transport/v2/stdnet
+github.com/pion/transport/v2/udp
+github.com/pion/transport/v2/utils/xor
+github.com/pion/transport/v2/vnet
+# github.com/pion/turn/v2 v2.1.6
+## explicit; go 1.13
+github.com/pion/turn/v2
+github.com/pion/turn/v2/internal/allocation
+github.com/pion/turn/v2/internal/client
+github.com/pion/turn/v2/internal/ipnet
+github.com/pion/turn/v2/internal/proto
+github.com/pion/turn/v2/internal/server
+# github.com/pion/webrtc/v3 v3.2.40
+## explicit; go 1.17
+github.com/pion/webrtc/v3
+github.com/pion/webrtc/v3/internal/fmtp
+github.com/pion/webrtc/v3/internal/mux
+github.com/pion/webrtc/v3/internal/util
+github.com/pion/webrtc/v3/pkg/media
+github.com/pion/webrtc/v3/pkg/rtcerr
 # github.com/pjbgf/sha1cd v0.3.0
 ## explicit; go 1.19
 github.com/pjbgf/sha1cd
 github.com/pjbgf/sha1cd/internal
 github.com/pjbgf/sha1cd/ubc
-# github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8
+# github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c
 ## explicit; go 1.14
 github.com/pkg/browser
 # github.com/pkg/errors v0.9.1
@@ -2299,18 +2374,18 @@ github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 ## explicit
 github.com/pmezard/go-difflib/difflib
-# github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c
+# github.com/power-devops/perfstat v0.0.0-20240221224432-82ca36839d55
 ## explicit; go 1.14
 github.com/power-devops/perfstat
-# github.com/prometheus/client_golang v1.18.0
-## explicit; go 1.19
+# github.com/prometheus/client_golang v1.19.1
+## explicit; go 1.20
 github.com/prometheus/client_golang/prometheus
 github.com/prometheus/client_golang/prometheus/internal
 github.com/prometheus/client_golang/prometheus/promhttp
-# github.com/prometheus/client_model v0.6.0
+# github.com/prometheus/client_model v0.6.1
 ## explicit; go 1.19
 github.com/prometheus/client_model/go
-# github.com/prometheus/common v0.47.0
+# github.com/prometheus/common v0.48.0
 ## explicit; go 1.20
 github.com/prometheus/common/expfmt
 github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
@@ -2323,7 +2398,7 @@ github.com/prometheus/procfs/internal/util
 # github.com/quic-go/qpack v0.4.0
 ## explicit; go 1.18
 github.com/quic-go/qpack
-# github.com/quic-go/quic-go v0.42.0
+# github.com/quic-go/quic-go v0.44.0
 ## explicit; go 1.21
 github.com/quic-go/quic-go
 github.com/quic-go/quic-go/http3
@@ -2342,8 +2417,8 @@ github.com/quic-go/quic-go/internal/wire
 github.com/quic-go/quic-go/logging
 github.com/quic-go/quic-go/qlog
 github.com/quic-go/quic-go/quicvarint
-# github.com/quic-go/webtransport-go v0.6.0
-## explicit; go 1.20
+# github.com/quic-go/webtransport-go v0.8.0
+## explicit; go 1.21
 github.com/quic-go/webtransport-go
 # github.com/raulk/go-watchdog v1.3.0
 ## explicit; go 1.15
@@ -2379,16 +2454,13 @@ github.com/samber/lo
 # github.com/santhosh-tekuri/jsonschema/v5 v5.3.1
 ## explicit; go 1.19
 github.com/santhosh-tekuri/jsonschema/v5
-# github.com/saracen/walker v0.1.3
-## explicit; go 1.17
-github.com/saracen/walker
 # github.com/secure-systems-lab/go-securesystemslib v0.8.0
 ## explicit; go 1.20
 github.com/secure-systems-lab/go-securesystemslib/cjson
 github.com/secure-systems-lab/go-securesystemslib/dsse
 github.com/secure-systems-lab/go-securesystemslib/signerverifier
-# github.com/sergi/go-diff v1.3.1
-## explicit; go 1.12
+# github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3
+## explicit; go 1.13
 github.com/sergi/go-diff/diffmatchpatch
 # github.com/shibumi/go-pathspec v1.3.0
 ## explicit; go 1.17
@@ -2410,8 +2482,8 @@ github.com/shoenig/go-m1cpu
 # github.com/shopspring/decimal v1.3.1
 ## explicit; go 1.13
 github.com/shopspring/decimal
-# github.com/sigstore/rekor v1.2.2
-## explicit; go 1.19
+# github.com/sigstore/rekor v1.3.6
+## explicit; go 1.21
 github.com/sigstore/rekor/pkg/generated/client
 github.com/sigstore/rekor/pkg/generated/client/entries
 github.com/sigstore/rekor/pkg/generated/client/index
@@ -2421,7 +2493,7 @@ github.com/sigstore/rekor/pkg/generated/models
 # github.com/sirupsen/logrus v1.9.3
 ## explicit; go 1.13
 github.com/sirupsen/logrus
-# github.com/skeema/knownhosts v1.2.1
+# github.com/skeema/knownhosts v1.2.2
 ## explicit; go 1.17
 github.com/skeema/knownhosts
 # github.com/slack-go/slack v0.13.1
@@ -2443,7 +2515,7 @@ github.com/sourcegraph/conc/panics
 # github.com/spaolacci/murmur3 v1.1.0
 ## explicit
 github.com/spaolacci/murmur3
-# github.com/spdx/tools-golang v0.5.4-0.20231108154018-0c0f394b5e1a
+# github.com/spdx/tools-golang v0.5.4
 ## explicit; go 1.13
 github.com/spdx/tools-golang/convert
 github.com/spdx/tools-golang/json
@@ -2496,25 +2568,31 @@ github.com/stretchr/objx
 ## explicit; go 1.17
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/mock
+github.com/stretchr/testify/require
 # github.com/subosito/gotenv v1.6.0
 ## explicit; go 1.18
 github.com/subosito/gotenv
 # github.com/tchap/go-patricia/v2 v2.3.1
 ## explicit; go 1.16
 github.com/tchap/go-patricia/v2/patricia
-# github.com/tetratelabs/wazero v1.2.1
-## explicit; go 1.18
+# github.com/tetratelabs/wazero v1.7.2
+## explicit; go 1.20
 github.com/tetratelabs/wazero
 github.com/tetratelabs/wazero/api
 github.com/tetratelabs/wazero/experimental
+github.com/tetratelabs/wazero/experimental/sys
 github.com/tetratelabs/wazero/imports/wasi_snapshot_preview1
-github.com/tetratelabs/wazero/internal/asm
-github.com/tetratelabs/wazero/internal/asm/amd64
-github.com/tetratelabs/wazero/internal/asm/arm64
-github.com/tetratelabs/wazero/internal/bitpack
 github.com/tetratelabs/wazero/internal/descriptor
-github.com/tetratelabs/wazero/internal/engine/compiler
 github.com/tetratelabs/wazero/internal/engine/interpreter
+github.com/tetratelabs/wazero/internal/engine/wazevo
+github.com/tetratelabs/wazero/internal/engine/wazevo/backend
+github.com/tetratelabs/wazero/internal/engine/wazevo/backend/isa/amd64
+github.com/tetratelabs/wazero/internal/engine/wazevo/backend/isa/arm64
+github.com/tetratelabs/wazero/internal/engine/wazevo/backend/regalloc
+github.com/tetratelabs/wazero/internal/engine/wazevo/frontend
+github.com/tetratelabs/wazero/internal/engine/wazevo/ssa
+github.com/tetratelabs/wazero/internal/engine/wazevo/wazevoapi
+github.com/tetratelabs/wazero/internal/expctxkeys
 github.com/tetratelabs/wazero/internal/filecache
 github.com/tetratelabs/wazero/internal/fsapi
 github.com/tetratelabs/wazero/internal/ieee754
@@ -2533,15 +2611,14 @@ github.com/tetratelabs/wazero/internal/wasm
 github.com/tetratelabs/wazero/internal/wasm/binary
 github.com/tetratelabs/wazero/internal/wasmdebug
 github.com/tetratelabs/wazero/internal/wasmruntime
-github.com/tetratelabs/wazero/internal/wazeroir
 github.com/tetratelabs/wazero/sys
-# github.com/tklauser/go-sysconf v0.3.12
-## explicit; go 1.13
+# github.com/tklauser/go-sysconf v0.3.13
+## explicit; go 1.18
 github.com/tklauser/go-sysconf
-# github.com/tklauser/numcpus v0.6.1
-## explicit; go 1.13
+# github.com/tklauser/numcpus v0.7.0
+## explicit; go 1.18
 github.com/tklauser/numcpus
-# github.com/twitchtv/twirp v8.1.2+incompatible
+# github.com/twitchtv/twirp v8.1.3+incompatible
 ## explicit
 github.com/twitchtv/twirp
 github.com/twitchtv/twirp/ctxsetters
@@ -2552,15 +2629,15 @@ github.com/ulikunitz/xz
 github.com/ulikunitz/xz/internal/hash
 github.com/ulikunitz/xz/internal/xlog
 github.com/ulikunitz/xz/lzma
-# github.com/vbatts/tar-split v0.11.3
-## explicit; go 1.15
+# github.com/vbatts/tar-split v0.11.5
+## explicit; go 1.17
 github.com/vbatts/tar-split/archive/tar
 # github.com/vishvananda/netlink v1.2.1-beta.2
 ## explicit; go 1.12
 github.com/vishvananda/netlink
 github.com/vishvananda/netlink/nl
-# github.com/vishvananda/netns v0.0.0-20211101163701-50045581ed74
-## explicit; go 1.12
+# github.com/vishvananda/netns v0.0.4
+## explicit; go 1.17
 github.com/vishvananda/netns
 # github.com/xanzy/ssh-agent v0.3.3
 ## explicit; go 1.16
@@ -2583,7 +2660,7 @@ github.com/yashtewari/glob-intersection
 # github.com/yusufpapurcu/wmi v1.2.4
 ## explicit; go 1.16
 github.com/yusufpapurcu/wmi
-# github.com/zclconf/go-cty v1.13.0
+# github.com/zclconf/go-cty v1.14.4
 ## explicit; go 1.18
 github.com/zclconf/go-cty/cty
 github.com/zclconf/go-cty/cty/convert
@@ -2608,11 +2685,11 @@ github.com/zeebo/blake3/internal/alg/hash/hash_avx2
 github.com/zeebo/blake3/internal/alg/hash/hash_pure
 github.com/zeebo/blake3/internal/consts
 github.com/zeebo/blake3/internal/utils
-# go.etcd.io/bbolt v1.3.9
-## explicit; go 1.17
+# go.etcd.io/bbolt v1.3.10
+## explicit; go 1.21
 go.etcd.io/bbolt
-# go.mongodb.org/mongo-driver v1.13.1
-## explicit; go 1.13
+# go.mongodb.org/mongo-driver v1.14.0
+## explicit; go 1.18
 go.mongodb.org/mongo-driver/bson
 go.mongodb.org/mongo-driver/bson/bsoncodec
 go.mongodb.org/mongo-driver/bson/bsonoptions
@@ -2643,12 +2720,13 @@ go.opencensus.io/trace/tracestate
 ## explicit; go 1.20
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc/internal
-# go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0
-## explicit; go 1.20
+# go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.52.0
+## explicit; go 1.21
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp
+go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp/internal/semconv
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp/internal/semconvutil
-# go.opentelemetry.io/otel v1.24.0
-## explicit; go 1.20
+# go.opentelemetry.io/otel v1.27.0
+## explicit; go 1.21
 go.opentelemetry.io/otel
 go.opentelemetry.io/otel/attribute
 go.opentelemetry.io/otel/baggage
@@ -2663,22 +2741,22 @@ go.opentelemetry.io/otel/semconv/v1.17.0
 go.opentelemetry.io/otel/semconv/v1.17.0/httpconv
 go.opentelemetry.io/otel/semconv/v1.20.0
 go.opentelemetry.io/otel/semconv/v1.21.0
-go.opentelemetry.io/otel/semconv/v1.24.0
-# go.opentelemetry.io/otel/metric v1.24.0
-## explicit; go 1.20
+go.opentelemetry.io/otel/semconv/v1.25.0
+# go.opentelemetry.io/otel/metric v1.27.0
+## explicit; go 1.21
 go.opentelemetry.io/otel/metric
 go.opentelemetry.io/otel/metric/embedded
 go.opentelemetry.io/otel/metric/noop
-# go.opentelemetry.io/otel/sdk v1.22.0
-## explicit; go 1.20
+# go.opentelemetry.io/otel/sdk v1.27.0
+## explicit; go 1.21
 go.opentelemetry.io/otel/sdk
 go.opentelemetry.io/otel/sdk/instrumentation
 go.opentelemetry.io/otel/sdk/internal
 go.opentelemetry.io/otel/sdk/internal/env
 go.opentelemetry.io/otel/sdk/resource
 go.opentelemetry.io/otel/sdk/trace
-# go.opentelemetry.io/otel/trace v1.24.0
-## explicit; go 1.20
+# go.opentelemetry.io/otel/trace v1.27.0
+## explicit; go 1.21
 go.opentelemetry.io/otel/trace
 go.opentelemetry.io/otel/trace/embedded
 go.opentelemetry.io/otel/trace/noop
@@ -2697,7 +2775,7 @@ go.uber.org/dig/internal/digerror
 go.uber.org/dig/internal/digreflect
 go.uber.org/dig/internal/dot
 go.uber.org/dig/internal/graph
-# go.uber.org/fx v1.20.1
+# go.uber.org/fx v1.22.1
 ## explicit; go 1.20
 go.uber.org/fx
 go.uber.org/fx/fxevent
@@ -2756,10 +2834,9 @@ golang.org/x/crypto/ssh
 golang.org/x/crypto/ssh/agent
 golang.org/x/crypto/ssh/internal/bcrypt_pbkdf
 golang.org/x/crypto/ssh/knownhosts
-# golang.org/x/exp v0.0.0-20240213143201-ec583247a57a
+# golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842
 ## explicit; go 1.20
 golang.org/x/exp/constraints
-golang.org/x/exp/maps
 golang.org/x/exp/rand
 golang.org/x/exp/slices
 golang.org/x/exp/slog
@@ -2783,6 +2860,7 @@ golang.org/x/mod/sumdb/dirhash
 ## explicit; go 1.18
 golang.org/x/net/bpf
 golang.org/x/net/context
+golang.org/x/net/dns/dnsmessage
 golang.org/x/net/html
 golang.org/x/net/html/atom
 golang.org/x/net/html/charset
@@ -2902,7 +2980,7 @@ golang.zx2c4.com/wintun
 ## explicit; go 1.17
 golang.zx2c4.com/wireguard/rwcancel
 golang.zx2c4.com/wireguard/tun
-# google.golang.org/api v0.171.0
+# google.golang.org/api v0.172.0
 ## explicit; go 1.19
 google.golang.org/api/googleapi
 google.golang.org/api/googleapi/transport
@@ -2920,7 +2998,7 @@ google.golang.org/api/transport
 google.golang.org/api/transport/grpc
 google.golang.org/api/transport/http
 google.golang.org/api/transport/http/internal/propagation
-# google.golang.org/genproto v0.0.0-20240213162025-012b6fc9bca9
+# google.golang.org/genproto v0.0.0-20240311173647-c811ad7063a7
 ## explicit; go 1.19
 google.golang.org/genproto/googleapis/type/date
 google.golang.org/genproto/googleapis/type/expr
@@ -3072,8 +3150,10 @@ gopkg.in/yaml.v2
 # gopkg.in/yaml.v3 v3.0.1
 ## explicit
 gopkg.in/yaml.v3
-# helm.sh/helm/v3 v3.14.3
-## explicit; go 1.21
+# gotest.tools/v3 v3.5.0
+## explicit; go 1.17
+# helm.sh/helm/v3 v3.15.1
+## explicit; go 1.22.0
 helm.sh/helm/v3/internal/fileutil
 helm.sh/helm/v3/internal/resolver
 helm.sh/helm/v3/internal/sympath
@@ -3110,6 +3190,7 @@ helm.sh/helm/v3/pkg/storage
 helm.sh/helm/v3/pkg/storage/driver
 helm.sh/helm/v3/pkg/strvals
 helm.sh/helm/v3/pkg/time
+helm.sh/helm/v3/pkg/time/ctime
 helm.sh/helm/v3/pkg/uploader
 # honnef.co/go/tools v0.3.2
 ## explicit; go 1.17
@@ -3153,7 +3234,7 @@ honnef.co/go/tools/staticcheck/fakereflect
 honnef.co/go/tools/staticcheck/fakexml
 honnef.co/go/tools/stylecheck
 honnef.co/go/tools/unused
-# k8s.io/api v0.30.2
+# k8s.io/api v0.30.3
 ## explicit; go 1.22.0
 k8s.io/api/admission/v1
 k8s.io/api/admission/v1beta1
@@ -3212,12 +3293,12 @@ k8s.io/api/storage/v1
 k8s.io/api/storage/v1alpha1
 k8s.io/api/storage/v1beta1
 k8s.io/api/storagemigration/v1alpha1
-# k8s.io/apiextensions-apiserver v0.29.0
-## explicit; go 1.21
+# k8s.io/apiextensions-apiserver v0.30.0
+## explicit; go 1.22.0
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1
-# k8s.io/apimachinery v0.30.2
+# k8s.io/apimachinery v0.30.3
 ## explicit; go 1.22.0
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
@@ -3277,16 +3358,16 @@ k8s.io/apimachinery/pkg/watch
 k8s.io/apimachinery/third_party/forked/golang/json
 k8s.io/apimachinery/third_party/forked/golang/netutil
 k8s.io/apimachinery/third_party/forked/golang/reflect
-# k8s.io/apiserver v0.29.0
-## explicit; go 1.21
+# k8s.io/apiserver v0.30.0
+## explicit; go 1.22.0
 k8s.io/apiserver/pkg/endpoints/deprecation
-# k8s.io/cli-runtime v0.29.0
-## explicit; go 1.21
+# k8s.io/cli-runtime v0.30.2
+## explicit; go 1.22.0
 k8s.io/cli-runtime/pkg/genericclioptions
 k8s.io/cli-runtime/pkg/genericiooptions
 k8s.io/cli-runtime/pkg/printers
 k8s.io/cli-runtime/pkg/resource
-# k8s.io/client-go v0.30.2
+# k8s.io/client-go v0.30.3
 ## explicit; go 1.22.0
 k8s.io/client-go/applyconfigurations/admissionregistration/v1
 k8s.io/client-go/applyconfigurations/admissionregistration/v1alpha1
@@ -3440,8 +3521,8 @@ k8s.io/client-go/util/homedir
 k8s.io/client-go/util/jsonpath
 k8s.io/client-go/util/keyutil
 k8s.io/client-go/util/workqueue
-# k8s.io/component-base v0.29.0
-## explicit; go 1.21
+# k8s.io/component-base v0.30.1
+## explicit; go 1.22.0
 k8s.io/component-base/version
 # k8s.io/klog/v2 v2.120.1
 ## explicit; go 1.18
@@ -3464,8 +3545,8 @@ k8s.io/kube-openapi/pkg/spec3
 k8s.io/kube-openapi/pkg/util/proto
 k8s.io/kube-openapi/pkg/util/proto/validation
 k8s.io/kube-openapi/pkg/validation/spec
-# k8s.io/kubectl v0.29.0
-## explicit; go 1.21
+# k8s.io/kubectl v0.30.1
+## explicit; go 1.22.0
 k8s.io/kubectl/pkg/cmd/util
 k8s.io/kubectl/pkg/scheme
 k8s.io/kubectl/pkg/util/i18n
@@ -3492,7 +3573,7 @@ lukechampine.com/blake3
 # modernc.org/gc/v3 v3.0.0-20240107210532-573471604cb6
 ## explicit; go 1.20
 modernc.org/gc/v3
-# modernc.org/libc v1.52.1
+# modernc.org/libc v1.55.3
 ## explicit; go 1.20
 modernc.org/libc
 modernc.org/libc/errno
@@ -3526,7 +3607,7 @@ modernc.org/mathutil
 # modernc.org/memory v1.8.0
 ## explicit; go 1.18
 modernc.org/memory
-# modernc.org/sqlite v1.30.2
+# modernc.org/sqlite v1.31.1
 ## explicit; go 1.20
 modernc.org/sqlite
 modernc.org/sqlite/lib
@@ -3536,6 +3617,10 @@ modernc.org/strutil
 # modernc.org/token v1.1.0
 ## explicit
 modernc.org/token
+# mvdan.cc/sh/v3 v3.8.0
+## explicit; go 1.21
+mvdan.cc/sh/v3/fileutil
+mvdan.cc/sh/v3/syntax
 # n2x.dev/x-api-go v0.0.0-00010101000000-000000000000 => ../x-api/_dist/n2x.dev/x-api-go
 ## explicit; go 1.22
 n2x.dev/x-api-go/grpc/common/datetime

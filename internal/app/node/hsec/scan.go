@@ -26,9 +26,7 @@ func scan() error {
 	})
 
 	// Initialize logger
-	if err := log.InitLogger(opts.Debug, opts.Quiet); err != nil {
-		return errors.Wrapf(err, "[%v] function log.InitLogger()", errors.Trace())
-	}
+	log.InitLogger(opts.Debug, opts.Quiet)
 
 	var err error
 

@@ -5,6 +5,7 @@ import (
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	ftypes "github.com/aquasecurity/trivy/pkg/fanal/types"
+	"github.com/aquasecurity/trivy/pkg/sbom/core"
 	"github.com/aquasecurity/trivy/pkg/types"
 	"n2x.dev/x-api-go/grpc/resources/hsec"
 )
@@ -62,8 +63,8 @@ func getHostSecurityReport(r *types.Report) *hsec.Report {
 				OSFeatures: r.Metadata.ImageConfig.OSFeatures,
 			}, // ImageConfig
 		}, // Metadata
-		Results:   getReportResults(r),
-		CycloneDX: getReportCycloneDX(r.CycloneDX),
+		Results: getReportResults(r),
+		BOM:     getReportBOM(r.BOM),
 	}
 }
 
@@ -436,11 +437,11 @@ func getReportResultMisconfigurations(dmcfgs []types.DetectedMisconfiguration) [
 
 func getMisconfigStatus(mstatus types.MisconfStatus) hsec.MisconfStatus {
 	switch mstatus {
-	case types.StatusPassed:
+	case types.MisconfStatusPassed:
 		return hsec.MisconfStatus_MISCONF_STATUS_PASSED
-	case types.StatusFailure:
+	case types.MisconfStatusFailure:
 		return hsec.MisconfStatus_MISCONF_STATUS_FAILURE
-	case types.StatusException:
+	case types.MisconfStatusException:
 		return hsec.MisconfStatus_MISCONF_STATUS_EXCEPTION
 	}
 
@@ -503,7 +504,7 @@ func getOccurrences(occurrences []ftypes.Occurrence) []*hsec.Occurrence {
 
 // Secrets
 
-func getReportResultSecrets(secrets []ftypes.SecretFinding) []*hsec.SecretFinding {
+func getReportResultSecrets(secrets []types.DetectedSecret) []*hsec.SecretFinding {
 	ss := make([]*hsec.SecretFinding, 0)
 
 	for _, s := range secrets {
@@ -567,46 +568,15 @@ func getReportResultCustomResources(customResources []ftypes.CustomResource) []*
 	return crs
 }
 
-// CycloneDX
+// SBOM
 
-func getReportCycloneDX(cdx *ftypes.CycloneDX) *hsec.CycloneDX {
+func getReportBOM(cdx *core.BOM) *hsec.BOM {
 	if cdx == nil {
 		return nil
 	}
 
-	return &hsec.CycloneDX{
-		BOMFormat:    cdx.BOMFormat,
-		SpecVersion:  int32(cdx.SpecVersion),
+	return &hsec.BOM{
 		SerialNumber: cdx.SerialNumber,
 		Version:      int32(cdx.Version),
-		Metadata: &hsec.BOMMetadata{
-			Timestamp: cdx.Metadata.Timestamp,
-			Component: &hsec.Component{
-				BOMRef:     cdx.Metadata.Component.BOMRef,
-				MIMEType:   cdx.Metadata.Component.MIMEType,
-				Type:       string(cdx.Metadata.Component.Type),
-				Name:       cdx.Metadata.Component.Name,
-				Version:    cdx.Metadata.Component.Version,
-				PackageURL: cdx.Metadata.Component.PackageURL,
-			},
-		},
-		Components: getCycloneDXComponents(cdx.Components),
 	}
-}
-
-func getCycloneDXComponents(components []ftypes.Component) []*hsec.Component {
-	cs := make([]*hsec.Component, 0)
-
-	for _, c := range components {
-		cs = append(cs, &hsec.Component{
-			BOMRef:     c.BOMRef,
-			MIMEType:   c.MIMEType,
-			Type:       string(c.Type),
-			Name:       c.Name,
-			Version:    c.Version,
-			PackageURL: c.PackageURL,
-		})
-	}
-
-	return cs
 }

@@ -18,8 +18,8 @@ type SumologicOptions struct {
 	Level    LogLevel
 	URL      string
 	Name     string // source name (n2x.namespace)
-	Host     string // source host name (sxID)
-	Category string // source category (sx.app)
+	Host     string // source host name (n2xID)
+	Category string // source category (n2x.app)
 }
 
 type sumologicLogMsg struct {

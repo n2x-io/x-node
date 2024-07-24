@@ -173,7 +173,7 @@ func (vs VulnSrc) Get(version string, pkgName string) ([]types.Advisory, error) 
 }
 
 func severityFromPriority(priority string) types.Severity {
-	switch strings.ToLower(priority) {
+	switch priority {
 	case "low":
 		return types.SeverityLow
 	case "medium":

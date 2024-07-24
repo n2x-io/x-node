@@ -164,7 +164,7 @@ type NodeMgmtPDU struct {
 	unknownFields protoimpl.UnknownFields
 
 	Type                      NodeMgmtMsgType                    `protobuf:"varint,11,opt,name=type,proto3,enum=n2xsp.NodeMgmtMsgType" json:"type,omitempty"`
-	NodeReq                   *topology.NodeReq                  `protobuf:"bytes,21,opt,name=nodeReq,proto3" json:"nodeReq,omitempty"`                                      // NODE_INIT (required for sxpInit)
+	NodeReq                   *topology.NodeReq                  `protobuf:"bytes,21,opt,name=nodeReq,proto3" json:"nodeReq,omitempty"`                                      // NODE_INIT (required for n2xpInit)
 	NodeConfig                *NodeMgmtConfig                    `protobuf:"bytes,31,opt,name=nodeConfig,proto3" json:"nodeConfig,omitempty"`                                // NODE_CONFIG (required for nodeConfig)
 	HostMetricsRequest        *metricsdb.HostMetricsRequest      `protobuf:"bytes,101,opt,name=hostMetricsRequest,proto3" json:"hostMetricsRequest,omitempty"`               // NODE_HOST_METRICS_REQUEST
 	HostMetricsResponse       *metricsdb.HostMetricsResponse     `protobuf:"bytes,102,opt,name=hostMetricsResponse,proto3" json:"hostMetricsResponse,omitempty"`             // NODE_HOST_METRICS_RESPONSE

@@ -8,8 +8,10 @@ import (
 	cn "github.com/google/go-containerregistry/pkg/name"
 	version "github.com/knqyf263/go-rpm-version"
 	packageurl "github.com/package-url/packageurl-go"
+	"github.com/samber/lo"
 	"golang.org/x/xerrors"
 
+	"github.com/aquasecurity/trivy/pkg/dependency"
 	ftypes "github.com/aquasecurity/trivy/pkg/fanal/types"
 	"github.com/aquasecurity/trivy/pkg/scanner/utils"
 	"github.com/aquasecurity/trivy/pkg/types"
@@ -37,16 +39,12 @@ const (
 	NamespaceEKS = "eks"
 	NamespaceAKS = "aks"
 	NamespaceGKE = "gke"
-	NamespaceRKE = "rke"
 	NamespaceOCP = "ocp"
 
 	TypeUnknown = "unknown"
 )
 
-type PackageURL struct {
-	packageurl.PackageURL
-	FilePath string
-}
+type PackageURL packageurl.PackageURL
 
 func FromString(s string) (*PackageURL, error) {
 	p, err := packageurl.FromString(s)
@@ -54,25 +52,11 @@ func FromString(s string) (*PackageURL, error) {
 		return nil, xerrors.Errorf("failed to parse purl(%s): %w", s, err)
 	}
 
-	// Take out and delete the file path from qualifiers
-	var filePath string
-	for i, q := range p.Qualifiers {
-		if q.Key != "file_path" {
-			continue
-		}
-		filePath = q.Value
-		p.Qualifiers = append(p.Qualifiers[:i], p.Qualifiers[i+1:]...)
-		break
-	}
-
 	if len(p.Qualifiers) == 0 {
 		p.Qualifiers = nil
 	}
 
-	return &PackageURL{
-		PackageURL: p,
-		FilePath:   filePath,
-	}, nil
+	return lo.ToPtr(PackageURL(p)), nil
 }
 
 // nolint: gocyclo
@@ -121,52 +105,28 @@ func New(t ftypes.TargetType, metadata types.Metadata, pkg ftypes.Package) (*Pac
 		purl, err := parseOCI(metadata)
 		if err != nil {
 			return nil, err
-		} else if purl.Type == "" {
+		} else if purl == nil {
 			return nil, nil
 		}
-		return &PackageURL{PackageURL: purl}, nil
+		return (*PackageURL)(purl), nil
+	case packageurl.TypeJulia:
+		var qs packageurl.Qualifiers
+		namespace, name, qs = parseJulia(name, pkg.ID) // for Julia, the ID is set to the package UUID
+		qualifiers = append(qualifiers, qs...)
 	}
 
-	return &PackageURL{
-		PackageURL: *packageurl.NewPackageURL(ptype, namespace, name, ver, qualifiers, subpath),
-		FilePath:   pkg.FilePath,
-	}, nil
-}
-
-// WithPath wraps packageurl.PackageURL with the given file path
-func WithPath(purl *packageurl.PackageURL, filePath string) *PackageURL {
-	if purl == nil {
-		return nil
-	}
-	return &PackageURL{
-		PackageURL: *purl,
-		FilePath:   filePath,
-	}
-}
-
-func (p *PackageURL) BOMRef() string {
-	// 'bom-ref' must be unique within BOM, but PURLs may conflict
-	// when the same packages are installed in an artifact.
-	// In that case, we prefer to make PURLs unique by adding file paths,
-	// rather than using UUIDs, even if it is not PURL technically.
-	// ref. https://cyclonedx.org/use-cases/#dependency-graph
-	purl := p.PackageURL // so that it will not override the qualifiers below
-	if p.FilePath != "" {
-		purl.Qualifiers = append(purl.Qualifiers,
-			packageurl.Qualifier{
-				Key:   "file_path",
-				Value: p.FilePath,
-			},
-		)
-	}
-	return purl.String()
+	return (*PackageURL)(packageurl.NewPackageURL(ptype, namespace, name, ver, qualifiers, subpath)), nil
 }
 
 func (p *PackageURL) Unwrap() *packageurl.PackageURL {
 	if p == nil {
 		return nil
 	}
-	return &p.PackageURL
+	purl := (*packageurl.PackageURL)(p)
+	if len(purl.Qualifiers) == 0 {
+		purl.Qualifiers = nil
+	}
+	return purl
 }
 
 // LangType returns an application type in Trivy
@@ -211,8 +171,6 @@ func (p *PackageURL) LangType() ftypes.LangType {
 			return ftypes.GKE
 		case NamespaceAKS:
 			return ftypes.AKS
-		case NamespaceRKE:
-			return ftypes.RKE
 		case NamespaceOCP:
 			return ftypes.OCP
 		case "":
@@ -239,8 +197,28 @@ func (p *PackageURL) Class() types.ResultClass {
 }
 
 func (p *PackageURL) Package() *ftypes.Package {
+	pkgName := p.Name
+	if p.Namespace != "" && p.Class() != types.ClassOSPkg {
+		if p.Type == packageurl.TypeMaven || p.Type == packageurl.TypeGradle {
+			// Maven and Gradle packages separate ":"
+			// e.g. org.springframework:spring-core
+			pkgName = p.Namespace + ":" + p.Name
+		} else {
+			pkgName = p.Namespace + "/" + p.Name
+		}
+	}
+
+	// CocoaPods purl has no namespace, but has subpath
+	// https://github.com/package-url/purl-spec/blob/a748c36ad415c8aeffe2b8a4a5d8a50d16d6d85f/PURL-TYPES.rst#cocoapods
+	if p.Subpath != "" && p.Type == packageurl.TypeCocoapods {
+		// CocoaPods uses <moduleName>/<submoduleName> format for package name
+		// e.g. `pkg:cocoapods/GoogleUtilities@7.5.2#NSData+zlib` => `GoogleUtilities/NSData+zlib`
+		pkgName = p.Name + "/" + p.Subpath
+	}
+
 	pkg := &ftypes.Package{
-		Name:    p.Name,
+		ID:      dependency.ID(p.LangType(), pkgName, p.Version),
+		Name:    pkgName,
 		Version: p.Version,
 		Identifier: ftypes.PkgIdentifier{
 			PURL: p.Unwrap(),
@@ -260,32 +238,10 @@ func (p *PackageURL) Package() *ftypes.Package {
 		}
 	}
 
-	// CocoaPods purl has no namespace, but has subpath
-	// https://github.com/package-url/purl-spec/blob/a748c36ad415c8aeffe2b8a4a5d8a50d16d6d85f/PURL-TYPES.rst#cocoapods
-	if p.Type == packageurl.TypeCocoapods && p.Subpath != "" {
-		// CocoaPods uses <moduleName>/<submoduleName> format for package name
-		// e.g. `pkg:cocoapods/GoogleUtilities@7.5.2#NSData+zlib` => `GoogleUtilities/NSData+zlib`
-		pkg.Name = p.Name + "/" + p.Subpath
-	}
-
 	if p.Type == packageurl.TypeRPM {
 		rpmVer := version.NewVersion(p.Version)
 		pkg.Release = rpmVer.Release()
 		pkg.Version = rpmVer.Version()
-	}
-
-	// Return packages without namespace.
-	// OS packages are not supposed to have namespace.
-	if p.Namespace == "" || p.Class() == types.ClassOSPkg {
-		return pkg
-	}
-
-	if p.Type == packageurl.TypeMaven || p.Type == packageurl.TypeGradle {
-		// Maven and Gradle packages separate ":"
-		// e.g. org.springframework:spring-core
-		pkg.Name = p.Namespace + ":" + p.Name
-	} else {
-		pkg.Name = p.Namespace + "/" + p.Name
 	}
 
 	return pkg
@@ -321,15 +277,19 @@ func (p *PackageURL) Match(target *packageurl.PackageURL) bool {
 	return true
 }
 
+func (p *PackageURL) String() string {
+	return p.Unwrap().String()
+}
+
 // ref. https://github.com/package-url/purl-spec/blob/a748c36ad415c8aeffe2b8a4a5d8a50d16d6d85f/PURL-TYPES.rst#oci
-func parseOCI(metadata types.Metadata) (packageurl.PackageURL, error) {
+func parseOCI(metadata types.Metadata) (*packageurl.PackageURL, error) {
 	if len(metadata.RepoDigests) == 0 {
-		return *packageurl.NewPackageURL("", "", "", "", nil, ""), nil
+		return nil, nil
 	}
 
 	digest, err := cn.NewDigest(metadata.RepoDigests[0])
 	if err != nil {
-		return packageurl.PackageURL{}, xerrors.Errorf("failed to parse digest: %w", err)
+		return nil, xerrors.Errorf("failed to parse digest: %w", err)
 	}
 
 	name := strings.ToLower(digest.RepositoryStr())
@@ -352,7 +312,7 @@ func parseOCI(metadata types.Metadata) (packageurl.PackageURL, error) {
 		})
 	}
 
-	return *packageurl.NewPackageURL(packageurl.TypeOCI, "", name, digest.DigestStr(), qualifiers, ""), nil
+	return packageurl.NewPackageURL(packageurl.TypeOCI, "", name, digest.DigestStr(), qualifiers, ""), nil
 }
 
 // ref. https://github.com/package-url/purl-spec/blob/master/PURL-TYPES.rst#apk
@@ -468,15 +428,29 @@ func parseNpm(pkgName string) (string, string) {
 	return parsePkgName(name)
 }
 
+// ref. https://github.com/package-url/purl-spec/blob/7759d1cf81629267742eeeb0cdfccf5ebd624cc5/PURL-TYPES.rst#julia
+func parseJulia(pkgName, pkgUUID string) (string, string, packageurl.Qualifiers) {
+	namespace, name := parsePkgName(pkgName)
+	qualifiers := packageurl.Qualifiers{
+		{
+			Key:   "uuid",
+			Value: pkgUUID,
+		},
+	}
+	return namespace, name, qualifiers
+}
+
 func purlType(t ftypes.TargetType) string {
 	switch t {
-	case ftypes.Jar, ftypes.Pom, ftypes.Gradle:
+	case ftypes.Jar, ftypes.Pom, ftypes.Gradle, ftypes.Sbt:
 		return packageurl.TypeMaven
 	case ftypes.Bundler, ftypes.GemSpec:
 		return packageurl.TypeGem
 	case ftypes.NuGet, ftypes.DotNetCore, ftypes.PackagesProps:
 		return packageurl.TypeNuget
-	case ftypes.CondaPkg:
+	case ftypes.Composer, ftypes.ComposerVendor:
+		return packageurl.TypeComposer
+	case ftypes.CondaPkg, ftypes.CondaEnv:
 		return packageurl.TypeConda
 	case ftypes.PythonPkg, ftypes.Pip, ftypes.Pipenv, ftypes.Poetry:
 		return packageurl.TypePyPi
@@ -496,16 +470,19 @@ func purlType(t ftypes.TargetType) string {
 		return packageurl.TypePub
 	case ftypes.RustBinary, ftypes.Cargo:
 		return packageurl.TypeCargo
-	case ftypes.Alpine:
+	case ftypes.Alpine, ftypes.Chainguard, ftypes.Wolfi:
 		return packageurl.TypeApk
 	case ftypes.Debian, ftypes.Ubuntu:
 		return packageurl.TypeDebian
 	case ftypes.RedHat, ftypes.CentOS, ftypes.Rocky, ftypes.Alma,
 		ftypes.Amazon, ftypes.Fedora, ftypes.Oracle, ftypes.OpenSUSE,
-		ftypes.OpenSUSELeap, ftypes.OpenSUSETumbleweed, ftypes.SLES, ftypes.Photon:
+		ftypes.OpenSUSELeap, ftypes.OpenSUSETumbleweed, ftypes.SLES, ftypes.Photon,
+		ftypes.CBLMariner:
 		return packageurl.TypeRPM
 	case TypeOCI:
 		return packageurl.TypeOCI
+	case ftypes.Julia:
+		return packageurl.TypeJulia
 	}
 	return string(t)
 }

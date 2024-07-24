@@ -17,7 +17,7 @@ func UpdateAgent(w *runtime.Wrkr) {
 	quitUpdate := make(chan struct{}, 1)
 
 	go func() {
-		appName := viper.GetString("sx.app")
+		appName := viper.GetString("n2x.app")
 		if len(appName) == 0 {
 			return
 		}
