@@ -323,9 +323,9 @@ changelog:
 announce:
   discord:
     enabled: true
-    author: n2x
+    author: n2x.io
     color: "46299"
-    icon_url: https://raw.githubusercontent.com/n2x-io/assets/master/images/logo/n2x-logo_black-blue_400x400.png
+    icon_url: https://raw.githubusercontent.com/n2x-io/assets/master/images/logo/n2x-logo_rounded_black-blue_410x410.png
   twitter:
     enabled: false
 # publishers:
