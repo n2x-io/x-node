@@ -10,7 +10,7 @@ import (
 
 func Log(c network.Conn) {
 	connType := "DIRECT"
-	if c.Stat().Transient {
+	if c.Stat().Limited {
 		connType = "INDIRECT"
 	}
 

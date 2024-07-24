@@ -300,6 +300,8 @@ darwin_binary_install() {
 
   mkdir -p /opt/n2x/var/lib
   mkdir -p /opt/n2x/var/cache
+  mkdir -p /opt/n2x/var/log
+  mkdir -p /opt/n2x/var/tmp
 }
 
 get_system_info() {

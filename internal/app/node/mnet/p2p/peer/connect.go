@@ -38,7 +38,7 @@ func NewStream(p2pHost host.Host, hop *NetHop) (network.Stream, error) {
 	for _, c := range conns {
 		streams = append(streams, c.GetStreams()...)
 
-		if c.Stat().Transient {
+		if c.Stat().Limited {
 			transientConnection = true
 		}
 

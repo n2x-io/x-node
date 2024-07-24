@@ -48,10 +48,12 @@ func runAsService(action serviceAction) {
 		DisplayName:      version.NODE_NAME,
 		Description:      "n2x-node",
 		Arguments:        []string{"service-start"},
-		WorkingDirectory: "/var/tmp",
+		WorkingDirectory: "/opt/n2x/var/tmp",
 		Option: service.KeyValue{
-			"KeepAlive": true,
-			"RunAtLoad": true,
+			"KeepAlive":         true,
+			"RunAtLoad":         true,
+			"StandardErrorPath": "/opt/n2x/var/log/io.n2x.n2x-node.err.log",
+			"StandardOutPath":   "/opt/n2x/var/log/io.n2x.n2x-node.out.log",
 		},
 	}
 
