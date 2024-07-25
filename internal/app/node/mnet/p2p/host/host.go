@@ -120,13 +120,13 @@ func New(hostType P2PHostType, port int) (host.Host, error) {
 
 					ReservationTTL: time.Hour,
 
-					MaxReservations: 128, // default: 128
-					MaxCircuits:     16,
+					MaxReservations: 512, // default: 128
+					MaxCircuits:     64,
 					BufferSize:      2048,
 
-					MaxReservationsPerPeer: 4,
-					MaxReservationsPerIP:   8,
-					MaxReservationsPerASN:  32,
+					MaxReservationsPerPeer: 16,
+					MaxReservationsPerIP:   32,
+					MaxReservationsPerASN:  128,
 				}),
 				// relay.WithResources(relay.DefaultResources()),
 				// relay.WithInfiniteLimits(),
@@ -139,16 +139,6 @@ func New(hostType P2PHostType, port int) (host.Host, error) {
 	if err != nil {
 		return nil, errors.Wrapf(err, "[%v] function libp2p.New()", errors.Trace())
 	}
-
-	// if hostType == P2PHostTypeRelayHost {
-	// 	if _, err := relay.New(
-	// 		h,
-	// 		relay.WithResources(relay.DefaultResources()),
-	// 		relay.WithInfiniteLimits(),
-	// 	); err != nil {
-	// 		return nil, errors.Wrapf(err, "[%v] function relay.New()", errors.Trace())
-	// 	}
-	// }
 
 	return h, nil
 }

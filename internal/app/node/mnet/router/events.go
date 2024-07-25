@@ -11,14 +11,17 @@ func (r *router) eventProcessor(closeCh <-chan struct{}) {
 	for {
 		select {
 		case nh := <-r.RIB().RelayConnQueue():
+			// fmt.Println("---------- Connecting to RELAY")
 			if err := r.relayConnect(nh); err != nil {
 				xlog.Warnf("Unable to connect to relay peer: %v", errors.Cause(err))
 			}
 		case nh := <-r.RIB().RouterConnQueue():
+			// fmt.Println("---------- Connecting to ROUTER")
 			if err := r.routerConnect(nh); err != nil {
 				xlog.Warnf("Unable to connect to router: %v", errors.Cause(err))
 			}
 		case nh := <-r.RIB().ProxyConnQueue():
+			// fmt.Println("---------- Connecting to PROXY")
 			if err := r.proxyConnect(nh); err != nil {
 				xlog.Warnf("Unable to connect to iap: %v", errors.Cause(err))
 			}

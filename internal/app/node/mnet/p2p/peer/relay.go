@@ -20,17 +20,19 @@ func RConnect(p2pHost host.Host, hop *NetHop) error {
 		}
 
 		if err := connect(p2pHost, peerInfo); err != nil {
+			// xlog.Warnf("Unable to connect to relay: %v", errors.Cause(err))
 			continue
 		}
 
 		if err := getRelayReservation(p2pHost, peerInfo); err != nil {
+			xlog.Warnf("Unable to reserve a slot in relay: %v", errors.Cause(err))
 			continue
 		}
 
 		return nil
 	}
 
-	return fmt.Errorf("unable to reserve a slot in relay")
+	return fmt.Errorf("unable to connect/reserve a slot in relay")
 }
 
 func getRelayReservation(p2pHost host.Host, relayPeerInfo *peer.AddrInfo) error {

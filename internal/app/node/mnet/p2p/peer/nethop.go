@@ -20,12 +20,22 @@ func newPeerAddrInfoMapFromNetHop(hop *NetHop) *peerAddrInfoMap {
 	netMAddrs := make([]string, 0)
 	netMAddrs = append(netMAddrs, hop.PeerMAddrs...)
 
-	// netMAddrs = append(netMAddrs, hop.RelayMAddrs...)
-	// netMAddrs = append(netMAddrs, hop.RouterMAddrs...)
-
 	if len(hop.RelayMAddrs) > 0 {
 		netMAddrs = append(netMAddrs, hop.RelayMAddrs...)
-	} else {
+	}
+
+	return &peerAddrInfoMap{
+		peer: getPeerAddrs(netMAddrs),
+		// peer:   getPeerAddrs(hop.PeerMAddrs),
+		// relay:  getPeerAddrs(hop.RelayMAddrs),
+		// router: getPeerAddrs(hop.RouterMAddrs),
+	}
+}
+
+func newRtrPeerAddrInfoMapFromNetHop(hop *NetHop) *peerAddrInfoMap {
+	netMAddrs := make([]string, 0)
+
+	if len(hop.RouterMAddrs) > 0 {
 		netMAddrs = append(netMAddrs, hop.RouterMAddrs...)
 	}
 

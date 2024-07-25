@@ -15,16 +15,9 @@ import (
 )
 
 func NewStream(p2pHost host.Host, hop *NetHop) (network.Stream, error) {
-	pm := newPeerAddrInfoMapFromNetHop(hop)
-
-	// fmt.Println("----- pm - start -----")
-	// pm.show()
-	// fmt.Println("----- pm - end -----")
-
-	// try direct/relayed connection
-	peerInfo := connectPeerGroup(p2pHost, pm.peer)
-	if peerInfo == nil {
-		return nil, fmt.Errorf("unable to connect to peer")
+	peerInfo, err := connectPeer(p2pHost, hop)
+	if err != nil {
+		return nil, errors.Wrapf(err, "[%v] function connectPeer()", errors.Trace())
 	}
 
 	conns := p2pHost.Network().ConnsToPeer(peerInfo.ID)
@@ -33,13 +26,13 @@ func NewStream(p2pHost host.Host, hop *NetHop) (network.Stream, error) {
 
 	streams := make([]network.Stream, 0)
 
-	transientConnection := false
+	limitedConnection := false
 
 	for _, c := range conns {
 		streams = append(streams, c.GetStreams()...)
 
 		if c.Stat().Limited {
-			transientConnection = true
+			limitedConnection = true
 		}
 
 		conn.Log(c)
@@ -50,8 +43,8 @@ func NewStream(p2pHost host.Host, hop *NetHop) (network.Stream, error) {
 	}
 
 	ctx := context.TODO() // context for direct connection
-	if transientConnection {
-		ctx = network.WithUseTransient(ctx, "n2x") // context for relayed connection
+	if limitedConnection {
+		ctx = network.WithAllowLimitedConn(ctx, "n2x") // context for relayed connection
 	}
 
 	s, err := p2pHost.NewStream(ctx, peerInfo.ID, p2p.ProtocolID)
@@ -60,6 +53,34 @@ func NewStream(p2pHost host.Host, hop *NetHop) (network.Stream, error) {
 	}
 
 	return s, nil
+}
+
+func connectPeer(p2pHost host.Host, hop *NetHop) (*peer.AddrInfo, error) {
+	// try direct/relayed connection
+
+	pm := newPeerAddrInfoMapFromNetHop(hop)
+
+	// fmt.Println("----- pm - start -----")
+	// pm.show()
+	// fmt.Println("----- pm - end -----")
+
+	peerInfo := connectPeerGroup(p2pHost, pm.peer)
+	if peerInfo != nil {
+		return peerInfo, nil
+	}
+
+	xlog.Warn("Unable to connect to peer internally, trying via default routers...")
+
+	// try connection via default routers
+
+	pm = newRtrPeerAddrInfoMapFromNetHop(hop)
+
+	peerInfo = connectPeerGroup(p2pHost, pm.peer)
+	if peerInfo != nil {
+		return peerInfo, nil
+	}
+
+	return nil, fmt.Errorf("unable to connect to peer")
 }
 
 func connectPeerGroup(p2pHost host.Host, peers map[peer.ID]*peer.AddrInfo) *peer.AddrInfo {
