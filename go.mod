@@ -13,7 +13,7 @@ require (
 	github.com/aquasecurity/trivy-db v0.0.0-20231005141211-4fc651f7ac8d
 	github.com/aquasecurity/trivy-java-db v0.0.0-20240522120720-349526b921f8
 	github.com/dgraph-io/badger/v4 v4.2.0
-	github.com/eclipse/paho.mqtt.golang v1.4.3
+	github.com/eclipse/paho.mqtt.golang v1.5.0
 	github.com/google/go-containerregistry v0.20.1
 	github.com/google/gopacket v1.1.19
 	github.com/google/uuid v1.6.0
