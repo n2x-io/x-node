@@ -22,7 +22,7 @@ LINUX_PKG_REPO_STABLE="repo.n2x.io"
 
 DOCKER=0
 DOCKER_IMAGE_DEV="n2xdev/n2x-node:dev"
-DOCKER_IMAGE_STABLE="n2xdev/n2x-node:latest"
+DOCKER_IMAGE_STABLE="ghcr.io/n2x-io/n2x-node:latest"
 
 DEV_MODE=0
 
@@ -600,8 +600,10 @@ docker_setup() {
     --cap-add=net_admin \
     --device=/dev/net/tun \
     --name n2x-node \
+    -e SCAN_FS=/rootfs-host \
     -v /etc/n2x:/etc/n2x:ro \
     -v /var/lib/n2x:/var/lib/n2x \
+    -v /:/rootfs-host:ro \
     "${DOCKER_IMAGE}" start
 }
 

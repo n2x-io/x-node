@@ -3,15 +3,15 @@
 param ($token)
 
 $ServiceName= "n2x-node"
-$InstallationFolder= "C:\Program Files\skynx"
-$SkynxNodeBinary= "n2x-node.exe"
-$SkynxNodeDownloaded= $false
-$SkynxNodeBinaryChecksum = "n2x-node.exe_checksum.sha256"
+$InstallationFolder= "C:\Program Files\n2x"
+$N2xNodeBinary= "n2x-node.exe"
+$N2xNodeDownloaded= $false
+$N2xNodeBinaryChecksum = "n2x-node.exe_checksum.sha256"
 $WintunBinary= "wintun.dll"
 $WintunVersion="wintun-0.14.1"
 $ConfigFile="n2x-node.yml"
-$UriSkynx="https://dl.n2x.io/binaries/stable/latest/windows/amd64/$SkynxNodeBinary"
-$UriSkynxChecksum= "https://dl.n2x.io/binaries/stable/latest/windows/amd64/$SkynxNodeBinaryChecksum"
+$UriN2x="https://dl.n2x.io/binaries/stable/latest/windows/amd64/$N2xNodeBinary"
+$UriN2xChecksum= "https://dl.n2x.io/binaries/stable/latest/windows/amd64/$N2xNodeBinaryChecksum"
 $UriWintun="https://www.wintun.net/builds/$WintunVersion.zip"
 
 ## Functions
@@ -63,7 +63,7 @@ function Download {
         $StatusCode = [int]$_.Exception.Response.StatusCode
 
         if  ($statusCode -eq 0) {
-            throw " Error: The file $InstallationFolder\$SkynxNodeBinary cannot be replaced because it is being used by another process."
+            throw " Error: The file $InstallationFolder\$N2xNodeBinary cannot be replaced because it is being used by another process."
         }
         elseif ($statusCode -ne 200) {
             throw "Download Error: $StatusCode"
@@ -130,9 +130,9 @@ if (!(Test-Path "$InstallationFolder\$ConfigFile"))
 
 ## Download n2x-node binary
 
-if (Test-Path "$InstallationFolder\$SkynxNodeBinary") {
+if (Test-Path "$InstallationFolder\$N2xNodeBinary") {
 
-    $SkynxNodeDownloaded= $true
+    $N2xNodeDownloaded= $true
     Write-Log -LogLevel "info" -Message "n2x-node binary has already been downloaded!"
 
     do { $answer = Read-Host -Prompt "Do you want to replace it?(Y/N)"
@@ -140,7 +140,7 @@ if (Test-Path "$InstallationFolder\$SkynxNodeBinary") {
     } while("yes","no", "y", "n", "Y", "N" -notcontains $answer)
 }
 
-if (($answer -eq "yes") -or ($answer -eq "y") -or ($answer -eq "Y") -or ($SkynxNodeDownloaded -eq $false)) {
+if (($answer -eq "yes") -or ($answer -eq "y") -or ($answer -eq "Y") -or ($N2xNodeDownloaded -eq $false)) {
 
     # Stop service if n2x-node is running
     $arrService = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
@@ -162,21 +162,21 @@ if (($answer -eq "yes") -or ($answer -eq "y") -or ($answer -eq "Y") -or ($SkynxN
     if ($arrService -ne $null)  {
 
         Write-Log -LogLevel "info" -Message "Uninstall $ServiceName service!"
-        & "$InstallationFolder\$SkynxNodeBinary" "service-uninstall"
+        & "$InstallationFolder\$N2xNodeBinary" "service-uninstall"
         Start-Sleep -seconds 5
     }
 
     Write-Log -LogLevel "info" -Message "Downloading n2x-node binary..."
-    Download -Uri $UriSkynx -OutFile "$InstallationFolder\$SkynxNodeBinary"
+    Download -Uri $UriN2x -OutFile "$InstallationFolder\$N2xNodeBinary"
     Write-Log -LogLevel "info" -Message "Done!"
 
     Write-Log -LogLevel "info" -Message "Downloading n2x-node binary checksum..."
-    Download -Uri $UriSkynxChecksum -OutFile "$InstallationFolder\$SkynxNodeBinaryChecksum"
+    Download -Uri $UriN2xChecksum -OutFile "$InstallationFolder\$N2xNodeBinaryChecksum"
 
     ## Compare checksum
-    $downloadedHash= $(Get-Content $InstallationFolder\$SkynxNodeBinaryChecksum).split(" ")[0]
+    $downloadedHash= $(Get-Content $InstallationFolder\$N2xNodeBinaryChecksum).split(" ")[0]
 
-    Test-Hash -file $InstallationFolder\$SkynxNodeBinary -hash $downloadedHash
+    Test-Hash -file $InstallationFolder\$N2xNodeBinary -hash $downloadedHash
 }
 
 ## Download wintun DLL
@@ -223,7 +223,7 @@ $serviceInstalled = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
 if ($serviceInstalled -eq $null)  {
 
     Write-Log -LogLevel "info" -Message "Install $ServiceName service!"
-    & "$InstallationFolder\$SkynxNodeBinary" "service-install"
+    & "$InstallationFolder\$N2xNodeBinary" "service-install"
     Start-Sleep -seconds 5
 } else {
     Write-Log -LogLevel "info" -Message "$ServiceName service has already been installed!"

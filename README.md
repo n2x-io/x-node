@@ -13,7 +13,7 @@ Open source projects from [n2x.io](https://n2x.io).
 [![Release](https://img.shields.io/github/v/release/n2x-io/x-node?display_name=tag&style=flat)](https://github.com/n2x-io/x-node/releases/latest)
 [![GitHub](https://img.shields.io/github/license/n2x-io/x-node?style=flat)](/LICENSE)
 
-This repository contains the `n2x-node` agent, the component that runs on the machines you want to connect to your [n2x](https://n2x.io) network.
+This repository contains the `n2x-node` agent, the component that runs on the machines you want to connect to your [n2x.io](https://n2x.io) network.
 
 `n2x-node` is available for a variety of Linux platforms, macOS and Windows.
 
@@ -28,25 +28,19 @@ This repository contains the `n2x-node` agent, the component that runs on the ma
 
 ## Getting Started
 
-The instructions in this repo assume you already have a n2x account and are ready to start adding nodes.
+The instructions in this repo assume you already have a n2x.io account and are ready to start adding nodes.
 
-See [Quick Start](https://n2x.io/docs/platform/getting-started/quickstart/) to learn how to start building your n2x cloud-agnostic architecture.
-
-The fastest way to add Linux nodes to your n2x network is by [generating a magic link](#linux-installation-with-magic-link) in the n2x web UI or with `n2xctl`:
-
-```shell
-n2xctl node add
-```
+See [Quick Start](https://n2x.io/docs/getting-started/quickstart/) to learn how to start building your n2x.io cloud-agnostic architecture.
 
 See [Installation](#installation) for more details and other platforms.
 
 ## Documentation
 
-For the complete n2x platform documentation visit [n2x.io/docs](https://n2x.io/docs/).
+For the complete n2x.io platform documentation visit [n2x.io/docs](https://n2x.io/docs/).
 
 ## Installation
 
-### Binary Downloads
+### Download Binaries
 
 Linux, macOS and Windows binary downloads are available from the [Releases](https://github.com/n2x-io/x-node/releases) page.
 
@@ -54,19 +48,13 @@ You can download the pre-compiled binaries and install them with the appropriate
 
 ### Linux Installation
 
-#### Linux installation with magic link
+#### Linux installation with one-line command
 
-The easiest way to add nodes to your n2x network is by generating a magic link in the n2x web UI or with `n2xctl`:
-
-```shell
-n2xctl node add
-```
-
-You will be able to use the magic link to install the `n2x-node` agent in seconds with no additional configuration required.
+The n2x.io platform provides a **one-line command** for the simplest and quickest way to install the `n2x-node` agent in Linux. You'll find this command readily available when you [add a new node](https://n2x.io/docs/howto-guides/nodes/manage-nodes/#add-a-connected-node) through the n2x.io webUI.
 
 Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
 
-> See the [n2x-node configuration reference](https://n2x.io/docs/platform/reference/n2x-node.yml/) to find all the configuration options.
+> See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 #### Linux binary installation with curl
 
@@ -78,13 +66,13 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
 
 2. Validate the binary (optional).
 
-    Download the n2x-node checksum file:
+    Download the `n2x-node` checksum file:
 
     ```shell
     curl -LO "https://dl.n2x.io/binaries/stable/latest/linux/amd64/n2x-node_checksum.sha256"
     ```
 
-    Validate the n2x-node binary against the checksum file:
+    Validate the `n2x-node` binary against the checksum file:
 
     ```bash
     sha256sum --check < n2x-node_checksum.sha256
@@ -103,7 +91,7 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sha256sum: WARNING: 1 computed checksum did NOT match
     ```
 
-3. Install n2x-node and create its configuration file according to your needs.
+3. Install `n2x-node` and create its configuration file according to your needs.
 
     ```shell
     sudo install -o root -g root -m 0750 n2x-node /usr/local/bin/n2x-node
@@ -113,7 +101,7 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sudo vim /etc/n2x/n2x-node.yml
     ```
 
-    See the [n2x-node configuration reference](https://n2x.io/docs/platform/reference/n2x-node.yml/) to find all the configuration options.
+    > See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 4. Create the `n2x-node.service` for systemd.
 
@@ -157,7 +145,7 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sudo modprobe tun
     ```
 
-6. Start the n2x-node service.
+6. Start the `n2x-node` service.
 
     ```shell
     sudo systemctl daemon-reload
@@ -165,48 +153,56 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sudo systemctl restart n2x-node
     ```
 
-##### Uninstall Linux n2x-node
-
-To remove `n2x-node` from the system, use the following commands:
-
-```shell
-sudo systemctl stop n2x-node
-sudo systemctl disable n2x-node
-sudo rm /etc/systemd/system/n2x-node.service
-sudo systemctl daemon-reload
-sudo rm /usr/local/bin/n2x-node
-sudo rm /etc/n2x/n2x-node.yml
-sudo rmdir /etc/n2x
-sudo rm -rf /var/lib/n2x
-sudo rm -rf /var/cache/n2x
-```
-
 #### Package Repository
 
-n2x provides a package repository that contains both DEB and RPM downloads.
+n2x.io provides a package repository that contains both DEB and RPM downloads.
 
-For DEB-based platforms (e.g. Ubuntu and Debian) run the following to setup a new APT sources.list entry and install `n2x-node`:
+##### **Debian/Ubuntu**
 
-```shell
-echo 'deb [trusted=yes] https://repo.n2x.io/apt/ /' | sudo tee /etc/apt/sources.list.d/n2x.list
-sudo apt update
-sudo apt install n2x-node
-```
+1. Run the following to setup a new APT `sources.list` entry and install `n2x-node`:
 
-For RPM-based platforms (e.g. RHEL, CentOS) use the following to create a repo file and install `n2x-node`:
+    ```shell
+    echo 'deb [trusted=yes] https://repo.n2x.io/apt/ /' | sudo tee /etc/apt/sources.list.d/n2x.list
+    sudo apt update
+    sudo apt install n2x-node
+    ```
 
-```shell
-cat <<EOF | sudo tee /etc/yum.repos.d/n2x.repo
-[n2x]
-name=n2x repository - stable
-baseurl=https://repo.n2x.io/yum
-enabled=1
-gpgcheck=0
-EOF
-sudo yum install n2x-node
-```
+2. Check `n2x-node` service status:
+
+    ```shell
+    sudo systemctl status n2x-node
+    ```
+
+##### **RHEL/CentOS** 
+
+1. Run the following to create a `n2x.repo` file and install `n2x-node`:
+
+    ```shell
+    cat <<EOF | sudo tee /etc/yum.repos.d/n2x.repo
+    [n2x]
+    name=n2x repository - stable
+    baseurl=https://repo.n2x.io/yum
+    enabled=1
+    gpgcheck=0
+    EOF
+    sudo yum install n2x-node
+    ```
+
+2. Check `n2x-node` service status:
+
+    ```shell
+    sudo systemctl status n2x-node
+    ```
 
 ### macOS Installation
+
+#### macOS installation with one-line command
+
+The n2x.io platform provides a **one-line command** for the simplest and quickest way to install the `n2x-node` agent in macOS. You'll find this command readily available when you [add a new node](https://n2x.io/docs/howto-guides/nodes/manage-nodes/#add-a-connected-node) through the n2x.io webUI.
+
+Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
+
+> See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 #### macOS binary installation with curl
 
@@ -275,7 +271,7 @@ sudo yum install n2x-node
 
     > **IMPORTANT**: In macOS, `iface` must be `utun[0-9]+` in the `n2x-node.yml`, being `utun7` usually a good choice for that setting. Use the command `ifconfig -a` before launching the `n2x-node` service and check that the interface is not in-use.
 
-    See the [n2x-node configuration reference](https://n2x.io/docs/platform/reference/n2x-node.yml/) to find all the configuration options.
+    See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 4. Install and start the n2x-node agent as a system service.
 
@@ -342,18 +338,15 @@ sudo yum install n2x-node
     }
     ```
 
-##### Uninstall macOS n2x-node
-
-To remove `n2x-node` from the system, use the following commands:
-
-```shell
-sudo /opt/n2x/libexec/n2x-node service-uninstall
-sudo rm /opt/n2x/libexec/n2x-node
-sudo rm /opt/n2x/etc/n2x-node.yml
-sudo rm -rf /opt/n2x
-```
-
 ### Windows Installation
+
+#### Windows installation with one-line command
+
+The n2x.io platform provides a **one-line command** for the simplest and quickest way to install the `n2x-node` agent in Windows. You'll find this command readily available when you [add a new node](https://n2x.io/docs/howto-guides/nodes/manage-nodes/#add-a-connected-node) through the n2x.io webUI.
+
+Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
+
+> See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 #### Windows binary installation with curl
 
@@ -398,35 +391,59 @@ sudo rm -rf /opt/n2x
 
 6. Use an editor to create the n2x-node configuration file `C:\Program Files\n2x\n2x-node.yml`.
 
-    See the [n2x-node configuration reference](https://n2x.io/docs/platform/reference/n2x-node.yml/) to find all the configuration options.
+    See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
-7. Install the n2x-node agent as a Windows service.
+7. Install the `n2x-node` agent as a Windows service.
 
-    > The instructions below assume that the `wintun.dll`, `n2x-node.exe` and `n2x-node.yml` files are stored in `C:\Program Files\n2x`.
-
-    ```shell
-    .\n2x-node.exe service-install --config "C:\Program Files\n2x\n2x-node.yml"
-    ```
-
-    Make sure to provide the absolute path of the n2x-node.yml configuration file, otherwise the Windows service may fail to start.
-
-8. Start the service.
+    >**NOTE** The instructions below assume that the `wintun.dll`, `n2x-node.exe` and `n2x-node.yml` files are stored in `C:\Program Files\n2x`.
 
     ```shell
-    net start "n2x-node"
+    'C:\Program Files\n2x\n2x-node.exe' service-install
     ```
 
-##### Uninstall Windows n2x-node
+8. Start the `n2x-node` service.
 
-To remove `n2x-node` from the system, open the Command Prompt as Administrator and use the following commands:
+    ```shell
+    start-Service n2x-node
+    ```
+
+9. Check `n2x-node` service status.
+
+    ```shell
+    get-Service n2x-node
+    ```
+
+## Running with Docker
+
+You can also run the `n2x-node` agent as a Docker container. See examples below.
+
+Registry:
+
+- `ghcr.io/n2x-io/n2x-node`
+
+### One-line command
+
+The n2x.io platform provides a **one-line command** for the simplest and quickest way to running the `n2x-node` agent with Docker. You'll find this command readily available when you [add a new node](https://n2x.io/docs/howto-guides/nodes/manage-nodes/#add-a-connected-node) through the n2x.io webUI.
+
+Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
+
+> See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
+
+### Manual
+
+Example usage:
 
 ```shell
-net stop "n2x-node"
-cd 'C:\Program Files\n2x'
-.\n2x-node.exe service-uninstall
-del *.*
-cd ..
-rmdir 'C:\Program Files\n2x'
+docker run -d --restart=always \
+  --net=host \
+  --cap-add=net_admin \
+  --device=/dev/net/tun \
+  --name n2x-node \
+  -e SCAN_FS=/rootfs-host \
+  -v /etc/n2x:/etc/n2x:ro \
+  -v /var/lib/n2x:/var/lib/n2x \
+  -v /:/rootfs-host:ro \
+  ghcr.io/n2x-io/n2x-node:latest start
 ```
 
 ## Artifacts Verification
@@ -464,27 +481,73 @@ COSIGN_EXPERIMENTAL=1 cosign verify ghcr.io/n2x-io/n2x-node
 
 ## Configuration
 
-See the [n2x-node configuration reference](https://n2x.io/docs/platform/reference/n2x-node.yml/) to find all the configuration options.
+Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
 
-## Running with Docker
+See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
-You can also run the `n2x-node` agent as a Docker container. See examples below.
+## Uninstall
 
-Registries:
+### Uninstall Linux n2x-node agent
 
-- `ghcr.io/n2x-io/n2x-node`
-- ~~`n2xdev/n2x-node`~~
+To remove `n2x-node` from the system, use the following commands:
 
-Example usage:
+#### Binary
 
 ```shell
-docker run -d --restart=always \
-  --net=host \
-  --cap-add=net_admin \
-  --device=/dev/net/tun \
-  --name n2x-node \
-  -v /etc/n2x:/etc/n2x:ro \
-  ghcr.io/n2x-io/n2x-node:latest start
+sudo systemctl stop n2x-node
+sudo systemctl disable n2x-node
+sudo rm /etc/systemd/system/n2x-node.service
+sudo systemctl daemon-reload
+sudo rm /usr/local/bin/n2x-node
+sudo rm /etc/n2x/n2x-node.yml
+sudo rmdir /etc/n2x
+sudo rm -rf /var/lib/n2x
+sudo rm -rf /var/cache/n2x
+```
+
+#### Package Repository
+
+##### **Debian/Ubuntu**
+
+```shell
+sudo systemctl stop n2x-node
+sudo apt-get -y remove n2x-node
+sudo rm /etc/n2x/n2x-node.yml
+sudo rmdir /etc/n2x
+sudo rm -rf /var/lib/n2x
+sudo rm -rf /var/cache/n2x
+```
+
+##### **RHEL/Centos**
+
+```shell
+sudo systemctl stop n2x-node
+sudo yum -y remove n2x-node
+sudo rm /etc/n2x/n2x-node.yml
+sudo rmdir /etc/n2x
+sudo rm -rf /var/lib/n2x
+sudo rm -rf /var/cache/n2x
+```
+
+### Uninstall macOS n2x-node agent
+
+To remove `n2x-node` from the system, use the following commands:
+
+```shell
+sudo /opt/n2x/libexec/n2x-node service-uninstall
+sudo rm /opt/n2x/libexec/n2x-node
+sudo rm /opt/n2x/etc/n2x-node.yml
+sudo rm -rf /opt/n2x
+```
+
+### Uninstall Windows n2x-node agent
+
+To remove `n2x-node` from the system, open the Windows PowerShell as Administrator and use the following commands:
+
+```shell
+stop-Service "n2x-node"
+'C:\Program Files\n2xn2x-node.exe` service-uninstall
+rm 'C:\Program Files\n2x' -r -force
 ```
 
 ## Community
