@@ -30,7 +30,7 @@ This repository contains the `n2x-node` agent, the component that runs on the ma
 
 The instructions in this repo assume you already have a n2x.io account and are ready to start adding nodes.
 
-See [Quick Start](https://n2x.io/docs/platform/getting-started/quickstart/) to learn how to start building your n2x.io cloud-agnostic architecture.
+See [Quick Start](https://n2x.io/docs/getting-started/quickstart/) to learn how to start building your n2x.io cloud-agnostic architecture.
 
 See [Installation](#installation) for more details and other platforms.
 
@@ -40,7 +40,7 @@ For the complete n2x.io platform documentation visit [n2x.io/docs](https://n2x.i
 
 ## Installation
 
-### Binary Downloads
+### Download Binaries
 
 Linux, macOS and Windows binary downloads are available from the [Releases](https://github.com/n2x-io/x-node/releases) page.
 
@@ -66,13 +66,13 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
 
 2. Validate the binary (optional).
 
-    Download the n2x-node checksum file:
+    Download the `n2x-node` checksum file:
 
     ```shell
     curl -LO "https://dl.n2x.io/binaries/stable/latest/linux/amd64/n2x-node_checksum.sha256"
     ```
 
-    Validate the n2x-node binary against the checksum file:
+    Validate the `n2x-node` binary against the checksum file:
 
     ```bash
     sha256sum --check < n2x-node_checksum.sha256
@@ -91,7 +91,7 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sha256sum: WARNING: 1 computed checksum did NOT match
     ```
 
-3. Install n2x-node and create its configuration file according to your needs.
+3. Install `n2x-node` and create its configuration file according to your needs.
 
     ```shell
     sudo install -o root -g root -m 0750 n2x-node /usr/local/bin/n2x-node
@@ -101,7 +101,7 @@ Once installed you can review the configuration at `/etc/n2x/n2x-node.yml`.
     sudo vim /etc/n2x/n2x-node.yml
     ```
 
-    See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
+    > See the [n2x-node configuration reference](https://n2x.io/docs/reference/node-configuration/) to find all the configuration options.
 
 4. Create the `n2x-node.service` for systemd.
 
@@ -542,7 +542,7 @@ sudo rm -rf /opt/n2x
 
 ### Uninstall Windows n2x-node agent
 
-To remove `n2x-node` from the system, open the Command Prompt as Administrator and use the following commands:
+To remove `n2x-node` from the system, open the Windows PowerShell as Administrator and use the following commands:
 
 ```shell
 stop-Service "n2x-node"
