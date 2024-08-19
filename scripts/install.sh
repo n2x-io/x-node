@@ -21,7 +21,7 @@ LINUX_PKG_REPO_DEV="repo.n2x.dev"
 LINUX_PKG_REPO_STABLE="repo.n2x.io"
 
 DOCKER=0
-DOCKER_IMAGE_DEV="n2xdev/n2x-node:dev"
+DOCKER_IMAGE_DEV="ghcr.io/n2x-io/n2x-node:dev"
 DOCKER_IMAGE_STABLE="ghcr.io/n2x-io/n2x-node:latest"
 
 DEV_MODE=0
