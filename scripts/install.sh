@@ -600,8 +600,10 @@ docker_setup() {
     --cap-add=net_admin \
     --device=/dev/net/tun \
     --name n2x-node \
+    -e SCAN_FS=/rootfs-host \
     -v /etc/n2x:/etc/n2x:ro \
     -v /var/lib/n2x:/var/lib/n2x \
+    -v /:/rootfs-host:ro \
     "${DOCKER_IMAGE}" start
 }
 
