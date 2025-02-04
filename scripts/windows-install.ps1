@@ -170,7 +170,7 @@ if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
 
 $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File $n2xNodeBinaryPath"
 $trigger = New-ScheduledTaskTrigger -AtStartup
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries $true -DontStopIfGoingOnBatteries $true -StartWhenAvailable $true
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
 
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName -Description "Runs n2x-node at startup" -Settings $settings
 
