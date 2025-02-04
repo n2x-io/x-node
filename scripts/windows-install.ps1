@@ -57,7 +57,7 @@ function Download {
         $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri $Uri -OutFile $OutFile
     } catch {
-        Write-Log -LogLevel "error" -Message "Failed to download $Uri: $(${_})"
+        Write-Log -LogLevel "error" -Message ("Failed to download " + $Uri + ": " + $_)
         exit 1
     } finally {
         $ProgressPreference = 'Continue'
