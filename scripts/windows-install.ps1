@@ -117,7 +117,8 @@ Write-Log -LogLevel "info" -Message "Configuration file created."
 
 # Download and validate n2x-node binary
 $n2xNodeBinaryPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinary)"
-if (-not (Test-Path $n2xNodeBinaryPath) -or (Read-Host "n2x-node binary already exists. Replace? (Y/N)" -eq "Y")) {
+$response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)" | ForEach-Object { $_.ToUpper() })
+if (-not (Test-Path $n2xNodeBinaryPath) -or ($response -eq "Y")) {
     Write-Log -LogLevel "info" -Message "Downloading n2x-node binary."
     Download -Uri $Constants.UriN2x -OutFile $n2xNodeBinaryPath
 
