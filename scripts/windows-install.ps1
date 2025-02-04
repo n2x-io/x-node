@@ -117,11 +117,33 @@ Write-Log -LogLevel "info" -Message "Configuration file created."
 
 # Download and validate n2x-node binary
 $n2xNodeBinaryPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinary)"
-$response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)" | ForEach-Object { $_.ToUpper() })
+
+do {
+    $response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)").ToUpper()
+    if ($response -notmatch "^(Y|N)$") {
+        Write-Host "Invalid input. Please enter 'Y' or 'N'." -ForegroundColor Yellow
+    }
+} while ($response -notmatch "^(Y|N)$")
+
 if (-not (Test-Path $n2xNodeBinaryPath) -or ($response -eq "Y")) {
+
+    # Stop and Uninstall n2x-node service
+    $arrService = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
+    if ($arrService -and $arrService.Status -eq 'Running') {
+        Write-Log -LogLevel "info" -Message "Stopping $($Constants.ServiceName) service."
+        Stop-Service $Constants.ServiceName -Force
+    }
+
+    if ($arrService) {
+        Write-Log -LogLevel "info" -Message "Uninstalling $($Constants.ServiceName) service."
+        & "$n2xNodeBinaryPath" service-uninstall
+    }
+
+    # Download n2x-node binary
     Write-Log -LogLevel "info" -Message "Downloading n2x-node binary."
     Download -Uri $Constants.UriN2x -OutFile $n2xNodeBinaryPath
 
+    # Validate n2x-node binary checksum
     Write-Log -LogLevel "info" -Message "Downloading n2x-node checksum."
     $checksumPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinaryChecksum)"
     Download -Uri $Constants.UriN2xChecksum -OutFile $checksumPath
@@ -145,17 +167,7 @@ if (-not (Test-Path $wintunBinaryPath)) {
     Remove-Item $wintunZipPath
 }
 
-# Manage n2x-node service
-$arrService = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
-if ($arrService -and $arrService.Status -eq 'Running') {
-    Write-Log -LogLevel "info" -Message "Stopping $($Constants.ServiceName) service."
-    Stop-Service $Constants.ServiceName -Force
-}
-
-if ($arrService) {
-    Write-Log -LogLevel "info" -Message "Uninstalling $($Constants.ServiceName) service."
-    & "$n2xNodeBinaryPath" service-uninstall
-}
+# Install and Start n2x-node service
 
 Write-Log -LogLevel "info" -Message "Installing $($Constants.ServiceName) service."
 & "$n2xNodeBinaryPath" service-install
