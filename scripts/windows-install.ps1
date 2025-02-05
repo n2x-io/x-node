@@ -174,7 +174,7 @@ $service = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinu
 # Check if the service exists
 if (-not $service) {
     # Service is not installed
-    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is not installed. Installing it."
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is not installed. Installing..."
     & "$n2xNodeBinaryPath" service-install
 } else {
     Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already installed."
@@ -187,16 +187,23 @@ if ($service -and $service.Status -eq 'Running') {
     Write-Log -LogLevel "info" -Message "Starting $($Constants.ServiceName) service."
     Start-Service $Constants.ServiceName
 }
-# Schedule Task
+
+# Unregister schedule task
 $taskName = "n2xNodeStartupTask"
 if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
     Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
 }
 
+# Define the scheduled task action
 $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File $n2xNodeBinaryPath"
-$trigger = New-ScheduledTaskTrigger -AtStartup
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
 
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName -Description "Runs n2x-node at startup" -Settings $settings
+# Define the trigger to run at system startup
+$trigger = New-ScheduledTaskTrigger -AtStartup
+
+# Define task settings for reliability
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
+
+# Register the task
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName -Description "Runs n2x-node at startup" -Settings $settings -User "SYSTEM" -RunLevel Highest
 
 Write-Log -LogLevel "info" -Message "Script completed successfully."
