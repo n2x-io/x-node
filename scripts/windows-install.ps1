@@ -87,13 +87,13 @@ function Test-Administrator {
     return $user.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
+# Main Script
+
 ## Ensure Administrator Rights
 if (-not (Test-Administrator)) {
     Write-Log -LogLevel "error" -Message "This script must be executed as Administrator!"
     exit 1
 }
-
-# Main Script
 
 # Ensure token is provided
 if (-not $token) {
@@ -169,12 +169,24 @@ if (-not (Test-Path $wintunBinaryPath)) {
 
 # Install and Start n2x-node service
 
-Write-Log -LogLevel "info" -Message "Installing $($Constants.ServiceName) service."
-& "$n2xNodeBinaryPath" service-install
+$service = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
 
-Write-Log -LogLevel "info" -Message "Starting $($Constants.ServiceName) service."
-Start-Service $Constants.ServiceName
+# Check if the service exists
+if (-not $service) {
+    # Service is not installed
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is not installed. Installing it."
+    & "$n2xNodeBinaryPath" service-install
+} else {
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already installed."
+}
 
+# Check if the service is running
+if ($service -and $service.Status -eq 'Running') {
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already running."
+} else {
+    Write-Log -LogLevel "info" -Message "Starting $($Constants.ServiceName) service."
+    Start-Service $Constants.ServiceName
+}
 # Schedule Task
 $taskName = "n2xNodeStartupTask"
 if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
