@@ -41,7 +41,7 @@ function Write-Log {
         Write-Host "[ $LogLevel] " -ForegroundColor $colors[$LogLevel] -NoNewLine
     }
 
-    Write-Host " $(Get-TimeStamp) $Message" -ForegroundColor White
+    Write-Host "$(Get-TimeStamp) $Message" -ForegroundColor White
 }
 
 ## Download Function
