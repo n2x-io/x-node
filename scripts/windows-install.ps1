@@ -32,16 +32,16 @@ function Write-Log {
     )
 
     $colors = @{
-        info = "Blue"
+        info = "White"
         warn = "Yellow"
         error = "Red"
     }
 
     if ($colors.ContainsKey($LogLevel)) {
-        Write-Host "[$LogLevel] " -ForegroundColor $colors[$LogLevel] -NoNewLine
+        Write-Host "[ $LogLevel] " -ForegroundColor $colors[$LogLevel] -NoNewLine
     }
 
-    Write-Host " $(Get-TimeStamp) $Message" -ForegroundColor DarkGray
+    Write-Host " $(Get-TimeStamp) $Message" -ForegroundColor White
 }
 
 ## Download Function
