@@ -204,11 +204,11 @@ if (-not $service) {
 Set-Service -Name $Constants.ServiceName -StartupType Automatic
 
 # Modify the service to depend on the "Network" service
-$serviceRegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\$serviceName"
+$serviceRegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\$Constants.ServiceName"
 $networkDependency = "Netlogon"
 Set-ItemProperty -Path $serviceRegistryPath -Name DependOnService -Value @($networkDependency)
 
-Write-Log -LogLevel "info" -Message "$serviceName is now configured to start after the $networkDependency service."
+Write-Log -LogLevel "info" -Message "$Constants.ServiceName is now configured to start after the $networkDependency service."
 
 # Check if the service is running
 if ($service -and $service.Status -eq 'Running') {
