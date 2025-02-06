@@ -103,7 +103,7 @@ function DownloadAndValidate-Binary {
 
     $downloadedHash = (Get-Content $checksumPath).Split(" ")[0]
     Test-Hash -file $binaryPath -hash $downloadedHash
-    Write-Log -LogLevel "info" -Message "n2x-node binary validated successfully."
+    Write-Log -LogLevel "info" -Message "Checksum validation succeeded for $binaryPath"
 }
 
 # Main Script
