@@ -38,7 +38,7 @@ function Write-Log {
     }
 
     if ($colors.ContainsKey($LogLevel)) {
-        Write-Host "[ $LogLevel]" -ForegroundColor $colors[$LogLevel] -NoNewLine
+        Write-Host "[ $LogLevel] " -ForegroundColor $colors[$LogLevel] -NoNewLine
     }
 
     Write-Host "$(Get-TimeStamp) $Message" -ForegroundColor White
