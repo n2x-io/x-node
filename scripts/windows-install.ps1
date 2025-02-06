@@ -215,11 +215,4 @@ if ($service -and $service.Status -eq 'Running') {
     Start-Service $Constants.ServiceName
 }
 
-# Register a scheduled task to start the service after reboot
-$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-Command Start-Service $Constants.ServiceName"
-$trigger = New-ScheduledTaskTrigger -AtStartup
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Start $Constants.ServiceName on Reboot" -Description "Starts $Constants.ServiceName after reboot" -Settings $settings
-
 Write-Log -LogLevel "info" -Message "Script completed successfully."
