@@ -1,30 +1,28 @@
-# Windows Install
-
+# Windows Install Script
 param ($token)
 
-$ServiceName= "n2x-node"
-$InstallationFolder= "C:\Program Files\n2x"
-$N2xNodeBinary= "n2x-node.exe"
-$N2xNodeDownloaded= $false
-$N2xNodeBinaryChecksum = "n2x-node.exe_checksum.sha256"
-$WintunBinary= "wintun.dll"
-$WintunVersion="wintun-0.14.1"
-$ConfigFile="n2x-node.yml"
-$UriN2x="https://dl.n2x.io/binaries/stable/latest/windows/amd64/$N2xNodeBinary"
-$UriN2xChecksum= "https://dl.n2x.io/binaries/stable/latest/windows/amd64/$N2xNodeBinaryChecksum"
-$UriWintun="https://www.wintun.net/builds/$WintunVersion.zip"
+# Constants
+$Constants = @{
+    ServiceName           = "n2x-node"
+    InstallationFolder    = "C:\Program Files\n2x"
+    N2xNodeBinary         = "n2x-node.exe"
+    N2xNodeBinaryChecksum = "n2x-node.exe_checksum.sha256"
+    WintunBinary          = "wintun.dll"
+    WintunVersion         = "wintun-0.14.1"
+    ConfigFile            = "n2x-node.yml"
+    UriN2x                = "https://dl.n2x.io/binaries/stable/latest/windows/amd64/n2x-node.exe"
+    UriN2xChecksum        = "https://dl.n2x.io/binaries/stable/latest/windows/amd64/n2x-node.exe_checksum.sha256"
+    UriWintun             = "https://www.wintun.net/builds/wintun-0.14.1.zip"
+}
 
-## Functions
+# Functions
 
 ## Get-TimeStamp Function
 function Get-TimeStamp {
-
     return "{0:yyyy/MM/dd} {0:HH:mm:ss.fff}" -f (Get-Date)
-
 }
 
-## Write-Log Fuction
-
+## Write-Log Function
 function Write-Log {
     param (
         [Parameter(Mandatory=$true, Position=0)]
@@ -33,16 +31,17 @@ function Write-Log {
         [string] $Message
     )
 
-    if ($LogLevel -eq "info"){
-        Write-Host "[ info] " -f Blue -NoNewLine;
-
-    } elseif ($LogLevel -eq "warn") {
-        Write-Host "[ warn] " -f Yellow -NoNewLine;
+    $colors = @{
+        info = "White"
+        warn = "Yellow"
+        error = "Red"
     }
 
-    Write-Host "$(Get-TimeStamp) " -f DarkGray -NoNewLine;
-    Write-Host "$Message"
+    if ($colors.ContainsKey($LogLevel)) {
+        Write-Host "[ $LogLevel] " -ForegroundColor $colors[$LogLevel] -NoNewLine
+    }
 
+    Write-Host "$(Get-TimeStamp) $Message" -ForegroundColor White
 }
 
 ## Download Function
@@ -56,195 +55,164 @@ function Download {
 
     try {
         $ProgressPreference = 'SilentlyContinue'
-        Invoke-WebRequest -Uri $Uri -OutFile "$OutFile"
-        $ProgressPreference = 'Continue'
+        Invoke-WebRequest -Uri $Uri -OutFile $OutFile
     } catch {
-        # Get the status code...
-        $StatusCode = [int]$_.Exception.Response.StatusCode
-
-        if  ($statusCode -eq 0) {
-            throw " Error: The file $InstallationFolder\$N2xNodeBinary cannot be replaced because it is being used by another process."
-        }
-        elseif ($statusCode -ne 200) {
-            throw "Download Error: $StatusCode"
-        }
+        Write-Log -LogLevel "error" -Message ("Failed to download " + $Uri + ": " + $_)
+        exit 1
+    } finally {
+        $ProgressPreference = 'Continue'
     }
 }
 
 ## Test-Hash Function
 function Test-Hash {
     param(
-    [Parameter(Mandatory=$true, Position=0)]
-    [string] $file,
-    [Parameter(Mandatory=$true, Position=1)]
-    [string] $hash
+        [Parameter(Mandatory=$true, Position=0)]
+        [string] $file,
+        [Parameter(Mandatory=$true, Position=1)]
+        [string] $hash
     )
 
     if ((Get-FileHash $file -Algorithm SHA256).Hash.ToUpper() -eq $hash.ToUpper()) {
-
-        Write-Log -LogLevel "info" -Message "Check binary checksum: OK"
-
+        Write-Log -LogLevel "info" -Message "Checksum validation succeeded for $file"
     } else {
-        throw ("$(Get-TimeStamp) Check binary checksum: FAIL")
+        Write-Log -LogLevel "error" -Message "Checksum validation failed for $file"
+        exit 1
     }
-
 }
 
 ## Test-Administrator Function
-function Test-Administrator
-{
-    [OutputType([bool])]
-    param()
-    process {
-        [Security.Principal.WindowsPrincipal]$user = [Security.Principal.WindowsIdentity]::GetCurrent();
-        return $user.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator);
-    }
+function Test-Administrator {
+    [Security.Principal.WindowsPrincipal]$user = [Security.Principal.WindowsIdentity]::GetCurrent()
+    return $user.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
-## Main
+## DownloadAndValidate-Binary Function
+function DownloadAndValidate-Binary {
+    param (
+        [string]$binaryPath,
+        [string]$checksumPath,
+        [string]$binaryUri,
+        [string]$checksumUri
+    )
 
-## Check if script is execute as Administrator
-if(-not (Test-Administrator))
-{
-    Write-Log -LogLevel "warn" -Message "This script must be executed as Administrator!"
-    exit 1;
+    # Download n2x-node binary and checksum
+    Write-Log -LogLevel "info" -Message "Downloading n2x-node binary and checksum."
+    Download -Uri $binaryUri -OutFile $binaryPath
+    Download -Uri $checksumUri -OutFile $checksumPath
+
+    Write-Log -LogLevel "info" -Message "Validating n2x-node binary checksum."
+    $downloadedHash = (Get-Content $checksumPath).Split(" ")[0]
+    Test-Hash -file $binaryPath -hash $downloadedHash
 }
 
-## Create installation folder
-if (!(Test-Path $InstallationFolder -PathType Container))
-{
-    Write-Log -LogLevel "info" -Message "Create installation folder."
-    New-Item -ItemType Directory -Force -Path $InstallationFolder | Out-Null
+# Main Script
+
+## Ensure Administrator Rights
+if (-not (Test-Administrator)) {
+    Write-Log -LogLevel "error" -Message "This script must be executed as Administrator!"
+    exit 1
 }
 
-## Create Configuration file
-if (!(Test-Path "$InstallationFolder\$ConfigFile"))
-{
-   New-Item -path "$InstallationFolder" -name "$ConfigFile" -type "file" -value "Token: $token" | Out-Null
-   Write-Log -LogLevel "info" -Message "Configuration file created."
-} else {
-    Move-Item -Path "$InstallationFolder\$ConfigFile" -Destination "$InstallationFolder\old-$ConfigFile" -Force
-    New-Item -path "$InstallationFolder" -name "$ConfigFile" -type "file" -value "Token: $token" | Out-Null
-    Write-Log -LogLevel "info" -Message "Configuration file replaced."
+# Ensure token is provided
+if (-not $token) {
+    Write-Log -LogLevel "error" -Message "Token parameter is required."
+    exit 1
 }
 
-## Download n2x-node binary
-
-if (Test-Path "$InstallationFolder\$N2xNodeBinary") {
-
-    $N2xNodeDownloaded= $true
-    Write-Log -LogLevel "info" -Message "n2x-node binary has already been downloaded!"
-
-    do { $answer = Read-Host -Prompt "Do you want to replace it?(Y/N)"
-
-    } while("yes","no", "y", "n", "Y", "N" -notcontains $answer)
+# Create installation folder if it doesn't exist
+if (-not (Test-Path $Constants.InstallationFolder -PathType Container)) {
+    Write-Log -LogLevel "info" -Message "Creating installation folder."
+    New-Item -ItemType Directory -Force -Path $Constants.InstallationFolder | Out-Null
 }
 
-if (($answer -eq "yes") -or ($answer -eq "y") -or ($answer -eq "Y") -or ($N2xNodeDownloaded -eq $false)) {
+# Create or replace configuration file
+$configFilePath = "$($Constants.InstallationFolder)\$($Constants.ConfigFile)"
+if (Test-Path $configFilePath) {
+    Move-Item -Path $configFilePath -Destination "$($Constants.InstallationFolder)\old-$($Constants.ConfigFile)" -Force
+}
+New-Item -Path $Constants.InstallationFolder -Name $Constants.ConfigFile -ItemType "file" -Value "Token: $token" | Out-Null
+Write-Log -LogLevel "info" -Message "Configuration file created."
 
-    # Stop service if n2x-node is running
-    $arrService = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+# Check if n2x-node binary exits
+$n2xNodeBinaryPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinary)"
+$checksumPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinaryChecksum)"
 
-    while ($arrService.Status -eq 'Running')
-    {
+if (Test-Path $n2xNodeBinaryPath) {
 
-        Stop-Service $ServiceName
-        Write-Log -LogLevel "info" -Message "$ServiceName service is Running! Stopping..."
-        Start-Sleep -seconds 10
-        $arrService.Refresh()
-        if ($arrService.Status -eq 'Stopped')
-        {
-            Write-Log -LogLevel "info" -Message "$ServiceName is now Stopped!"
+    do {
+        $response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)").ToUpper()
+        if ($response -notmatch "^(Y|N)$") {
+            Write-Host "Invalid input. Please enter 'Y' or 'N'." -ForegroundColor Yellow
         }
+    } while ($response -notmatch "^(Y|N)$")
+
+    if ($response -eq "Y") {
+
+        # Stop and Uninstall n2x-node service
+        $arrService = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
+        if ($arrService -and $arrService.Status -eq 'Running') {
+            Write-Log -LogLevel "info" -Message "Stopping $($Constants.ServiceName) service."
+            Stop-Service $Constants.ServiceName -Force
+        }
+
+        if ($arrService) {
+            Write-Log -LogLevel "info" -Message "Uninstalling $($Constants.ServiceName) service."
+            & "$n2xNodeBinaryPath" service-uninstall
+        }
+
+        DownloadAndValidate-Binary -binaryPath $n2xNodeBinaryPath -checksumPath $checksumPath -binaryUri $Constants.UriN2x -checksumUri $Constants.UriN2xChecksum
+
+    } else {
+        Write-Log -LogLevel "info" -Message "Binary replacement skipped."
+        return
     }
-
-    ## Uninstall n2x-node
-    if ($arrService -ne $null)  {
-
-        Write-Log -LogLevel "info" -Message "Uninstall $ServiceName service!"
-        & "$InstallationFolder\$N2xNodeBinary" "service-uninstall"
-        Start-Sleep -seconds 5
-    }
-
-    Write-Log -LogLevel "info" -Message "Downloading n2x-node binary..."
-    Download -Uri $UriN2x -OutFile "$InstallationFolder\$N2xNodeBinary"
-    Write-Log -LogLevel "info" -Message "Done!"
-
-    Write-Log -LogLevel "info" -Message "Downloading n2x-node binary checksum..."
-    Download -Uri $UriN2xChecksum -OutFile "$InstallationFolder\$N2xNodeBinaryChecksum"
-
-    ## Compare checksum
-    $downloadedHash= $(Get-Content $InstallationFolder\$N2xNodeBinaryChecksum).split(" ")[0]
-
-    Test-Hash -file $InstallationFolder\$N2xNodeBinary -hash $downloadedHash
-}
-
-## Download wintun DLL
-
-if (Test-Path "$InstallationFolder\$WintunBinary") {
-    Write-Log -LogLevel "info" -Message "Wintun DLL has already been downloaded! Nothing to do!"
-
 } else {
-
-    Write-Log -LogLevel "info" -Message "Downloading wintun DLL..."
-    Download -Uri $UriWintun -OutFile "$InstallationFolder\$WintunVersion.zip"
-    Write-Log -LogLevel "info" -Message "Done!"
-
-    ## Install wintun DLL
-    $wintunTmpPath = "$InstallationFolder\$WintunVersion\wintun\bin\amd64\$WintunBinary"
-
-    Write-Log -LogLevel "info" -Message "Installing wintun DLL..."
-    $zipFiles = Get-ChildItem $InstallationFolder -Filter *.zip
-
-    foreach ($zipFile in $zipFiles) {
-
-        $zipOutPutFolderExtended = $InstallationFolder + "\" + $zipFile.BaseName
-        Expand-Archive -Path $zipFile.FullName -DestinationPath $zipOutPutFolderExtended
-
-    }
-
-    Move-Item -Path "$wintunTmpPath" -Destination "$InstallationFolder" -Force
-
-    if (Test-Path "$InstallationFolder\$WintunVersion.zip") {
-        Remove-Item "$InstallationFolder\$WintunVersion.zip"
-    }
-
-    if (Test-Path "$InstallationFolder\$WintunVersion") {
-        Remove-Item "$InstallationFolder\$WintunVersion" -Recurse -Force
-    }
-
-    Write-Log -LogLevel "info" -Message "Done!"
+    Write-Log -LogLevel "info" -Message "Binary not found."
+    DownloadAndValidate-Binary -binaryPath $n2xNodeBinaryPath -checksumPath $checksumPath -binaryUri $Constants.UriN2x -checksumUri $Constants.UriN2xChecksum
 }
 
+# Download and extract Wintun DLL
+$wintunBinaryPath = "$($Constants.InstallationFolder)\$($Constants.WintunBinary)"
+if (-not (Test-Path $wintunBinaryPath)) {
+    Write-Log -LogLevel "info" -Message "Downloading Wintun DLL."
+    $wintunZipPath = "$($Constants.InstallationFolder)\$($Constants.WintunVersion).zip"
+    Download -Uri $Constants.UriWintun -OutFile $wintunZipPath
 
-## Install n2x-node
-$serviceInstalled = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+    Write-Log -LogLevel "info" -Message "Extracting Wintun DLL."
+    Expand-Archive -Path $wintunZipPath -DestinationPath "$($Constants.InstallationFolder)\$($Constants.WintunVersion)"
 
-if ($serviceInstalled -eq $null)  {
+    Move-Item -Path "$($Constants.InstallationFolder)\$($Constants.WintunVersion)\wintun\bin\amd64\$($Constants.WintunBinary)" -Destination $wintunBinaryPath -Force
+    Remove-Item "$($Constants.InstallationFolder)\$($Constants.WintunVersion)" -Recurse -Force
+    Remove-Item $wintunZipPath
+}
 
-    Write-Log -LogLevel "info" -Message "Install $ServiceName service!"
-    & "$InstallationFolder\$N2xNodeBinary" "service-install"
-    Start-Sleep -seconds 5
+# Install and Start n2x-node service
+
+$service = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
+
+# Check if the service exists
+if (-not $service) {
+    # Service is not installed
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is not installed. Installing..."
+    & "$n2xNodeBinaryPath" service-install
 } else {
-    Write-Log -LogLevel "info" -Message "$ServiceName service has already been installed!"
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already installed."
 }
 
-## Start n2x-node Service
-$arrService = Get-Service -Name $ServiceName
+# Ensure the service is set to start automatically at boot
+Set-Service -Name $Constants.ServiceName -StartupType Automatic
 
-while ($arrService.Status -ne 'Running')
-{
+$serviceRegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\$($Constants.ServiceName)"
+Set-ItemProperty -Path $serviceRegistryPath -Name "DelayedAutostart" -Value 1
+Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) is now configured to Delayed Start."
 
-    Start-Service $ServiceName
-    Write-Log -LogLevel "info" -Message "Service starting..."
-    Start-Sleep -seconds 10
-    $arrService.Refresh()
-    if ($arrService.Status -eq 'Running')
-    {
-        Write-Log -LogLevel "info" -Message "Service is now Running!"
-    }
-
+# Check if the service is running
+if ($service -and $service.Status -eq 'Running') {
+    Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already running."
+} else {
+    Write-Log -LogLevel "info" -Message "Starting $($Constants.ServiceName) service."
+    Start-Service $Constants.ServiceName
 }
 
-# Print Service Output
-Get-Service -Name $ServiceName
+Write-Log -LogLevel "info" -Message "Script completed successfully."
