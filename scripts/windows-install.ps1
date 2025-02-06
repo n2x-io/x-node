@@ -188,22 +188,28 @@ if ($service -and $service.Status -eq 'Running') {
     Start-Service $Constants.ServiceName
 }
 
-# Unregister schedule task
+# Check if the scheduled task already exists
 $taskName = "n2xNodeStartupTask"
-if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
-    Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+$existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+
+if (-not $existingTask) {
+    Write-Log -LogLevel "info" -Message "Scheduled task $taskName does not exist. Creating it."
+
+   # Define the scheduled task action
+    $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File $n2xNodeBinaryPath"
+
+    # Define the trigger to run at system startup
+    $trigger = New-ScheduledTaskTrigger -AtStartup
+
+    # Define task settings for reliability
+    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
+
+    # Register the task
+    Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName -Description "Runs n2x-node at startup" -Settings $settings -User "SYSTEM" -RunLevel Highest
+
+    Write-Log -LogLevel "info" -Message "Scheduled task $taskName created successfully."
+} else {
+    Write-Log -LogLevel "info" -Message "Scheduled task $taskName already exists. Skipping creation."
 }
-
-# Define the scheduled task action
-$action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File $n2xNodeBinaryPath"
-
-# Define the trigger to run at system startup
-$trigger = New-ScheduledTaskTrigger -AtStartup
-
-# Define task settings for reliability
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
-
-# Register the task
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName $taskName -Description "Runs n2x-node at startup" -Settings $settings -User "SYSTEM" -RunLevel Highest
 
 Write-Log -LogLevel "info" -Message "Script completed successfully."
