@@ -87,6 +87,25 @@ function Test-Administrator {
     return $user.IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 }
 
+## DownloadAndValidate-Binary Function
+function DownloadAndValidate-Binary {
+    param (
+        [string]$binaryPath,
+        [string]$checksumPath,
+        [string]$binaryUri,
+        [string]$checksumUri
+    )
+
+    # Download n2x-node binary and checksum
+    Write-Log -LogLevel "info" -Message "Downloading n2x-node binary and checksum."
+    Download -Uri $binaryUri -OutFile $binaryPath
+    Download -Uri $checksumUri -OutFile $checksumPath
+
+    $downloadedHash = (Get-Content $checksumPath).Split(" ")[0]
+    Test-Hash -file $binaryPath -hash $downloadedHash
+    Write-Log -LogLevel "info" -Message "n2x-node binary validated successfully."
+}
+
 # Main Script
 
 ## Ensure Administrator Rights
@@ -115,41 +134,41 @@ if (Test-Path $configFilePath) {
 New-Item -Path $Constants.InstallationFolder -Name $Constants.ConfigFile -ItemType "file" -Value "Token: $token" | Out-Null
 Write-Log -LogLevel "info" -Message "Configuration file created."
 
-# Download and validate n2x-node binary
+# Check if n2x-node binary exits
 $n2xNodeBinaryPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinary)"
+$checksumPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinaryChecksum)"
 
-do {
-    $response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)").ToUpper()
-    if ($response -notmatch "^(Y|N)$") {
-        Write-Host "Invalid input. Please enter 'Y' or 'N'." -ForegroundColor Yellow
-    }
-} while ($response -notmatch "^(Y|N)$")
+if (Test-Path $n2xNodeBinaryPath) {
 
-if (-not (Test-Path $n2xNodeBinaryPath) -or ($response -eq "Y")) {
+    do {
+        $response = (Read-Host "n2x-node binary already exists. Replace? (Y/N)").ToUpper()
+        if ($response -notmatch "^(Y|N)$") {
+            Write-Host "Invalid input. Please enter 'Y' or 'N'." -ForegroundColor Yellow
+        }
+    } while ($response -notmatch "^(Y|N)$")
 
-    # Stop and Uninstall n2x-node service
-    $arrService = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
-    if ($arrService -and $arrService.Status -eq 'Running') {
-        Write-Log -LogLevel "info" -Message "Stopping $($Constants.ServiceName) service."
-        Stop-Service $Constants.ServiceName -Force
-    }
+    if ($response -eq "Y") {
 
-    if ($arrService) {
-        Write-Log -LogLevel "info" -Message "Uninstalling $($Constants.ServiceName) service."
-        & "$n2xNodeBinaryPath" service-uninstall
-    }
+        # Stop and Uninstall n2x-node service
+        $arrService = Get-Service -Name $Constants.ServiceName -ErrorAction SilentlyContinue
+        if ($arrService -and $arrService.Status -eq 'Running') {
+            Write-Log -LogLevel "info" -Message "Stopping $($Constants.ServiceName) service."
+            Stop-Service $Constants.ServiceName -Force
+        }
 
-    # Download n2x-node binary
-    Write-Log -LogLevel "info" -Message "Downloading n2x-node binary."
-    Download -Uri $Constants.UriN2x -OutFile $n2xNodeBinaryPath
+        if ($arrService) {
+            Write-Log -LogLevel "info" -Message "Uninstalling $($Constants.ServiceName) service."
+            & "$n2xNodeBinaryPath" service-uninstall
+        }
 
-    # Validate n2x-node binary checksum
-    Write-Log -LogLevel "info" -Message "Downloading n2x-node checksum."
-    $checksumPath = "$($Constants.InstallationFolder)\$($Constants.N2xNodeBinaryChecksum)"
-    Download -Uri $Constants.UriN2xChecksum -OutFile $checksumPath
+        DownloadAndValidate-Binary -binaryPath $n2xNodeBinaryPath -checksumPath $checksumPath -binaryUri $Constants.UriN2x -checksumUri $Constants.UriN2xChecksum
 
-    $downloadedHash = (Get-Content $checksumPath).Split(" ")[0]
-    Test-Hash -file $n2xNodeBinaryPath -hash $downloadedHash
+    } else {
+        Write-Log -LogLevel "info" -Message "Binary replacement skipped."
+        return
+} else {
+    Write-Log -LogLevel "info" -Message "Binary not found. Downloading n2x-node binary and checksum."
+    DownloadAndValidate-Binary -binaryPath $n2xNodeBinaryPath -checksumPath $checksumPath -binaryUri $Constants.UriN2x -checksumUri $Constants.UriN2xChecksum
 }
 
 # Download and extract Wintun DLL
