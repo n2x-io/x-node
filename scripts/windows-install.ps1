@@ -203,6 +203,10 @@ if (-not $service) {
 # Ensure the service is set to start automatically at boot
 Set-Service -Name $Constants.ServiceName -StartupType Automatic
 
+$serviceRegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\$($Constants.ServiceName)"
+Set-ItemProperty -Path $serviceRegistryPath -Name "DelayedAutostart" -Value 1
+Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) is now configured to Delayed Start."
+
 # Check if the service is running
 if ($service -and $service.Status -eq 'Running') {
     Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already running."
