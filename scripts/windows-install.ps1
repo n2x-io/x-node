@@ -168,7 +168,7 @@ if (Test-Path $n2xNodeBinaryPath) {
         return
     }
 } else {
-    Write-Log -LogLevel "info" -Message "Binary not found. Downloading n2x-node binary and checksum."
+    Write-Log -LogLevel "info" -Message "Binary not found."
     DownloadAndValidate-Binary -binaryPath $n2xNodeBinaryPath -checksumPath $checksumPath -binaryUri $Constants.UriN2x -checksumUri $Constants.UriN2xChecksum
 }
 
