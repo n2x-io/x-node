@@ -200,6 +200,9 @@ if (-not $service) {
     Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already installed."
 }
 
+# Ensure the service is set to start automatically at boot
+Set-Service -Name $Constants.ServiceName -StartupType Automatic
+
 # Check if the service is running
 if ($service -and $service.Status -eq 'Running') {
     Write-Log -LogLevel "info" -Message "$($Constants.ServiceName) service is already running."
@@ -207,9 +210,6 @@ if ($service -and $service.Status -eq 'Running') {
     Write-Log -LogLevel "info" -Message "Starting $($Constants.ServiceName) service."
     Start-Service $Constants.ServiceName
 }
-
-# Ensure the service is set to start automatically at boot
-Ensure-ServiceAutoStart -serviceName $Constants.ServiceName
 
 # Check if the scheduled task already exists
 # $taskName = "n2xNodeStartupTask"
